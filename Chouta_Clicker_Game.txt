@@ -29,9 +29,10 @@ Buildings
         desc:Take everything you have, and put him in pot. Don't let anyone airsick touch seasonings.
         cost:100 chouta
         on tick:
-                if (chance(0.1%) yield 1 chouta
+        yield: 1 chouta
+        on tick:
+            if (chance(0.9)) yield 10 chouta
         end
-        yield 1 chouta
 
 
 Resources
@@ -43,6 +44,7 @@ Buttons
     *choutaButton
         on click:yield 1 chouta
         class:bigButton hasFlares
+
 
 
 
