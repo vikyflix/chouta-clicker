@@ -25,12 +25,12 @@ Layout
  
 Buildings
     *rockCook
-        name:Numuhukumakiaki'aialunamor
-        desc:Take everything you have, and put him in pot. Don't let anyone airsick touch seasonings.
-        cost:100 chouta
+        name: Numuhukumakiaki'aialunamor
+        desc: Take everything you have, and put him in pot. Don't let anyone airsick touch seasonings.
+        cost: 100 chouta
         yield: 1 chouta
         on tick:
-            if (chance(0.9)) yield 10 chouta
+            if (chance(0.99)) yield 1 chouta
         end
 
 
@@ -43,6 +43,7 @@ Buttons
     *choutaButton
         on click:yield 1 chouta
         class:bigButton hasFlares
+
 
 
 
