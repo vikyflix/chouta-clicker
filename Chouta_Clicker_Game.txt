@@ -27,8 +27,8 @@ Buildings
     *rockCook
         name:Numuhukumakiaki'aialunamor
         desc:Take everything you have, and put him in pot. Don't let anyone airsick touch seasonings.
-        cost:100 coins
-        on tick:yield 1 coin
+        cost:100 chouta
+        on tick:yield 1 chouta
  
 Resources
     *chouta
@@ -39,6 +39,7 @@ Buttons
     *choutaButton
         on click:yield 1 coin
         class:bigButton hasFlares
+
 
 
 
