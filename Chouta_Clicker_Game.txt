@@ -25,7 +25,7 @@ Layout
  
 Buildings
     *rockCook
-        name:Cheesecake factory|Cheesecake Factories
+        name:Numuhukumakiaki'aialunamor
         desc:Combines the magic of cheese with the wonders of cake to produce 3 cheesecakes per second.
         cost:100 coins
         on tick:yield 1 coin
@@ -39,4 +39,5 @@ Buttons
     *coinButton
         on click:yield 1 coin
         class:bigButton hasFlares
+
 
