@@ -30,7 +30,7 @@ Buildings
         cost:100 chouta
         on tick:
                 yield 1 chouta
-                if (chance(99%) yield 100 chouta
+                if (chance(99%) yield chouta
         end
 
 Resources
@@ -42,6 +42,7 @@ Buttons
     *choutaButton
         on click:yield 1 chouta
         class:bigButton hasFlares
+
 
 
 
