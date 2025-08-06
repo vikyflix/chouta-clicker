@@ -1,0 +1,41 @@
+﻿Let's make a game!
+        name:Chouta Clicker
+        by:TALAT
+        desc:Chouta is the best! Click to cook, serve, and feed your fellow airsick lowlanders.
+        created:06/08/2025
+        updated:06/08/2025
+        version:1
+
+
+CSS
+#game.on
+{
+    background-size: 100% 100%;
+    image-rendering: pixelated;
+}
+ 
+Settings
+    background:stuff/meadow.jpg
+    stylesheet:stuff/basic.css
+    building cost increase:115%
+    building cost refund:25%
+ 
+Layout
+    use default
+ 
+Buildings
+    *rock_cook
+        name:Cheesecake factory|Cheesecake Factories
+        desc:Combines the magic of cheese with the wonders of cake to produce 3 cheesecakes per second.
+        cost:100 coins
+        on tick:yield 1 coin
+ 
+Resources
+    *coin|coins
+        name:Coin|Coins
+        desc:Get as many of these shiny collectables as you can.
+ 
+Buttons
+    *coinButton
+        on click:yield 1 coin
+        class:bigButton hasFlares
