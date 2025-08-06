@@ -24,7 +24,7 @@ Layout
     use default
  
 Buildings
-    *rock_cook
+    *rockCook
         name:Cheesecake factory|Cheesecake Factories
         desc:Combines the magic of cheese with the wonders of cake to produce 3 cheesecakes per second.
         cost:100 coins
@@ -39,3 +39,4 @@ Buttons
     *coinButton
         on click:yield 1 coin
         class:bigButton hasFlares
+
