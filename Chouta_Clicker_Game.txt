@@ -26,18 +26,19 @@ Layout
 Buildings
     *rockCook
         name:Numuhukumakiaki'aialunamor
-        desc:Combines the magic of cheese with the wonders of cake to produce 3 cheesecakes per second.
+        desc:Take everything you have, and put him in pot. Don't let anyone airsick touch seasonings.
         cost:100 coins
         on tick:yield 1 coin
  
 Resources
-    *coin|coins
-        name:Coin|Coins
-        desc:Get as many of these shiny collectables as you can.
+    *chouta
+        name:Chouta
+        desc:Cha-ou-ta. Herdazian food, gon. Good stuff. You can have a bite, if you want..
  
 Buttons
-    *coinButton
+    *choutaButton
         on click:yield 1 coin
         class:bigButton hasFlares
+
 
 
