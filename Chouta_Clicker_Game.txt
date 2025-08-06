@@ -37,8 +37,9 @@ Resources
  
 Buttons
     *choutaButton
-        on click:yield 1 coin
+        on click:yield 1 chouta
         class:bigButton hasFlares
+
 
 
 
