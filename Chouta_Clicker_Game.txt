@@ -36,7 +36,7 @@ Buildings
         *cheesecakeFactory
           name:Cheesecake factory
           desc:Combines the magic of cheese with the wonders of cake to produce 3 cheesecakes per second.
-          on tick:yield 3 cheesecakes
+          on tick:yield 3 chouta
           cost:100 money
 
 
@@ -49,6 +49,7 @@ Buttons
     *choutaButton
         on click:yield 1 chouta
         class:bigButton hasFlares
+
 
 
 
