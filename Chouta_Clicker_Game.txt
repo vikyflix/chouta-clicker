@@ -53,13 +53,7 @@ Buildings
 Buttons
     *choutaButton
         name: Chouta
-        on click:yield 1 chouta
         class:bigButton hasFlares
-
-Clicks
-    *click
-        name: Eat Chouta
-        desc: You click for delicious Chouta.
         on click:
             if (amount of rocksFamily >= 3)
                 yield 2 chouta
@@ -79,6 +73,7 @@ Clicks
             else
                 yield 1 chouta
         end
+
 
 
 
