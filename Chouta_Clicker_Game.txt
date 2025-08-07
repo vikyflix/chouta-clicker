@@ -52,7 +52,7 @@ Buildings
 Buttons
     *choutaButton
         name: Chouta
-        class: bigButton hasFlares
+        //class: bigButton hasFlares
         on click:
             if (amount of rocksFamily >= 3)
                 yield 2 chouta
@@ -80,6 +80,7 @@ Buttons
                 yield 1 chouta
             end
         end
+
 
 
 
