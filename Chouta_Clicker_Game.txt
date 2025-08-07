@@ -57,6 +57,19 @@ Buttons
         on click:yield 1 chouta
         class:bigButton hasFlares
 
+Clicks
+    *click
+        name: Eat Chouta
+        desc: You click for delicious Chouta.
+        on click:
+            if (chance(0.35 * amount of rocksFamily))
+                yield 2 chouta
+                notify: "Horneater luck! x2 click!"
+            else
+                yield 1 chouta
+        end
+
+
 
 
 
