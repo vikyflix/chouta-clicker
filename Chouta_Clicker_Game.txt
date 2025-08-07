@@ -22,6 +22,11 @@ Settings
  
 Layout
     use default
+
+Resources
+    *chouta
+        name:Chouta
+        desc:Cha-ou-ta. Herdazian food, gon. Good stuff. You can have a bite, if you want..
  
 Buildings
         *rockCook
@@ -37,18 +42,14 @@ Buildings
           name:Cheesecake factory
           desc:Combines the magic of cheese with the wonders of cake to produce 3 cheesecakes per second.
           on tick:yield 3 chouta
-          cost:100 money
-
-
-Resources
-    *chouta
-        name:Chouta
-        desc:Cha-ou-ta. Herdazian food, gon. Good stuff. You can have a bite, if you want..
+          cost:100 chouta
  
 Buttons
     *choutaButton
+        name: Chouta
         on click:yield 1 chouta
         class:bigButton hasFlares
+
 
 
 
