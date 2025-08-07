@@ -53,6 +53,13 @@ Buttons
     *choutaButton
         name: Chouta
         //class: bigButton hasFlares
+            on click:
+                if (amount of rocksFamily >= 3)
+                    yield 2 chouta
+                    notify: "Lucky Horneater! x2 Click!"
+                end
+            end
+
 
 
 
