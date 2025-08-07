@@ -61,12 +61,26 @@ Clicks
         name: Eat Chouta
         desc: You click for delicious Chouta.
         on click:
-            if (chance(0.35 * amount of rocksFamily))
+            if (amount of rocksFamily >= 3)
                 yield 2 chouta
-                notify: "Horneater luck! x2 click!"
+                notify: "Lucky Horneater! x2 Click!"
+            else if (amount of rocksFamily == 2)
+                if (chance(0.7)) 
+                    yield 2 chouta
+                    notify: "Horneater Boost! x2 Click!"
+                else 
+                    yield 1 chouta
+            else if (amount of rocksFamily == 1)
+                if (chance(0.35)) 
+                    yield 2 chouta
+                    notify: "Horneater Boost! x2 Click!"
+                else 
+                    yield 1 chouta
             else
                 yield 1 chouta
         end
+
+
 
 
 
