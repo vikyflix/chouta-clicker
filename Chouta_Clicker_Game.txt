@@ -56,11 +56,11 @@ Buttons
             on click:
                 if (rocksFamily >= 3)
                     yield 2 chouta
-                    notify: "Lucky Horneater! x2 Click!"
                 else
                     yield 1 chouta
                 end
             end
+
 
 
 
