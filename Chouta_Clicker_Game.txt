@@ -55,11 +55,12 @@ Buttons
         class: bigButton hasFlares
         yield 1 chouta
             on click:
-                if (amount of rocksFamily >= 3)
+                if (rocksFamily >= 3)
                     yield 2 chouta
                     notify: "Lucky Horneater! x2 Click!"
                 end
             end
+
 
 
 
