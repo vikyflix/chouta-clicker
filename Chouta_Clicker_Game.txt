@@ -57,29 +57,22 @@ Buttons
             if (amount of rocksFamily >= 3)
                 yield 2 chouta
                 notify: "Lucky Horneater! x2 Click!"
-            end
             else if (amount of rocksFamily == 2)
                 if (chance(0.7))
                     yield 2 chouta
                     notify: "Horneater Boost! x2 Click!"
-                end
                 else
                     yield 1 chouta
-                end
-            end
             else if (amount of rocksFamily == 1)
                 if (chance(0.35))
                     yield 2 chouta
                     notify: "Horneater Boost! x2 Click!"
-                end
                 else
                     yield 1 chouta
-                end
-            end
             else
                 yield 1 chouta
-            end
         end
+
 
 
 
