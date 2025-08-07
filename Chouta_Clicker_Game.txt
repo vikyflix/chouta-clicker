@@ -56,12 +56,13 @@ Buttons
             on click:
                 if (rockCook >= 1)
                     yield rockCook chouta
-                else if (rockCook >=1 and rocksFamily >=1)
+                else if (rocksFamily >=1)
                     yield rockCook+rocksFamily chouta
                 else
                     yield 1 chouta
                 end
             end
+
 
 
 
