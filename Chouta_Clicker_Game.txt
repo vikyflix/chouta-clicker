@@ -32,23 +32,31 @@ Buildings
         *rockCook
         name: Numuhukumakiaki'aialunamor
         desc: Take everything you have, and put him in pot. Don't let anyone airsick touch seasonings.
-        on tick:
-            yield 1 chouta
-            if (chance(0.99)) yield 100 chouta
-        end
-        cost:10000 chouta
+        yield:1 chouta
+        cost:100 chouta
 
         *lopensCousins
           name:Lopen's Cousins
           desc:A man can never have enough cousins.
           on tick:yield 3 chouta
-          cost:100 chouta
+          cost:200 chouta
+
+        *rocksFamily
+          name:Rock's Horneater Family
+          desc:Rock brings his whole Horneater family to help. Huge production line.
+                  on tick:
+            yield 10 chouta
+            if (chance(0.99)) yield 100 chouta
+            if(chance(0.25)) multiply yield of chouta by 2
+          end
+          cost:1000 chouta
  
 Buttons
     *choutaButton
         name: Chouta
         on click:yield 1 chouta
         class:bigButton hasFlares
+
 
 
 
