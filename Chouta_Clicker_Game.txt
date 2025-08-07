@@ -36,7 +36,7 @@ Buildings
             yield 1 chouta
             if (chance(0.99)) yield 100000 chouta
         end
-        cost:10000 Chouta
+        cost:10000 chouta
 
         *cheesecakeFactory
           name:Cheesecake factory
@@ -49,6 +49,7 @@ Buttons
         name: Chouta
         on click:yield 1 chouta
         class:bigButton hasFlares
+
 
 
 
