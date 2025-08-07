@@ -24,7 +24,7 @@ Layout
     use default
  
 Buildings
-    *rockCook
+        *rockCook
         name: Numuhukumakiaki'aialunamor
         desc: Take everything you have, and put him in pot. Don't let anyone airsick touch seasonings.
         on tick:
@@ -32,6 +32,12 @@ Buildings
             if (chance(0.99)) yield 100000 chouta
         end
         cost:10000 Chouta
+
+        *cheesecakeFactory
+          name:Cheesecake factory
+          desc:Combines the magic of cheese with the wonders of cake to produce 3 cheesecakes per second.
+          on tick:yield 3 cheesecakes
+          cost:100 money
 
 
 Resources
@@ -43,6 +49,7 @@ Buttons
     *choutaButton
         on click:yield 1 chouta
         class:bigButton hasFlares
+
 
 
 
