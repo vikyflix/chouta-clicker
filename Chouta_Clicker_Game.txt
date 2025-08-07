@@ -44,7 +44,7 @@ Buildings
         *rocksFamily
           name:Rock's Horneater Family
           desc:Rock brings his whole Horneater family to help. Huge production line.
-                  on tick:
+          on tick:
             yield 10 chouta
             if (chance(0.35)) yield 100 chouta
           end
@@ -57,7 +57,8 @@ Buttons
             if (amount of rocksFamily >= 3)
                 yield 2 chouta
                 notify: "Lucky Horneater! x2 Click!"
-        end
+            end
+
 
 
 
