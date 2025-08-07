@@ -46,8 +46,7 @@ Buildings
           desc:Rock brings his whole Horneater family to help. Huge production line.
                   on tick:
             yield 10 chouta
-            if (chance(0.99)) yield 100 chouta
-            if(chance(0.25)) multiply yield of chouta by 2
+            if (chance(0.35)) yield 100 chouta
           end
           cost:1000 chouta
  
@@ -68,6 +67,7 @@ Clicks
             else
                 yield 1 chouta
         end
+
 
 
 
