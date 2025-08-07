@@ -58,12 +58,13 @@ Buttons
                     yield rockCook+1 chouta
                 end
 
-                if (rocksFamily >=1)
+                if (rocksFamily >=1 or rockCook >= 1)
                     yield rockCook+rocksFamily chouta
                 else
                     yield 1 chouta
                 end
             end
+
 
 
 
