@@ -49,6 +49,13 @@ Buildings
             if (chance(0.35)) yield 100 chouta
           end
           cost:1000 chouta
+        *admin
+          name:PARA DEVs
+          desc:RICH ZAGGIN
+          on click:
+            yield 1000000 chouta
+          end
+          cost:0 chouta
 Buttons
     *choutaButton
         name: Chouta
@@ -60,6 +67,7 @@ Buttons
                     yield rockCook+1 chouta
                 end
             end
+
 
 
 
