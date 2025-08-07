@@ -55,13 +55,14 @@ Buttons
         class:bigButton hasFlares
             on click:
                 if (rockCook >= 1)
-                    yield rockCook chouta
+                    yield rockCook+1 chouta
                 else if (rocksFamily >=1)
                     yield rockCook+rocksFamily chouta
                 else
                     yield 1 chouta
                 end
             end
+
 
 
 
