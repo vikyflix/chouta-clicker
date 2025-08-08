@@ -58,6 +58,7 @@ Buildings
             if(bridgesUpgrade)
                   hide bridgeCrew
             end
+           end
 
         *bridgeCrewsExtra
            name:The Burdenbearers
@@ -111,6 +112,7 @@ Upgrades
   name: Bridge Four
   desc: Unlocks the feared Bridge Four crews.
   cost:5000000 chouta
+
 
 
 
