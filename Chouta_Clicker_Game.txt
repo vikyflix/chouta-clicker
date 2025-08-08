@@ -53,7 +53,7 @@ Buildings
         *bridgeFour
           name:Bridge Four
           desc:It appeared that he'd been wrong. There had been something more they could do to him. One final torment the world had reserved just for Kaladin. And it was called Bridge Four.
-          hidden when 0
+          req:bridgeFourUpgrade
 
 
 
@@ -98,6 +98,7 @@ Upgrades
   on buy:
     yield 1 bridgeFour
   end
+
 
 
 
