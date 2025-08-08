@@ -101,12 +101,14 @@ Upgrades
   name: The Burdenbearers
   desc: Unlocks More Bridges
   cost:1000000 chouta
+  on earn:hide bridgeCrews
 
 *bridgeFourUpgrade
   req:bridgesUpgrade
   name: Bridge Four
   desc: Unlocks the feared Bridge Four crews.
   cost:5000000 chouta
+
 
 
 
