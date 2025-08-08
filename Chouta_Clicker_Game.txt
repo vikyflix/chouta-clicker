@@ -58,6 +58,7 @@ Buildings
                         show bridgeFour
                   else
                         hidden bridgeFour
+                  end
           end
 
 
@@ -98,6 +99,7 @@ Upgrades
 *bridgeFourUpgrade
   name:Bridge Four
   cost:500000 chouta
+
 
 
 
