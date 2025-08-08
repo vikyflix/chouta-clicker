@@ -54,6 +54,7 @@ Buildings
            name:The Bridge Crews
            desc:Condemned to bear the weight of another man's war, they run toward death so others may walk away. Every gap they fill is paid for in blood, sweat, and the shreds of freedom they’ll never see again.
            req:bridgeMansUpgrade
+           req: noBridgesUpgrade
 
         *bridgeCrewsExtra
            name:The Burdenbearers
@@ -95,6 +96,9 @@ Upgrades
   name: Bridge Crews
   desc: Unlocks the doomed Bridge Boys
   cost:500000 chouta
+  on buy:
+    set bridgesUpgradePurchased to 1
+  end
 
 *bridgesUpgrade
   req:bridgeMansUpgrade
@@ -110,6 +114,19 @@ Upgrades
   name: Bridge Four
   desc: Unlocks the feared Bridge Four crews.
   cost:5000000 chouta
+
+*bridgesUpgradePurchased
+name: Bridges Upgrade Purchased
+desc: Flag to indicate if upgrade is bought
+start: 0
+
+*noBridgesUpgrade
+name: Before Bridges Upgrade
+desc: Default state, no bridges upgrade.
+cost: 0
+start: yes
+hidden: yes
+
 
 
 
