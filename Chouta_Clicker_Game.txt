@@ -53,7 +53,7 @@ Buildings
         *bridgeFour
           name:Bridge Four
           desc:It appeared that he'd been wrong. There had been something more they could do to him. One final torment the world had reserved just for Kaladin. And it was called Bridge Four.
-          hidden bridgeFour
+          hidden: yes
 
 
 
@@ -96,6 +96,7 @@ Upgrades
   desc: Unlocks the feared Bridge Four crews.
   cost:500000 chouta
   unlocks: bridgeFour
+
 
 
 
