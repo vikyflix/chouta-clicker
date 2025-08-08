@@ -51,7 +51,16 @@ Buildings
           cost:1000 chouta
 
         *bridgeFour
-        on tick:
+          name:Bridge Four
+          desc:It appeared that he'd been wrong. There had been something more they could do to him. One final torment the world had reserved just for Kaladin. And it was called Bridge Four.
+          if (bridgeFourUpgrade)
+                show bridgeFour
+          else
+                hidden bridgeFour
+          end
+
+
+/*
           if (bridgeFour<=0)
                   name:The bridge crews
                   desc:Condemned to bear the weight of another man's war, they run toward death so others may walk away. Every gap they fill is paid for in blood, sweat, and the shreds of freedom they’ll never see again.
@@ -60,11 +69,9 @@ Buildings
                   name:The Burdenbearers
                   desc:Ten crews now march beneath the weight of wood and war. The deaths still come, the screams still echo… yet, for the first time, some run not only to survive but to bring the others home.
 
-          else if (bridgeFour==20)
-                  name:Bridge Four
-                  desc:It appeared that he'd been wrong. There had been something more they could do to him. One final torment the world had reserved just for Kaladin. And it was called Bridge Four.
-          end
-          cost:1000 chouta
+*/
+
+
 
         *admin
           name:PARA DEVs
@@ -84,6 +91,13 @@ Buttons
                     yield rockCook+1 chouta
                 end
             end
+
+
+Upgrades
+*bridgeFourUpgrade
+  name:Bridge Four
+  cost:500000 chouta
+
 
 
 
