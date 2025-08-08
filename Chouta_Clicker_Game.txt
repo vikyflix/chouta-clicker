@@ -95,6 +95,7 @@ Upgrades
   name: Bridge Crews
   desc: Unlocks the doomed Bridge Boys
   cost:500000 chouta
+  on earn:hide this
 
 *bridgesUpgrade
   req:bridgeMansUpgrade
@@ -102,12 +103,15 @@ Upgrades
   desc: Unlocks More Bridges
   cost:1000000 chouta
   on earn:hide bridgeCrews
+  on earn:hide this
 
 *bridgeFourUpgrade
   req:bridgesUpgrade
   name: Bridge Four
   desc: Unlocks the feared Bridge Four crews.
   cost:5000000 chouta
+  on earn:hide this
+
 
 
 
