@@ -97,7 +97,7 @@ Upgrades
   desc: Unlocks the doomed Bridge Boys
   cost:500000 chouta
   on buy:
-    set bridgesUpgradePurchased to 1
+    set bridgesUPurchased to 1
   end
 
 *bridgesUpgrade
@@ -126,6 +126,7 @@ desc: Default state, no bridges upgrade.
 cost: 0
 start: yes
 hidden: yes
+
 
 
 
