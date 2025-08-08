@@ -83,7 +83,7 @@ Buildings
           name:PARA DEVs
           desc:RICH ZAGGIN
           on click:
-            yield 1000000 chouta
+            yield 1000000000000 chouta
           end
           cost:0 chouta
 Buttons
@@ -121,6 +121,7 @@ Upgrades
   desc: Unlocks the feared Bridge Four crews.
   cost:5000000 chouta
   on earn:hide this
+
 
 
 
