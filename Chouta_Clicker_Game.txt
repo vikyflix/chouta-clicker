@@ -97,14 +97,17 @@ Upgrades
   cost:500000 chouta
 
 *bridgesUpgrade
+  req:bridgeMansUpgrade
   name: The Burdenbearers
   desc: Unlocks More Bridges
   cost:1000000 chouta
 
 *bridgeFourUpgrade
-  name: Bridge Four Unlocked
+  req:bridgesUpgrade
+  name: Bridge Four
   desc: Unlocks the feared Bridge Four crews.
   cost:5000000 chouta
+
 
 
 
