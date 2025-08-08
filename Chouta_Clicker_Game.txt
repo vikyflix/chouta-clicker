@@ -51,6 +51,7 @@ Buildings
           cost:1000 chouta
 
         *bridgeFour
+        on tick:
           if (bridgeFour<=0)
                   name:The bridge crews
                   desc:Condemned to bear the weight of another man's war, they run toward death so others may walk away. Every gap they fill is paid for in blood, sweat, and the shreds of freedom they’ll never see again.
@@ -82,6 +83,7 @@ Buttons
                     yield rockCook+1 chouta
                 end
             end
+
 
 
 
