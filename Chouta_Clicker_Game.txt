@@ -95,7 +95,10 @@ Upgrades
   name: Bridge Four Unlocked
   desc: Unlocks the feared Bridge Four crews.
   cost:500000 chouta
-  show bridgeFour
+  on buy:
+    yield 1 bridgeFour
+  end
+
 
 
 
