@@ -54,6 +54,9 @@ Buildings
            name:The Bridge Crews
            desc:Condemned to bear the weight of another man's war, they run toward death so others may walk away. Every gap they fill is paid for in blood, sweat, and the shreds of freedom they’ll never see again.
            req:bridgeMansUpgrade
+           on tick:
+            if(bridgesUpgrade)
+                  hide bridgeCrews
 
         *bridgeCrewsExtra
            name:The Burdenbearers
@@ -101,13 +104,13 @@ Upgrades
   name: The Burdenbearers
   desc: Unlocks More Bridges
   cost:1000000 chouta
-  hide bridgeCrews
 
 *bridgeFourUpgrade
   req:bridgesUpgrade
   name: Bridge Four
   desc: Unlocks the feared Bridge Four crews.
   cost:5000000 chouta
+
 
 
 
