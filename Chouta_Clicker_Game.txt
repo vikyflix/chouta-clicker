@@ -115,7 +115,7 @@ Upgrades
   desc: Unlocks the feared Bridge Four crews.
   cost:5000000 chouta
 
-*bridgesUpgradePurchased
+*bridgesUPurchased
 name: Bridges Upgrade Purchased
 desc: Flag to indicate if upgrade is bought
 start: 0
@@ -126,6 +126,7 @@ desc: Default state, no bridges upgrade.
 cost: 0
 start: yes
 hidden: yes
+
 
 
 
