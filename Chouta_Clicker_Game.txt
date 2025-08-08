@@ -62,11 +62,18 @@ Buildings
            name:The Burdenbearers
            desc:Ten crews now march beneath the weight of wood and war. The deaths still come, the screams still echo… yet, for the first time, some run not only to survive but to bring the others home.
            req:bridgesUpgrade
+          on tick:
+            lose 1*bridgeCrews chouta
+          end
 
         *bridgeFour
           name:Bridge Four
           desc:It appeared that he'd been wrong. There had been something more they could do to him. One final torment the world had reserved just for Kaladin. And it was called Bridge Four.
           req:bridgeFourUpgrade
+          on tick:
+            lose 4*bridgeCrews chouta
+          end
+
 
 
 
@@ -114,6 +121,7 @@ Upgrades
   desc: Unlocks the feared Bridge Four crews.
   cost:5000000 chouta
   on earn:hide this
+
 
 
 
