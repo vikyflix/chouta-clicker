@@ -57,7 +57,6 @@ Buildings
 
         *bridgeCrewsExtra
            name:The Burdenbearers
-           hide bridgeCrews
            desc:Ten crews now march beneath the weight of wood and war. The deaths still come, the screams still echo… yet, for the first time, some run not only to survive but to bring the others home.
            req:bridgesUpgrade
 
@@ -102,6 +101,7 @@ Upgrades
   name: The Burdenbearers
   desc: Unlocks More Bridges
   cost:1000000 chouta
+  on click: hide bridgeCrews
 
 *bridgeFourUpgrade
   req:bridgesUpgrade
