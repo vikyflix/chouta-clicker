@@ -29,9 +29,9 @@ Shinies
 *highstormEffect
   name: Highstorm
   movement:onMouse
-  frequency:120
+  frequency:900
   frequency variation:30
-  duration:30
+  duration:1
   icon: https://uploads.coppermind.net/thumb/The_Highstorm_by_Sakina_Minnis.jpg/200px-The_Highstorm_by_Sakina_Minnis.jpg
   //no click
 
@@ -140,6 +140,7 @@ Upgrades
   desc: Unlocks the feared Bridge Four crews.
   cost:5000000 chouta
   on earn:hide this
+
 
 
 
