@@ -39,7 +39,6 @@ Resources
     *chouta
         name:Chouta
         desc:Cha-ou-ta. Herdazian food, gon. Good stuff. You can have a bite, if you want..
-        log There are some chouta
 
     *stormActive
         name: Highstorm Active
@@ -65,6 +64,7 @@ Buildings
           on tick:
             yield 10 chouta
             if (chance(0.35)) yield 100 chouta
+            log SOME CHOUTA
           end
           cost:1000 chouta
 
@@ -140,6 +140,7 @@ Upgrades
   desc: Unlocks the feared Bridge Four crews.
   cost:5000000 chouta
   on earn:hide this
+
 
 
 
