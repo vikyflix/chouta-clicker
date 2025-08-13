@@ -128,9 +128,11 @@ Upgrades
 *highstormEffect
   name:Highstorm
   //de momento ningun efecto
-  frequency:random(10,100)
+  frequency:120
+  frequency variation: 35
   background: https://uploads.coppermind.net/thumb/WoK_Leatherbound_Endpaper_by_Howard_Lyon.jpg/520px-WoK_Leatherbound_Endpaper_by_Howard_Lyon.jpg
   duration: 120
+
 
 
 
