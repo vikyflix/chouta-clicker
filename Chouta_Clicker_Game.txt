@@ -33,6 +33,7 @@ Shinies
   frequency variation:35
   background:https://uploads.coppermind.net/thumb/WoK_Leatherbound_Endpaper_by_Howard_Lyon.jpg/520px-WoK_Leatherbound_Endpaper_by_Howard_Lyon.jpg
   duration:120
+  no click
 
 Resources
     *chouta
@@ -132,6 +133,7 @@ Upgrades
   desc: Unlocks the feared Bridge Four crews.
   cost:5000000 chouta
   on earn:hide this
+
 
 
 
