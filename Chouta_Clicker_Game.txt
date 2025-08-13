@@ -32,7 +32,7 @@ Shinies
   frequency:120
   frequency variation:35
   duration:120
-  no click
+  //no click
 
 Resources
     *chouta
@@ -134,6 +134,7 @@ Upgrades
   desc: Unlocks the feared Bridge Four crews.
   cost:5000000 chouta
   on earn:hide this
+
 
 
 
