@@ -53,6 +53,7 @@ Buildings
         desc: TESTING HIGHSTORM EVENT
 
         *stormHiddenCounter
+        hidden
         no buy
         start with: 1
         name: HIGHSTORM ON GOING
@@ -162,6 +163,7 @@ Upgrades
   desc: Unlocks the feared Bridge Four crews.
   cost:5000000 chouta
   on earn:hide this
+
 
 
 
