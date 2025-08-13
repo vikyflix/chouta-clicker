@@ -39,6 +39,7 @@ Resources
     *chouta
         name:Chouta
         desc:Cha-ou-ta. Herdazian food, gon. Good stuff. You can have a bite, if you want..
+        log There are some chouta
 
     *stormActive
         name: Highstorm Active
@@ -139,6 +140,7 @@ Upgrades
   desc: Unlocks the feared Bridge Four crews.
   cost:5000000 chouta
   on earn:hide this
+
 
 
 
