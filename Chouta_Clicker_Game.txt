@@ -56,7 +56,7 @@ Buildings
           $counter=random(0,10)
           if ($counter==10 and stormActive<=0)
             toast STORM RISES
-            yield 1 stormActive
+            yield 100 stormActive
           else
             lose 1 stormActive
           end
@@ -157,6 +157,7 @@ Upgrades
   desc: Unlocks the feared Bridge Four crews.
   cost:5000000 chouta
   on earn:hide this
+
 
 
 
