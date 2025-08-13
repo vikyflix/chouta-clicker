@@ -52,12 +52,12 @@ Buildings
         desc: TESTING HIGHSTORM EVENT
         $counter=0
         on tick:
-          toast $counter
+          amount: $counter
           if ($counter==10)
             toast STORM RISES
             $counter=0
           end
-        $counter=$counter+1 
+        $counter=$counter+1
         end
 
 
@@ -155,6 +155,7 @@ Upgrades
   desc: Unlocks the feared Bridge Four crews.
   cost:5000000 chouta
   on earn:hide this
+
 
 
 
