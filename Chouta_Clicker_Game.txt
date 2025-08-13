@@ -46,12 +46,6 @@ Resources
         icon: https://uploads.coppermind.net/thumb/The_Highstorm_by_Sakina_Minnis.jpg/200px-The_Highstorm_by_Sakina_Minnis.jpg
  
 Buildings
-
-        *stormRising
-        no buy
-        name: HIGHSTORM ON GOING
-        desc: TESTING HIGHSTORM EVENT
-
         *stormHiddenCounter
         hidden
         no buy
@@ -60,11 +54,11 @@ Buildings
         desc: TESTING HIGHSTORM EVENT
         passive:
           $counter=random(0,10)
-          if ($counter==10)
+          if ($counter==10 and stormActive<=0)
             toast STORM RISES
-            yield 10000 stormRising
+            yield 1 stormActive
           else
-            lose 1 stormRising
+            lose 1 stormActive
           end
         end
 
@@ -163,6 +157,7 @@ Upgrades
   desc: Unlocks the feared Bridge Four crews.
   cost:5000000 chouta
   on earn:hide this
+
 
 
 
