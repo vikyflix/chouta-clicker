@@ -23,6 +23,17 @@ Settings
 Layout
     use default
 
+
+//EFECTO TORMENTA
+
+*highstormEffect
+  name: Highstorm
+  movement: anywhere
+  frequency: 120
+  frequency variation: 35
+  background: https://uploads.coppermind.net/thumb/WoK_Leatherbound_Endpaper_by_Howard_Lyon.jpg/520px-WoK_Leatherbound_Endpaper_by_Howard_Lyon.jpg
+  duration: 120
+
 Resources
     *chouta
         name:Chouta
@@ -123,15 +134,7 @@ Upgrades
   on earn:hide this
 
 
-//EFECTO TORMENTA
 
-*highstormEffect
-  name: Highstorm
-  movement: anywhere
-  frequency: 120
-  frequency variation: 35
-  background: https://uploads.coppermind.net/thumb/WoK_Leatherbound_Endpaper_by_Howard_Lyon.jpg/520px-WoK_Leatherbound_Endpaper_by_Howard_Lyon.jpg
-  duration: 120
 
 
 
