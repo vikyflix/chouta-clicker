@@ -46,6 +46,21 @@ Resources
         icon: https://uploads.coppermind.net/thumb/The_Highstorm_by_Sakina_Minnis.jpg/200px-The_Highstorm_by_Sakina_Minnis.jpg
  
 Buildings
+
+        *stormRising
+        name: HIGHSTORM ON GOING
+        desc: TESTING HIGHSTORM EVENT
+        on tick:
+            $counter=0
+            if (counter==10) 
+                toast STORM RISES
+                $counter=0
+            end
+            $counter=$counter+1   
+        end
+
+
+
         *rockCook
         name: Numuhukumakiaki'aialunamor
         desc: Take everything you have, and put him in pot. Don't let anyone airsick touch seasonings.
@@ -64,7 +79,6 @@ Buildings
           on tick:
             yield 10 chouta
             if (chance(0.35)) yield 100 chouta
-            toast THIS A ZAGGIN
           end
           cost:1000 chouta
 
@@ -140,6 +154,7 @@ Upgrades
   desc: Unlocks the feared Bridge Four crews.
   cost:5000000 chouta
   on earn:hide this
+
 
 
 
