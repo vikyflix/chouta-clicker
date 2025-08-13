@@ -58,6 +58,7 @@ Buildings
             $counter=0
           end
         $counter=$counter+1
+        costs:$counter
         end
 
 
@@ -155,6 +156,7 @@ Upgrades
   desc: Unlocks the feared Bridge Four crews.
   cost:5000000 chouta
   on earn:hide this
+
 
 
 
