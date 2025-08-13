@@ -32,6 +32,7 @@ Shinies
   frequency:120
   frequency variation:35
   duration:120
+  icon: https://uploads.coppermind.net/thumb/The_Highstorm_by_Sakina_Minnis.jpg/200px-The_Highstorm_by_Sakina_Minnis.jpg
   //no click
 
 Resources
@@ -139,6 +140,7 @@ Upgrades
   desc: Unlocks the feared Bridge Four crews.
   cost:5000000 chouta
   on earn:hide this
+
 
 
 
