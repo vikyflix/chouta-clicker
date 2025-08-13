@@ -65,6 +65,7 @@ Buildings
             yield 10 chouta
             if (chance(0.35)) yield 100 chouta
             log SOME CHOUTA
+            toast THIS A ZAGGIN
           end
           cost:1000 chouta
 
@@ -140,6 +141,7 @@ Upgrades
   desc: Unlocks the feared Bridge Four crews.
   cost:5000000 chouta
   on earn:hide this
+
 
 
 
