@@ -48,6 +48,7 @@ Resources
 Buildings
 
         *stormRising
+        no text
         name: HIGHSTORM ON GOING
         desc: TESTING HIGHSTORM EVENT
         passive:
@@ -152,6 +153,7 @@ Upgrades
   desc: Unlocks the feared Bridge Four crews.
   cost:5000000 chouta
   on earn:hide this
+
 
 
 
