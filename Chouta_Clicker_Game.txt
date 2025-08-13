@@ -50,7 +50,7 @@ Buildings
         *stormRising
         name: HIGHSTORM ON GOING
         desc: TESTING HIGHSTORM EVENT
-        on tick:
+        passive:
           $counter=random(0,10)
           if ($counter==10)
             toast STORM RISES
@@ -152,6 +152,7 @@ Upgrades
   desc: Unlocks the feared Bridge Four crews.
   cost:5000000 chouta
   on earn:hide this
+
 
 
 
