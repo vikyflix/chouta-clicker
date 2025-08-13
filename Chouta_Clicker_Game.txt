@@ -48,13 +48,22 @@ Resources
 Buildings
 
         *stormRising
-        no text
+        no buy
+        name: HIGHSTORM ON GOING
+        desc: TESTING HIGHSTORM EVENT
+
+        *stormHiddenCounter
+        no buy
+        start with: 1
         name: HIGHSTORM ON GOING
         desc: TESTING HIGHSTORM EVENT
         passive:
           $counter=random(0,10)
-          if ($counter==10)
+          if ($counter==10 and stormRising<=0)
             toast STORM RISES
+            yield 1 stormRising
+          else
+            lose 1 stormRising
           end
         end
 
@@ -153,6 +162,7 @@ Upgrades
   desc: Unlocks the feared Bridge Four crews.
   cost:5000000 chouta
   on earn:hide this
+
 
 
 
