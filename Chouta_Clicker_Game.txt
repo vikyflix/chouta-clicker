@@ -1,4 +1,4 @@
-﻿Let's make a game!
+Let's make a game!
         name:Chouta Clicker
         by:TALAT
         desc:Chouta is the best! Click to cook, serve, and feed your fellow airsick lowlanders.
@@ -43,50 +43,32 @@ Resources
         name:Chouta
         desc:Cha-ou-ta. Herdazian food, gon. Good stuff. You can have a bite, if you want..
 
-    *stormActiveResoruce
+    *stormActive
         name: Highstorm Active
         desc: The Highstorm is raging. Production is altered.
         //icon: https://uploads.coppermind.net/thumb/The_Highstorm_by_Sakina_Minnis.jpg/200px-The_Highstorm_by_Sakina_Minnis.jpg
  
 Buildings
-*stormActive
-  hidden
-  no buy
-  start with: 0
-  name: Storm Active
+        *stormHiddenCounter
+        hidden
+        no buy
+        start with: 1
+        name: HIGHSTORM ON GOING
+        desc: TESTING HIGHSTORM EVENT
+        on tick:
+          $counter=random(0,10)
+          if ($counter == 10 and stormActive==0) 
+            yield 1 stormActive
+            toast STORM LOADING
+          else if (stormActive>0)
+            yield 1 stormActive
+          end
 
-*stormLimit
-  hidden
-  no buy
-  start with: 0
-  name: Storm Limit
-
-*stormController
-  hidden
-  no buy
-  on tick:
-    if (amount of stormLimit == 0)
-      set stormLimit to random(100,120)
-    end
-
-    if (amount of stormActive == 0)
-      $counter = random(0,10)
-      if ($counter == 10)
-        toast STORM LOADING
-        yield 1 stormActive
-      end
-    else
-      yield 1 stormActive
-    end
-
-    if (amount of stormActive >= amount of stormLimit)
-      toast STORM RISES
-      lose all stormActive
-      set stormLimit to 0
-    end
-  end
-
-
+          if (stormActive==random(100,120))
+            toast STORM RISES
+            lose 200 stormActive
+          end
+        end
 
 
 
@@ -183,13 +165,6 @@ Upgrades
   desc: Unlocks the feared Bridge Four crews.
   cost:5000000 chouta
   on earn:hide this
-
-
-
-
-
-
-
 
 
 
