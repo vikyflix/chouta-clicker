@@ -58,7 +58,7 @@ Buildings
             toast STORM RISES
             yield 100 stormActive
           else
-            lose 1 stormActive
+            //lose 1 stormActive
           end
         end
 
@@ -157,6 +157,7 @@ Upgrades
   desc: Unlocks the feared Bridge Four crews.
   cost:5000000 chouta
   on earn:hide this
+
 
 
 
