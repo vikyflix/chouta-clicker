@@ -63,13 +63,17 @@ Buildings
         on tick:
           yield 20 stormActive
           if (stormActive==120)
-
             lose stormActive stormActive
             yield 1 stormInActive
           else if (stormInActive==5)
             toast STORM RISES
             lose stormActive stormActive
             lose  5 stormInActive
+          end
+          if (stormInActive==0)
+            show onePlaceHolder
+          else
+            hide onePlaceHolder
           end
         end
 
@@ -175,6 +179,7 @@ Upgrades
   desc: Unlocks the feared Bridge Four crews.
   cost:5000000 chouta
   on earn:hide this
+
 
 
 
