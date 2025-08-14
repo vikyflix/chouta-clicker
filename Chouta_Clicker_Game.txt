@@ -55,8 +55,9 @@ Buildings
         start with: 1
         name: HIGHSTORM ON GOING
         desc: TESTING HIGHSTORM EVENT
-        passive:
+        on tick:
           $counter=random(0,10)
+
           if ($counter==10 and stormActive<=0)
             yield 1000000 stormActive
             yield 1000000 chouta
@@ -161,6 +162,7 @@ Upgrades
   desc: Unlocks the feared Bridge Four crews.
   cost:5000000 chouta
   on earn:hide this
+
 
 
 
