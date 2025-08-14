@@ -148,16 +148,16 @@ Buildings
         cost: 0 chouta
 
 Buttons
-    *choutaButton
-        name: Chouta
-        class:bigButton hasFlares
-        on click:
-            if (rocksFamily >= 1 or rockCook >= 1)
-                yield rockCook+1+rocksFamily chouta
-            else
-                yield rockCook+1 chouta
-            end
+*choutaButton
+    name: Chouta
+    class: bigButton
+    on click:
+        if (rocksFamily >= 1 or rockCook >= 1)
+            yield rockCook+1+rocksFamily chouta
+        else
+            yield rockCook+1 chouta
         end
+    end
 
 Upgrades
     *bridgeMansUpgrade
@@ -180,4 +180,5 @@ Upgrades
         desc: Unlocks the feared Bridge Four crews.
         cost: 5000000 chouta
         on earn: hide this
+
 
