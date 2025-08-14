@@ -103,11 +103,11 @@ Buildings
           name:Lopen's Cousins
           desc:A man can never have enough cousins.
           on tick:
-            if(stormInActive==0)
-               yield 3/2 chouta
-             else
-               yield 3 chouta
-            end
+              if(stormInActive==0)
+                 yield 3/2 chouta
+               else
+                 yield 3 chouta
+              end
           end
           cost:200 chouta
 
@@ -116,11 +116,9 @@ Buildings
           desc:Rock brings his whole Horneater family to help. Huge production line.
           on tick:
             if(stormInActive==0)
-                    yield 10/2 chouta
-                    //if (chance(0.35)) yield 100/2 chouta
+                yield 10/2 chouta
              else
-                    yield 10 chouta
-                    //if (chance(0.35)) yield 100 chouta
+                yield 10 chouta
             end
           end
           cost:1000 chouta
@@ -197,6 +195,7 @@ Upgrades
   desc: Unlocks the feared Bridge Four crews.
   cost:5000000 chouta
   on earn:hide this
+
 
 
 
