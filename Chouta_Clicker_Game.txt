@@ -1,10 +1,11 @@
 Let's make a game!
-    name: Chouta Clicker
-    by: TALAT
-    desc: Chouta is the best! Click to cook, serve, and feed your fellow airsick lowlanders.
-    created: 06/08/2025
-    updated: 06/08/2025
-    version: 1
+        name:Chouta Clicker
+        by:TALAT
+        desc:Chouta is the best! Click to cook, serve, and feed your fellow airsick lowlanders.
+        created:06/08/2025
+        updated:06/08/2025
+        version:1
+
 
 CSS
 #game.on
@@ -12,173 +13,367 @@ CSS
     background-size: 100% 100%;
     image-rendering: pixelated;
 }
-
+ 
 Settings
-    background: stuff/meadow.jpg
-    stylesheet: stuff/basic.css
-    building cost increase: 115%
-    building cost refund: 25%
-
+    background:stuff/meadow.jpg
+    stylesheet:stuff/basic.css
+    building cost increase:115%
+    building cost refund:25%
+ 
 Layout
     use default
 
+
 Shinies
+
+
 /*
 *highstormEffect
-    name: Highstorm
-    movement: onMouse
-    frequency: 10
-    frequency variation: 1
-    duration: 10
-    icon: https://uploads.coppermind.net/thumb/The_Highstorm_by_Sakina_Minnis.jpg/200px-The_Highstorm_by_Sakina_Minnis.jpg
-    //no click
+  name: Highstorm
+  movement:onMouse
+  frequency:10
+  frequency variation:1
+  duration:10
+  icon: https://uploads.coppermind.net/thumb/The_Highstorm_by_Sakina_Minnis.jpg/200px-The_Highstorm_by_Sakina_Minnis.jpg
+  //no click
 */
 
 Resources
     *chouta
-        name: Chouta
-        desc: Cha-ou-ta. Herdazian food, gon. Good stuff. You can have a bite, if you want..
+        name:Chouta
+        desc:Cha-ou-ta. Herdazian food, gon. Good stuff. You can have a bite, if you want..
 
     *stormActive
         name: Highstorm Active
         desc: The Highstorm is raging. Production is altered.
         //icon: https://uploads.coppermind.net/thumb/The_Highstorm_by_Sakina_Minnis.jpg/200px-The_Highstorm_by_Sakina_Minnis.jpg
-
     *stormInActive
         name: Highstorm InActive
         desc: The Highstorm is raging. Production is altered.
         //icon: https://uploads.coppermind.net/thumb/The_Highstorm_by_Sakina_Minnis.jpg/200px-The_Highstorm_by_Sakina_Minnis.jpg
 
 Buildings
-    *stormHiddenCounter
+
+        *stormHiddenCounter
         hidden
         no buy
         start with: 1
         name: HIGHSTORM ON GOING
         desc: TESTING HIGHSTORM EVENT
         on tick:
-            yield 20 stormActive
-            if (stormActive == 120)
-                lose stormActive stormActive
-                yield 1 stormInActive
-            else if (stormInActive == 5)
-                toast STORM RISES
-                lose stormActive stormActive
-                lose 5 stormInActive
-            end
-            if (stormInActive == 0)
-                show onePlaceHolder
-            else
-                hide onePlaceHolder
-            end
+          yield 20 stormActive
+          if (stormActive==120)
+            lose stormActive stormActive
+            yield 1 stormInActive
+          else if (stormInActive==5)
+            toast STORM RISES
+            lose stormActive stormActive
+            lose  5 stormInActive
+          end
+          if (stormInActive==0)
+            show onePlaceHolder
+          else
+            hide onePlaceHolder
+          end
         end
 
-    *onePlaceHolder
+        *onePlaceHolder
         start with: 1
         no buy
         name: HIGHSTORM ON GOING
         desc: TESTING HIGHSTORM EVENT
 
-    *rockCook
+
+
+
+        *rockCook
         name: Numuhukumakiaki'aialunamor
         desc: Take everything you have, and put him in pot. Don't let anyone airsick touch seasonings.
-        cost: 100 chouta
-        on tick:
-            if (stormInActive == 0)
-                yield 0.5 chouta
-            else
-                yield 1 chouta
-            end
-        end
+        on tick:yield 1 chouta
+        cost:100 chouta
 
-    *lopensCousins
-        name: Lopen's Cousins
-        desc: A man can never have enough cousins.
-        cost: 200 chouta
-        on tick:
-            if (stormInActive == 0)
-                yield 1.5 chouta
-            else
-                yield 3 chouta
-            end
-        end
+        *lopensCousins
+          name:Lopen's Cousins
+          desc:A man can never have enough cousins.
+          on tick:yield 3 chouta
+          cost:200 chouta
 
-    *rocksFamily
-        name: Rock's Horneater Family
-        desc: Rock brings his whole Horneater family to help. Huge production line.
-        cost: 1000 chouta
-        on tick:
-            if (stormInActive == 0)
-                yield 5 chouta
-            else
-                yield 10 chouta
-            end
-        end
+        *rocksFamily
+          name:Rock's Horneater Family
+          desc:Rock brings his whole Horneater family to help. Huge production line.
+          on tick:
+            yield 10 chouta
+            if (chance(0.35)) yield 100 chouta
+          end
+          cost:1000 chouta
 
-    *bridgeCrews
-        name: The Bridge Crews
-        desc: Condemned to bear the weight of another man's war, they run toward death so others may walk away. Every gap they fill is paid for in blood, sweat, and the shreds of freedom they’ll never see again.
-        req: bridgeMansUpgrade
-        on tick:
+        *bridgeCrews
+           name:The Bridge Crews
+           desc:Condemned to bear the weight of another man's war, they run toward death so others may walk away. Every gap they fill is paid for in blood, sweat, and the shreds of freedom they’ll never see again.
+           req:bridgeMansUpgrade
+          on tick:
             lose 1*bridgeCrews chouta
-        end
+          end
 
-    *bridgeCrewsExtra
-        name: The Burdenbearers
-        desc: Ten crews now march beneath the weight of wood and war. The deaths still come, the screams still echo… yet, for the first time, some run not only to survive but to bring the others home.
-        req: bridgesUpgrade
-        on tick:
+
+        *bridgeCrewsExtra
+           name:The Burdenbearers
+           desc:Ten crews now march beneath the weight of wood and war. The deaths still come, the screams still echo… yet, for the first time, some run not only to survive but to bring the others home.
+           req:bridgesUpgrade
+          on tick:
             lose 1*bridgeCrews chouta
-        end
+          end
 
-    *bridgeFour
-        name: Bridge Four
-        desc: It appeared that he'd been wrong. There had been something more they could do to him. One final torment the world had reserved just for Kaladin. And it was called Bridge Four.
-        req: bridgeFourUpgrade
-        on tick:
+        *bridgeFour
+          name:Bridge Four
+          desc:It appeared that he'd been wrong. There had been something more they could do to him. One final torment the world had reserved just for Kaladin. And it was called Bridge Four.
+          req:bridgeFourUpgrade
+          on tick:
             lose 4*bridgeCrews chouta
-        end
+          end
 
-    *admin
-        name: PARA DEVs
-        desc: RICH ZAGGIN
-        on click:
+
+
+
+
+
+        *admin
+          name:PARA DEVs
+          desc:RICH ZAGGIN
+          on click:
             yield 1000000000000 chouta
-        end
-        cost: 0 chouta
-
+          end
+          cost:0 chouta
 Buttons
-*choutaButton
-    name: Chouta
-    on click:
-        if (rocksFamily >= 1 or rockCook >= 1)
-            yield rockCook+1+rocksFamily chouta
-        else
-            yield rockCook+1 chouta
-        end
-    end
+    *choutaButton
+        name: Chouta
+        class:bigButton hasFlares
+            on click:
+                if (rocksFamily >=1 or rockCook >= 1)
+                    yield rockCook+1+rocksFamily chouta
+                else
+                    yield rockCook+1 chouta
+                end
+            end
+
 
 Upgrades
-    *bridgeMansUpgrade
-        name: Bridge Crews
-        desc: Unlocks the doomed Bridge Boys
-        cost: 500000 chouta
-        on earn: hide this
 
-    *bridgesUpgrade
-        req: bridgeMansUpgrade
-        name: The Burdenbearers
-        desc: Unlocks More Bridges
-        cost: 1000000 chouta
-        on earn: hide bridgeCrews
-        on earn: hide this
+*bridgeMansUpgrade
+  name: Bridge Crews
+  desc: Unlocks the doomed Bridge Boys
+  cost:500000 chouta
+  on earn:hide this
 
-    *bridgeFourUpgrade
-        req: bridgesUpgrade
-        name: Bridge Four
-        desc: Unlocks the feared Bridge Four crews.
-        cost: 5000000 chouta
-        on earn: hide this
+*bridgesUpgrade
+  req:bridgeMansUpgrade
+  name: The Burdenbearers
+  desc: Unlocks More Bridges
+  cost:1000000 chouta
+  on earn:hide bridgeCrews
+  on earn:hide this
+
+*bridgeFourUpgrade
+  req:bridgesUpgrade
+  name: Bridge Four
+  desc: Unlocks the feared Bridge Four crews.
+  cost:5000000 chouta
+  on earn:hide this
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
