@@ -43,7 +43,7 @@ Resources
         name:Chouta
         desc:Cha-ou-ta. Herdazian food, gon. Good stuff. You can have a bite, if you want..
 
-    *stormActive
+    *stormActiveR
         name: Highstorm Active
         desc: The Highstorm is raging. Production is altered.
         //icon: https://uploads.coppermind.net/thumb/The_Highstorm_by_Sakina_Minnis.jpg/200px-The_Highstorm_by_Sakina_Minnis.jpg
@@ -183,6 +183,7 @@ Upgrades
   desc: Unlocks the feared Bridge Four crews.
   cost:5000000 chouta
   on earn:hide this
+
 
 
 
