@@ -56,7 +56,7 @@ Buildings
         name: HIGHSTORM ON GOING
         desc: TESTING HIGHSTORM EVENT
         on tick:
-          if ($stormLimit == 0) 
+          if ($stormLimit == 0)
             $stormLimit = random(100,120)
           end
         
@@ -73,7 +73,7 @@ Buildings
           if (stormActive >= $stormLimit)
             toast STORM RISES
             lose 200 stormActive
-            $stormLimit = 0  # reset so a new storm limit is chosen next time
+            $stormLimit = 0
           end
         end
 
@@ -173,6 +173,7 @@ Upgrades
   desc: Unlocks the feared Bridge Four crews.
   cost:5000000 chouta
   on earn:hide this
+
 
 
 
