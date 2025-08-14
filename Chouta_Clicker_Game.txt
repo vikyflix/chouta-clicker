@@ -58,9 +58,8 @@ Buildings
         on tick:
           $counter=random(0,10)
             yield 1000000 stormActive
-            yield 1000000 chouta
           if ($counter==10 and stormActive<=0)
-
+            yield 1000000 stormActive
             toast STORM RISES
           else
             //lose 1 stormActive
@@ -162,6 +161,7 @@ Upgrades
   desc: Unlocks the feared Bridge Four crews.
   cost:5000000 chouta
   on earn:hide this
+
 
 
 
