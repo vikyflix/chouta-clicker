@@ -60,7 +60,7 @@ Buildings
           if (stormActive==120)
             toast STORM RISES
             lose stormActive stormActive
-            yield 1 stormProgress
+            yield onePlaceHolder stormProgress
           end
         end
 
@@ -75,6 +75,13 @@ Buildings
             lose stormActive stormActive
           end
         end
+
+        *onePlaceHolder
+        start with: 1
+        no buy
+        name: HIGHSTORM ON GOING
+        desc: TESTING HIGHSTORM EVENT
+        st
 
 
 
@@ -171,6 +178,7 @@ Upgrades
   desc: Unlocks the feared Bridge Four crews.
   cost:5000000 chouta
   on earn:hide this
+
 
 
 
