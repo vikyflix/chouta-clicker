@@ -49,33 +49,43 @@ Resources
         //icon: https://uploads.coppermind.net/thumb/The_Highstorm_by_Sakina_Minnis.jpg/200px-The_Highstorm_by_Sakina_Minnis.jpg
  
 Buildings
-        *stormHiddenCounter
-        hidden
-        no buy
-        start with: 1
-        name: HIGHSTORM ON GOING
-        desc: TESTING HIGHSTORM EVENT
-        on tick:
-          if ($stormLimit == 0)
-            $stormLimit = random(100,120)
-          end
-        
-          if (stormActive == 0)
-            $counter = random(0,10)
-            if ($counter == 10)
-              toast STORM LOADING
-              yield 1 stormActive
-            end
-          else
-            yield 1 stormActive
-          end
-        
-          if (stormActive >= $stormLimit)
-            toast STORM RISES
-            lose 200 stormActive
-            $stormLimit = 0
-          end
-        end
+*stormActive
+  hidden
+  no buy
+  start with: 0
+  name: Storm Active
+
+*stormLimit
+  hidden
+  no buy
+  start with: 0
+  name: Storm Limit
+
+*stormController
+  hidden
+  no buy
+  on tick:
+    if (amount of stormLimit == 0)
+      set stormLimit to random(100,120)
+    end
+
+    if (amount of stormActive == 0)
+      $counter = random(0,10)
+      if ($counter == 10)
+        toast STORM LOADING
+        yield 1 stormActive
+      end
+    else
+      yield 1 stormActive
+    end
+
+    if (amount of stormActive >= amount of stormLimit)
+      toast STORM RISES
+      lose all stormActive
+      set stormLimit to 0
+    end
+  end
+
 
 
 
@@ -173,6 +183,7 @@ Upgrades
   desc: Unlocks the feared Bridge Four crews.
   cost:5000000 chouta
   on earn:hide this
+
 
 
 
