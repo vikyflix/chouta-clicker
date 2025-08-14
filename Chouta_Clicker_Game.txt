@@ -86,42 +86,42 @@ Buildings
 
 
 
-        *rockCook
-        name: Numuhukumakiaki'aialunamor
-        desc: Take everything you have, and put him in pot. Don't let anyone airsick touch seasonings.
+*rockCook
+  name: Numuhukumakiaki'aialunamor
+  desc: Take everything you have, and put him in pot. Don't let anyone airsick touch seasonings.
+  on tick:
+    if (stormInActive == 0)
+      yield 0.5 chouta
+    else
+      yield 1 chouta
+    end
+  end
+  cost: 100 chouta
 
-        on tick:
-          if(stormInActive==0)
-             yield 1/2 chouta
-          else
-             yield 1 chouta
-          end
-        end
-        cost:100 chouta
+*lopensCousins
+  name: Lopen's Cousins
+  desc: A man can never have enough cousins.
+  on tick:
+    if (stormInActive == 0)
+      yield 1.5 chouta
+    else
+      yield 3 chouta
+    end
+  end
+  cost: 200 chouta
 
-        *lopensCousins
-          name:Lopen's Cousins
-          desc:A man can never have enough cousins.
-          on tick:
-              if(stormInActive==0)
-                 yield 3/2 chouta
-               else
-                 yield 3 chouta
-              end
-          end
-          cost:200 chouta
+*rocksFamily
+  name: Rock's Horneater Family
+  desc: Rock brings his whole Horneater family to help. Huge production line.
+  on tick:
+    if (stormInActive == 0)
+      yield 5 chouta
+    else
+      yield 10 chouta
+    end
+  end
+  cost: 1000 chouta
 
-        *rocksFamily
-          name:Rock's Horneater Family
-          desc:Rock brings his whole Horneater family to help. Huge production line.
-          on tick:
-            if(stormInActive==0)
-                yield 10/2 chouta
-             else
-                yield 10 chouta
-            end
-          end
-          cost:1000 chouta
 
         *bridgeCrews
            name:The Bridge Crews
@@ -195,6 +195,7 @@ Upgrades
   desc: Unlocks the feared Bridge Four crews.
   cost:5000000 chouta
   on earn:hide this
+
 
 
 
