@@ -56,11 +56,11 @@ Buildings
         *stormHiddenCounter
         hidden
         no buy
-        start with: 20
+        start with: 1
         name: HIGHSTORM ON GOING
         desc: TESTING HIGHSTORM EVENT
         on tick:
-          yield 1 stormActive
+          yield 20 stormActive
           if (stormActive==120)
             toast STORM RISES
             lose stormActive stormActive
@@ -170,6 +170,7 @@ Upgrades
   desc: Unlocks the feared Bridge Four crews.
   cost:5000000 chouta
   on earn:hide this
+
 
 
 
