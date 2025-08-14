@@ -53,6 +53,7 @@ Resources
         //icon: https://uploads.coppermind.net/thumb/The_Highstorm_by_Sakina_Minnis.jpg/200px-The_Highstorm_by_Sakina_Minnis.jpg
 
 Buildings
+
         *stormHiddenCounter
         hidden
         no buy
@@ -64,7 +65,7 @@ Buildings
           if (stormActive==120)
             toast STORM RISES
             lose stormActive stormActive
-            yield onePlaceHolder stormInActive
+            yield 1 stormInActive
           end
         end
 
@@ -170,6 +171,7 @@ Upgrades
   desc: Unlocks the feared Bridge Four crews.
   cost:5000000 chouta
   on earn:hide this
+
 
 
 
