@@ -106,6 +106,7 @@ Buildings
 */
         *onePlaceHolder
         start with: 1
+        hidden
         no buy
         name: HIGHSTORM ON GOING
         desc: TESTING HIGHSTORM EVENT
@@ -318,6 +319,7 @@ Upgrades
   desc: Unlocks the feared Bridge Four crews.
   cost:5000000 chouta
   on earn:hide this
+
 
 
 
