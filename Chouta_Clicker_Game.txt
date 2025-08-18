@@ -78,7 +78,7 @@ Resources
         end
 
 Buildings
-
+/*
         *stormHiddenCounter
         no text
         hidden
@@ -102,7 +102,7 @@ Buildings
             hide onePlaceHolder
           end
         end
-
+*/
         *onePlaceHolder
         start with: 1
         no buy
@@ -317,6 +317,7 @@ Upgrades
   desc: Unlocks the feared Bridge Four crews.
   cost:5000000 chouta
   on earn:hide this
+
 
 
 
