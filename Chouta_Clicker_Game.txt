@@ -51,6 +51,29 @@ Resources
         name: Highstorm InActive
         desc: The Highstorm is raging. Production is altered.
         //icon: https://uploads.coppermind.net/thumb/The_Highstorm_by_Sakina_Minnis.jpg/200px-The_Highstorm_by_Sakina_Minnis.jpg
+    *stormCounterTest
+        no text
+        hidden
+        no buy
+        start with: 1
+        name: HIGHSTORM ON GOING
+        desc: TESTING HIGHSTORM EVENT
+        on tick:
+          yield 20 stormActive
+          if (stormActive==120)
+            lose stormActive stormActive
+            yield 1 stormInActive
+          else if (stormInActive==5)
+            toast STORM RISES
+            lose stormActive stormActive
+            lose  5 stormInActive
+          end
+          if (stormInActive==0)
+            show onePlaceHolder
+          else
+            hide onePlaceHolder
+          end
+        end
 
 Buildings
 
@@ -292,6 +315,7 @@ Upgrades
   desc: Unlocks the feared Bridge Four crews.
   cost:5000000 chouta
   on earn:hide this
+
 
 
 
