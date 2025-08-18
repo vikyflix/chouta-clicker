@@ -121,6 +121,7 @@ Buildings
         *stormlight
         no buy
         name: stormligth
+        class: stormlight
         
 
 
@@ -331,6 +332,7 @@ Upgrades
   desc: Unlocks the feared Bridge Four crews.
   cost:5000000 chouta
   on earn:hide this
+
 
 
 
