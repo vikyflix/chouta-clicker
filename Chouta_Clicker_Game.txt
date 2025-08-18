@@ -120,9 +120,10 @@ Buildings
         desc: TESTING HIGHSTORM EVENT
 
         *stormlight
+        class:stormlight
         no buy
         name: stormlight
-        class: stormlight
+        
         
 
 
@@ -333,6 +334,7 @@ Upgrades
   desc: Unlocks the feared Bridge Four crews.
   cost:5000000 chouta
   on earn:hide this
+
 
 
 
