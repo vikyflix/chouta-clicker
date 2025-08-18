@@ -14,11 +14,27 @@ CSS
     image-rendering: pixelated;
 }
 
-.glow
-{
-    border-radius: 8px;
-    background: rgba(173, 216, 230, 1);
-    box-shadow: 0 0 10px rgba(173, 216, 230, 0.8);
+.glow { 
+    height: 5px;
+    position: relative;
+    background: #f3efe6;
+    overflow: hidden;
+}
+
+.glow span {
+    display: block;
+    height: 100%;
+}
+
+.progress {
+    background-color: #e4c465;
+    animation: progressBar 3s ease-in-out;
+    animation-fill-mode:both; 
+}
+
+@keyframes progressBar {
+  0% { width: 0; }
+  100% { width: 100%; }
 }
 
 Settings
@@ -121,7 +137,7 @@ Buildings
         desc: TESTING HIGHSTORM EVENT
 
         *stormlight
-        class:glow
+        class:glow progress
         no buy
         name: stormlight
         
@@ -335,6 +351,7 @@ Upgrades
   desc: Unlocks the feared Bridge Four crews.
   cost:5000000 chouta
   on earn:hide this
+
 
 
 
