@@ -13,6 +13,11 @@ CSS
     background-size: 100% 100%;
     image-rendering: pixelated;
 }
+.stormlight
+{
+border-radius:8px;
+background:rgba(173, 216, 230,0.5);
+}
  
 Settings
     background:stuff/meadow.jpg
@@ -112,6 +117,11 @@ Buildings
         no buy
         name: HIGHSTORM ON GOING
         desc: TESTING HIGHSTORM EVENT
+
+        *stormlight
+        no buy
+        name: Stormlight
+        
 
 
 
@@ -321,6 +331,7 @@ Upgrades
   desc: Unlocks the feared Bridge Four crews.
   cost:5000000 chouta
   on earn:hide this
+
 
 
 
