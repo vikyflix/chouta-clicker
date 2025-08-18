@@ -90,7 +90,7 @@ Buildings
         name: Numuhukumakiaki'aialunamor
         desc: Take everything you have, and put him in pot. Don't let anyone airsick touch seasonings.
         on tick:
-                if(stormInActive==0)
+                if (stormInActive==0)
                         yield 0.5 chouta
                 else
                         yield 1 chouta
@@ -184,6 +184,7 @@ Upgrades
   desc: Unlocks the feared Bridge Four crews.
   cost:5000000 chouta
   on earn:hide this
+
 
 
 
