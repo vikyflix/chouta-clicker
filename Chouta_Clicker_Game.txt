@@ -13,7 +13,7 @@ CSS
     background-size: 100% 100%;
     image-rendering: pixelated;
 }
-.stormligth
+.stormlight
 {
 border-radius:8px;
 background:rgba(173, 216, 230,0.5);
@@ -121,7 +121,7 @@ Buildings
         *stormlight
         no buy
         name: stormligth
-        class: stormligth 
+        class: .stormligth 
         
 
 
@@ -332,6 +332,7 @@ Upgrades
   desc: Unlocks the feared Bridge Four crews.
   cost:5000000 chouta
   on earn:hide this
+
 
 
 
