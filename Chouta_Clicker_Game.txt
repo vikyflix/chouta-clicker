@@ -14,7 +14,7 @@ CSS
     image-rendering: pixelated;
 }
 
-.stormlight
+.glow
 {
 border-radius:50px;
 background:rgba(173, 216, 230, 0.5);
@@ -120,7 +120,7 @@ Buildings
         desc: TESTING HIGHSTORM EVENT
 
         *stormlight
-        class:stormlight
+        class:glow
         no buy
         name: stormlight
         
@@ -334,6 +334,7 @@ Upgrades
   desc: Unlocks the feared Bridge Four crews.
   cost:5000000 chouta
   on earn:hide this
+
 
 
 
