@@ -86,6 +86,91 @@ Buildings
 
 
 
+        *cookpotFires
+        name: Cookpot Fires
+        desc: Small flames at the warcamp edges, tended by whoever can hold a ladle.
+        on tick:
+                if (stormInActive==0)
+                        yield 0.5 chouta
+                else
+                        yield 1 chouta
+                end
+        end
+        cost:100 chouta
+
+        *heartsmokeVendors
+        name: Hearthsmoke Vendors
+        desc: Small flames at the warcamp edges, tended by whoever can hold a ladle.
+        on tick:
+                if (stormInActive==0)
+                        yield 0.5 chouta
+                else
+                        yield 1 chouta
+                end
+        end
+        cost:100 chouta
+
+        *bridgeboysCooks
+        name: Bridgeboys Cooks
+        desc: Even bridgemen need to eat—one pot feeds many, if barely enough.
+        on tick:
+                if (stormInActive==0)
+                        yield 0.5 chouta
+                else
+                        yield 1 chouta
+                end
+        end
+        cost:100 chouta
+
+        *alethkarStreetStalls
+        name: Alethkar Street Stalls
+        desc: Makeshift tables on muddy roads, with promises of cheap skewers.
+        on tick:
+                if (stormInActive==0)
+                        yield 0.5 chouta
+                else
+                        yield 1 chouta
+                end
+        end
+        cost:100 chouta
+
+
+        *choutaBaziers
+        name: Chouta Baziers
+        desc: Big, battered braziers glow with Herdazian spice and oil.
+        on tick:
+                if (stormInActive==0)
+                        yield 0.5 chouta
+                else
+                        yield 1 chouta
+                end
+        end
+        cost:100 chouta
+
+        *warcampLines
+        name: Warcamp Lines
+        desc:Chouta served fast to soldiers before another march onto the plains.
+        on tick:
+                if (stormInActive==0)
+                        yield 0.5 chouta
+                else
+                        yield 1 chouta
+                end
+        end
+        cost:100 chouta
+
+        *spiceGrindersOfHerdaz
+        name: Spice-grinders of Herdaz
+        desc:The secret’s in the seasoning. Too much, and even a lighteyes weeps.
+        on tick:
+                if (stormInActive==0)
+                        yield 0.5 chouta
+                else
+                        yield 1 chouta
+                end
+        end
+        cost:100 chouta
+
 
         *rockCook
         name: Numuhukumakiaki'aialunamor
@@ -111,6 +196,19 @@ Buildings
                 end
                 
           end
+          cost:200 chouta
+
+        *travelinHerdazianCousins
+          name:Traveling Herdazian Cousins
+          desc:No one knows where they came from. But they always come with skewers.
+
+                on tick:
+                        if (stormInActive==0)
+                                yield 0.5 chouta
+                        else
+                                yield 1 chouta
+                        end
+                end
           cost:200 chouta
 
         *rocksFamily
@@ -194,6 +292,7 @@ Upgrades
   desc: Unlocks the feared Bridge Four crews.
   cost:5000000 chouta
   on earn:hide this
+
 
 
 
