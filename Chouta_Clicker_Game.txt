@@ -164,7 +164,7 @@ Buttons
         class:bigButton hasFlares
             on click:
                 if (rocksFamily >=1 or rockCook >= 1)
-                    yield rockCook+1+rocksFamily chouta
+                    yield rockCook+1+rocksFamily+lopensCousins chouta
                 else
                     yield rockCook+1 chouta
                 end
@@ -193,6 +193,7 @@ Upgrades
   desc: Unlocks the feared Bridge Four crews.
   cost:5000000 chouta
   on earn:hide this
+
 
 
 
