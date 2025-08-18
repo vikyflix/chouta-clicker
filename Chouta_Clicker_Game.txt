@@ -55,10 +55,12 @@ Resources
 
     *stormCounterTest
         hidden
+        no text
         no buy
         start with: 1
         name: TEST
         desc: TESTING HIGHSTORM EVENT
+        icon: https://uploads.coppermind.net/thumb/The_Highstorm_by_Sakina_Minnis.jpg/200px-The_Highstorm_by_Sakina_Minnis.jpg
         on tick:
           yield 20 stormActive
           if (stormActive==120)
@@ -316,6 +318,7 @@ Upgrades
   desc: Unlocks the feared Bridge Four crews.
   cost:5000000 chouta
   on earn:hide this
+
 
 
 
