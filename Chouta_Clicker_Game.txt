@@ -159,7 +159,7 @@ Buildings
         end
         cost:100 chouta
 
-        *spiceGrindersOfHerdaz
+        *spiceGrinders
         name: Spice-grinders of Herdaz
         desc:The secret’s in the seasoning. Too much, and even a lighteyes weeps.
         on tick:
@@ -292,6 +292,7 @@ Upgrades
   desc: Unlocks the feared Bridge Four crews.
   cost:5000000 chouta
   on earn:hide this
+
 
 
 
