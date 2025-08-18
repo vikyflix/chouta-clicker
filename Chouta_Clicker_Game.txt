@@ -94,6 +94,7 @@ Buildings
                         yield 0.5 chouta
                 else
                         yield 1 chouta
+                end
         end
         cost:100 chouta
 
@@ -184,6 +185,7 @@ Upgrades
   desc: Unlocks the feared Bridge Four crews.
   cost:5000000 chouta
   on earn:hide this
+
 
 
 
