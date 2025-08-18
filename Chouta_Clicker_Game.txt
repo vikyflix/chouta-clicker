@@ -101,7 +101,15 @@ Buildings
         *lopensCousins
           name:Lopen's Cousins
           desc:A man can never have enough cousins.
-          on tick:yield 3 chouta
+
+          on tick:
+                if (stormInActive==0)
+                        yield 1.5 chouta
+                else
+                        yield 3 chouta
+                end
+                
+          end
           cost:200 chouta
 
         *rocksFamily
@@ -185,6 +193,7 @@ Upgrades
   desc: Unlocks the feared Bridge Four crews.
   cost:5000000 chouta
   on earn:hide this
+
 
 
 
