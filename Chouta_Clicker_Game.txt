@@ -72,11 +72,9 @@ Resources
             lose  5 stormInActive
           end
           if (stormInActive==0)
-            icon: https://uploads.coppermind.net/thumb/The_Highstorm_by_Sakina_Minnis.jpg/200px-The_Highstorm_by_Sakina_Minnis.jpg
-            //show stormCounterTest
+            show stormCounterTest
           else
-            icon: https://thumbs.dreamstime.com/z/happy-sun-cartoon-behind-cloud-illustration-51245403.jpg
-            //hide stormCounterTest
+            hide stormCounterTest
           end
         end
 
@@ -321,6 +319,7 @@ Upgrades
   desc: Unlocks the feared Bridge Four crews.
   cost:5000000 chouta
   on earn:hide this
+
 
 
 
