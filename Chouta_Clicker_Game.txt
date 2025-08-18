@@ -55,6 +55,7 @@ Resources
 Buildings
 
         *stormHiddenCounter
+        no text
         hidden
         no buy
         start with: 1
@@ -193,6 +194,7 @@ Upgrades
   desc: Unlocks the feared Bridge Four crews.
   cost:5000000 chouta
   on earn:hide this
+
 
 
 
