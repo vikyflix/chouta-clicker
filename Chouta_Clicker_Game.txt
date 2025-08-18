@@ -198,7 +198,7 @@ Buildings
           end
           cost:200 chouta
 
-        *travelinHerdazianCousins
+        *travelingCousins
           name:Traveling Herdazian Cousins
           desc:No one knows where they came from. But they always come with skewers.
 
@@ -292,6 +292,7 @@ Upgrades
   desc: Unlocks the feared Bridge Four crews.
   cost:5000000 chouta
   on earn:hide this
+
 
 
 
