@@ -165,7 +165,7 @@ Buildings
         name: Stormlight Storage
         desc: Displays current Stormlight filling.
         on tick:
-            if (stormActive > 0)
+            if (stormActive == 0)
                 if (stormlightStored < spheres*100)
                     yield 1 stormlightStored
                 end
@@ -389,6 +389,7 @@ Upgrades
   desc: Unlocks the feared Bridge Four crews.
   cost:5000000 chouta
   on earn:hide this
+
 
 
 
