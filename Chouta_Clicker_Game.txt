@@ -28,7 +28,7 @@ CSS
 
 .progress {
     background-color: #e4c465;
-    animation: progressBar 120s ease-in-out;
+    animation: progressBar 6s ease-in-out;
     animation-fill-mode:both; 
 }
 
@@ -87,7 +87,7 @@ Resources
         desc: TESTING HIGHSTORM EVENT
         icon: https://uploads.coppermind.net/thumb/The_Highstorm_by_Sakina_Minnis.jpg/200px-The_Highstorm_by_Sakina_Minnis.jpg
         on tick:
-          yield 1 stormActive
+          yield 20 stormActive
           if (stormActive==120)
             lose stormActive stormActive
             yield 1 stormInActive
@@ -330,6 +330,7 @@ Upgrades
   desc: Unlocks the feared Bridge Four crews.
   cost:5000000 chouta
   on earn:hide this
+
 
 
 
