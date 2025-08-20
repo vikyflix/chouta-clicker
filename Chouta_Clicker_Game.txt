@@ -106,8 +106,17 @@ Resources
           end
         end
 
-Buildings
+    *spheres
+        name: Infused Spheres
+        desc: Gemstones that hold Stormlight. Each one can hold 100 light.
+        start with: 1
 
+    *stormlightStored
+        name: Stormlight Stored
+        desc: Raw light captured inside spheres. This fuels Surgebinding.
+        start with: 0
+
+Buildings
         *onePlaceHolder
         start with: 1
         hidden
@@ -119,7 +128,27 @@ Buildings
         class:glow progress
         no buy
         name: stormlight
-        
+
+    *stormlightBar
+        no buy
+        hidden
+        name: Stormlight Storage
+        desc: Displays current Stormlight filling.
+        on tick:
+            if (stormActive > 0)
+                if (stormlightStored < spheres*100)
+                    yield 1 stormlightStored
+                end
+                show stormlightBar
+            else if (stormlightStored == spheres*100)
+                toast "Your spheres are fully infused!"
+            else
+                hide stormlightBar
+            end
+        end
+
+
+
         
 
 
@@ -330,6 +359,7 @@ Upgrades
   desc: Unlocks the feared Bridge Four crews.
   cost:5000000 chouta
   on earn:hide this
+
 
 
 
