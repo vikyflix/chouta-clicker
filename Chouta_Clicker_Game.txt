@@ -174,25 +174,25 @@ Buildings
         
     *stormlightBar25
         hidden
-        class: stormlight-fill-25
+        class:stormlight-fill-25
         no buy
         name: Stormlight (25%)
         
     *stormlightBar50
         hidden
-        class: stormlight-fill-50
+        class:stormlight-fill-50
         no buy
         name: Stormlight (50%)
         
     *stormlightBar75
         hidden
-        class: stormlight-fill-75
+        class:stormlight-fill-75
         no buy
         name: Stormlight (75%)
         
     *stormlightBar100
         hidden
-        class: stormlight-fill-100
+        class:stormlight-fill-100
         no buy
         name: Stormlight (Full!)
 
@@ -409,6 +409,7 @@ Upgrades
   desc: Unlocks the feared Bridge Four crews.
   cost:5000000 chouta
   on earn:hide this
+
 
 
 
