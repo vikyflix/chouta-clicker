@@ -66,25 +66,21 @@ CSS
   to   { width: 100%; }
 }
 .stormlight-fill-25 {
-
   width: 25%;
   height: 20px;
   background: #6de8ff;
 }
 .stormlight-fill-50 {
-
   width: 50%;
   height: 20px;
   background: #6de8ff;
 }
 .stormlight-fill-75 {
-
   width: 75%;
   height: 20px;
   background: #6de8ff;
 }
 .stormlight-fill-100 {
-
   width: 100%;
   height: 20px;
   background: #6de8ff;
@@ -141,13 +137,29 @@ Resources
         icon: https://uploads.coppermind.net/thumb/The_Highstorm_by_Sakina_Minnis.jpg/200px-The_Highstorm_by_Sakina_Minnis.jpg
         on tick:
           yield 20 stormActive
-          $capacity = spheres * 100
-          $percent = floor(stormlight * 100 / $capacity)
-
-          if ($percent >= 75) show stormlightBar75 else hide stormlightBar75
-          if ($percent >= 50 and $percent < 75) show stormlightBar50 else hide stormlightBar50
-          if ($percent >= 25 and $percent < 50) show stormlightBar25 else hide stormlightBar25
-          if ($percent < 25) show stormlightBarEmpty else hide stormlightBarEmpty
+          if (stormlightStored >= spheres*25) 
+                show stormlightBar25 
+          else 
+                hide stormlightBar25
+          end
+          if (stormlightStored >= spheres*50) 
+                hide stormlightBar25
+                show stormlightBar50
+          else 
+                hide stormlightBar50
+          end
+          if (stormlightStored >= spheres*75) 
+                hide stormlightBar50
+                show stormlightBar75
+          else 
+                hide stormlightBar75
+          end
+          if (stormlightStored >= spheres*100)
+                hide stormlightBar75
+                show stormlightBar100
+          else 
+                hide stormlightBar100
+          end          
           if (stormActive==120)
             lose stormActive stormActive
             yield 1 stormInActive
@@ -173,7 +185,7 @@ Resources
     *spheres
         name: Infused Spheres
         desc: Gemstones that hold Stormlight. Each one can hold 100 light.
-        start with: 5
+        start with: 10
 
     *stormlightStored
         name: Stormlight Stored
@@ -193,10 +205,12 @@ Buildings
         no buy
         name: stormlight
 
-    *stormlightBarEmpty
-        hidden
+    *stormlightBar
+        class:stormlight-storage stormlight-storage span
         no buy
-        name: Stormlight 0
+        name: Stormlight Storage
+        desc: Displays current Stormlight filling.
+        
     *stormlightBar25
         hidden
         class:stormlight-fill-25
@@ -434,14 +448,6 @@ Upgrades
   desc: Unlocks the feared Bridge Four crews.
   cost:5000000 chouta
   on earn:hide this
-
-
-
-
-
-
-
-
 
 
 
