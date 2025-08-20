@@ -14,25 +14,32 @@ CSS
     image-rendering: pixelated;
 }
 
-.glow { 
-    height: 5px;
-    position: relative;
-    background: #f3efe6;
-    overflow: hidden;
+/* container for the bar */
+.glow {
+  width: 200px;       /* bar width */
+  height: 10px;       /* bar thickness */
+  background: #f3efe6; 
+  border-radius: 5px;
+  overflow: hidden;
+  margin: 10px 0;
 }
 
+/* filling span */
 .glow span {
-    display: block;
-    height: 100%;
-}
-
-.glow span.progress {
+  display: block;
+  height: 100%;
+  width: 0%;
   background-color: #e4c465;
-  animation: progressBar 120s linear infinite;
 }
 
+/* animation class */
+.glow span.progress {
+  animation: progressBar 120s linear;
+}
+
+/* defines the animation growth */
 @keyframes progressBar {
-  0% { width: 0; }
+  0%   { width: 0%; }
   100% { width: 100%; }
 }
 
@@ -350,6 +357,7 @@ Upgrades
   desc: Unlocks the feared Bridge Four crews.
   cost:5000000 chouta
   on earn:hide this
+
 
 
 
