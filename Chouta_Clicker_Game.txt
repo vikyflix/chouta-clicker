@@ -129,7 +129,7 @@ Resources
             show stormCounterTest
             show stormlight
             if (stormlightStored < spheres*100)
-                yield 1 stormlightStored
+                yield 10 stormlightStored
             else if (stormlightStored == spheres*100)
                 toast "Your spheres are fully infused!"
             end
@@ -137,8 +137,6 @@ Resources
             hide stormCounterTest
             hide stormlight
           end
-            if (stormActive == 0)
-            end
         end
 
     *spheres
@@ -382,6 +380,7 @@ Upgrades
   desc: Unlocks the feared Bridge Four crews.
   cost:5000000 chouta
   on earn:hide this
+
 
 
 
