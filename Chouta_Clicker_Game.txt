@@ -143,16 +143,19 @@ Resources
                 hide stormlightBar25
           end
           if (stormlightStored >= spheres*50) 
+                hide stormlightBar25
                 show stormlightBar50
           else 
                 hide stormlightBar50
           end
           if (stormlightStored >= spheres*75) 
+                hide stormlightBar50
                 show stormlightBar75
           else 
                 hide stormlightBar75
           end
-          if (stormlightStored >= spheres*100) 
+          if (stormlightStored >= spheres*100)
+                hide stormlightBar75
                 show stormlightBar100
           else 
                 hide stormlightBar100
@@ -445,6 +448,7 @@ Upgrades
   desc: Unlocks the feared Bridge Four crews.
   cost:5000000 chouta
   on earn:hide this
+
 
 
 
