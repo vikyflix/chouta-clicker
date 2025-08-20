@@ -129,7 +129,7 @@ Resources
             show stormCounterTest
             show stormlight
             if (stormlightStored < spheres*100)
-                yield 10 stormlightStored
+                yield 20 stormlightStored
             else if (stormlightStored == spheres*100)
                 toast "Your spheres are fully infused!"
             end
@@ -142,7 +142,7 @@ Resources
     *spheres
         name: Infused Spheres
         desc: Gemstones that hold Stormlight. Each one can hold 100 light.
-        start with: 10
+        start with: 1
 
     *stormlightStored
         name: Stormlight Stored
@@ -380,6 +380,7 @@ Upgrades
   desc: Unlocks the feared Bridge Four crews.
   cost:5000000 chouta
   on earn:hide this
+
 
 
 
