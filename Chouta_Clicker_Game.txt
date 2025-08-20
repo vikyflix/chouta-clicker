@@ -173,7 +173,7 @@ Resources
     *spheres
         name: Infused Spheres
         desc: Gemstones that hold Stormlight. Each one can hold 100 light.
-        start with: 100
+        start with: 5
 
     *stormlightStored
         name: Stormlight Stored
@@ -434,6 +434,7 @@ Upgrades
   desc: Unlocks the feared Bridge Four crews.
   cost:5000000 chouta
   on earn:hide this
+
 
 
 
