@@ -26,6 +26,11 @@ CSS
     height: 100%;
 }
 
+.glow span.progress {
+  background-color: #e4c465;
+  animation: progressBar 120s linear infinite;
+}
+
 .progress {
     background-color: #e4c465;
     animation: progressBar 3s ease-in-out;
@@ -351,6 +356,7 @@ Upgrades
   desc: Unlocks the feared Bridge Four crews.
   cost:5000000 chouta
   on earn:hide this
+
 
 
 
