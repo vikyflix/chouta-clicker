@@ -136,11 +136,11 @@ Resources
                 if (stormlightStored < spheres*100)
                     yield 1 stormlightStored
                 end
-                show stormlightBar
+                //show stormlightBar
             else if (stormlightStored == spheres*100)
                 toast "Your spheres are fully infused!"
             else
-                hide stormlightBar
+                //hide stormlightBar
             end
         end
 
@@ -170,7 +170,6 @@ Buildings
     *stormlightBar
         class:stormlight-storage
         no buy
-        hidden
         name: Stormlight Storage
         desc: Displays current Stormlight filling.
 
@@ -386,6 +385,7 @@ Upgrades
   desc: Unlocks the feared Bridge Four crews.
   cost:5000000 chouta
   on earn:hide this
+
 
 
 
