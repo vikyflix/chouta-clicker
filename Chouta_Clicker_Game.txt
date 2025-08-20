@@ -98,37 +98,16 @@ Resources
           end
           if (stormInActive==0)
             show stormCounterTest
+            show stormlight
           else
             hide stormCounterTest
+            hide stormlight
+
           end
         end
 
 Buildings
-/*
-        *stormHiddenCounter
-        no text
-        hidden
-        no buy
-        start with: 1
-        name: HIGHSTORM ON GOING
-        desc: TESTING HIGHSTORM EVENT
-        on tick:
-          yield 20 stormActive
-          if (stormActive==120)
-            lose stormActive stormActive
-            yield 1 stormInActive
-          else if (stormInActive==5)
-            toast STORM RISES
-            lose stormActive stormActive
-            lose  5 stormInActive
-          end
-          if (stormInActive==0)
-            show onePlaceHolder
-          else
-            hide onePlaceHolder
-          end
-        end
-*/
+
         *onePlaceHolder
         start with: 1
         hidden
@@ -140,13 +119,6 @@ Buildings
         class:glow progress
         no buy
         name: stormlight
-        on tick:
-           if ( stormInActive==0)
-                show stormlight
-           else
-                hide stormlight
-           end
-        end
         
         
 
@@ -358,6 +330,7 @@ Upgrades
   desc: Unlocks the feared Bridge Four crews.
   cost:5000000 chouta
   on earn:hide this
+
 
 
 
