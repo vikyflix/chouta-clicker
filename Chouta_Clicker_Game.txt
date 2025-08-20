@@ -193,12 +193,10 @@ Buildings
         no buy
         name: stormlight
 
-    *stormlightBar
-        class:stormlight-storage stormlight-storage span
+    *stormlightBarEmpty
+        hidden
         no buy
-        name: Stormlight Storage
-        desc: Displays current Stormlight filling.
-        
+        name: Stormlight 0
     *stormlightBar25
         hidden
         class:stormlight-fill-25
@@ -436,6 +434,7 @@ Upgrades
   desc: Unlocks the feared Bridge Four crews.
   cost:5000000 chouta
   on earn:hide this
+
 
 
 
