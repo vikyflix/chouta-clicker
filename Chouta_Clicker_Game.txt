@@ -141,7 +141,7 @@ Resources
         icon: https://uploads.coppermind.net/thumb/The_Highstorm_by_Sakina_Minnis.jpg/200px-The_Highstorm_by_Sakina_Minnis.jpg
         on tick:
           yield 20 stormActive
-          $capacity = spheres * 100   # or whatever “max per sphere” is
+          $capacity = spheres * 100
           $percent = floor(stormlight * 100 / $capacity)
           if ($percent < 25) 
                 show stormlightBar25 
@@ -454,6 +454,7 @@ Upgrades
   desc: Unlocks the feared Bridge Four crews.
   cost:5000000 chouta
   on earn:hide this
+
 
 
 
