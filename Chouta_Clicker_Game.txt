@@ -37,6 +37,35 @@ CSS
   100% { width: 100%; }
 }
 
+/* storage bar container */
+.stormlight-storage {
+  width: 200px;
+  height: 12px;
+  background: #222;
+  border-radius: 6px;
+  overflow: hidden;
+  margin: 10px 0;
+  position: relative;
+}
+
+/* filling span */
+.stormlight-storage span {
+  display: block;
+  height: 100%;
+  background: linear-gradient(90deg, #6de8ff, #c8f5ff);
+  width: 0%;
+}
+
+/* Animate the fill — one cycle = 120s storm, scales with sphere capacity */
+.stormlight-storage span.filling {
+  animation: stormlightFill 120s linear forwards;
+}
+
+@keyframes stormlightFill {
+  from { width: 0%; }
+  to   { width: 100%; }
+}
+
 Settings
     background:stuff/meadow.jpg
     stylesheet:stuff/basic.css
@@ -130,6 +159,7 @@ Buildings
         name: stormlight
 
     *stormlightBar
+        class: stormlight-storage
         no buy
         hidden
         name: Stormlight Storage
@@ -359,6 +389,7 @@ Upgrades
   desc: Unlocks the feared Bridge Four crews.
   cost:5000000 chouta
   on earn:hide this
+
 
 
 
