@@ -140,6 +140,13 @@ Buildings
         class:glow progress
         no buy
         name: stormlight
+        on tick:
+           if ( stormInActive==0)
+                show stormlight
+           else
+                hide stormlight
+           end
+        end
         
         
 
@@ -351,6 +358,7 @@ Upgrades
   desc: Unlocks the feared Bridge Four crews.
   cost:5000000 chouta
   on earn:hide this
+
 
 
 
