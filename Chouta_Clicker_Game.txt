@@ -65,6 +65,26 @@ CSS
   from { width: 0%; }
   to   { width: 100%; }
 }
+.stormlight-fill-25 {
+  width: 25%;
+  height: 20px;
+  background: #6de8ff;
+}
+.stormlight-fill-50 {
+  width: 50%;
+  height: 20px;
+  background: #6de8ff;
+}
+.stormlight-fill-75 {
+  width: 75%;
+  height: 20px;
+  background: #6de8ff;
+}
+.stormlight-fill-100 {
+  width: 100%;
+  height: 20px;
+  background: #6de8ff;
+}
 
 Settings
     background:stuff/meadow.jpg
@@ -409,6 +429,7 @@ Upgrades
   desc: Unlocks the feared Bridge Four crews.
   cost:5000000 chouta
   on earn:hide this
+
 
 
 
