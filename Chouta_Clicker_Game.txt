@@ -117,6 +117,10 @@ Resources
         icon: https://uploads.coppermind.net/thumb/The_Highstorm_by_Sakina_Minnis.jpg/200px-The_Highstorm_by_Sakina_Minnis.jpg
         on tick:
           yield 20 stormActive
+          if (stormlightStored >= spheres*25) show stormlightBar25 else hide stormlightBar25
+          if (stormlightStored >= spheres*50) show stormlightBar50 else hide stormlightBar50
+          if (stormlightStored >= spheres*75) show stormlightBar75 else hide stormlightBar75
+          if (stormlightStored >= spheres*100) show stormlightBar100 else hide stormlightBar100
           if (stormActive==120)
             lose stormActive stormActive
             yield 1 stormInActive
@@ -167,6 +171,31 @@ Buildings
         no buy
         name: Stormlight Storage
         desc: Displays current Stormlight filling.
+        
+    *stormlightBar25
+        hidden
+        class: stormlight-fill-25
+        no buy
+        name: Stormlight (25%)
+        
+    *stormlightBar50
+        hidden
+        class: stormlight-fill-50
+        no buy
+        name: Stormlight (50%)
+        
+    *stormlightBar75
+        hidden
+        class: stormlight-fill-75
+        no buy
+        name: Stormlight (75%)
+        
+    *stormlightBar100
+        hidden
+        class: stormlight-fill-100
+        no buy
+        name: Stormlight (Full!)
+
 
 
 
@@ -380,6 +409,7 @@ Upgrades
   desc: Unlocks the feared Bridge Four crews.
   cost:5000000 chouta
   on earn:hide this
+
 
 
 
