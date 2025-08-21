@@ -115,19 +115,6 @@ Layout
     use default
 
 
-Shinies
-
-
-/*
-*highstormEffect
-  name: Highstorm
-  movement:onMouse
-  frequency:10
-  frequency variation:1
-  duration:10
-  icon: https://uploads.coppermind.net/thumb/The_Highstorm_by_Sakina_Minnis.jpg/200px-The_Highstorm_by_Sakina_Minnis.jpg
-  //no click
-*/
 
 Resources
     *chouta
@@ -135,13 +122,13 @@ Resources
         desc:Cha-ou-ta. Herdazian food, gon. Good stuff. You can have a bite, if you want..
 
     *stormActive
-        hidden
+        
         name: Highstorm Active
         desc: The Highstorm is raging. Production is altered.
         //icon: https://uploads.coppermind.net/thumb/The_Highstorm_by_Sakina_Minnis.jpg/200px-The_Highstorm_by_Sakina_Minnis.jpg
 
     *stormInActive
-        hidden
+        
         name: Highstorm InActive
         desc: The Highstorm is raging. Production is altered.
         //icon: https://uploads.coppermind.net/thumb/The_Highstorm_by_Sakina_Minnis.jpg/200px-The_Highstorm_by_Sakina_Minnis.jpg
@@ -522,6 +509,7 @@ Upgrades
   desc: Unlocks the feared Bridge Four crews.
   cost:5000000 chouta
   on earn:hide this
+
 
 
 
