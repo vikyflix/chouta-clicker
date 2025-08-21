@@ -196,6 +196,8 @@ Resources
             $base = spheres * 100
             $gain = $base * qualityMultiplier * efficiencyMultiplier / 100
             yield $gain stormlightStored
+            yield 1 stormlightStored
+            yield 1 stormlight
             toast "Your spheres blaze with Stormlight!"
           else
             hide stormCounterTest
@@ -215,13 +217,13 @@ Resources
         start with: 0
 
     *qualityMultiplier
-        hidden
+        
         start with: 1
         name: Sphere Quality
         desc: Upgrade multiplier for stormlight gain.
 
     *efficiencyMultiplier
-        hidden
+        
         start with: 50
         name: Cage Efficiency
         desc: % of stormlight captured during storms.
@@ -521,6 +523,7 @@ Upgrades
   desc: Unlocks the feared Bridge Four crews.
   cost:5000000 chouta
   on earn:hide this
+
 
 
 
