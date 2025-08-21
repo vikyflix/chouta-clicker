@@ -249,6 +249,7 @@ Buildings
           desc:REMOVE STORMLIGHT
           on click:
             lose 100 stormlightStored
+            lose 1 adminStormlight
           end
           cost:0 chouta
 
@@ -508,6 +509,7 @@ Upgrades
   desc: Unlocks the feared Bridge Four crews.
   cost:5000000 chouta
   on earn:hide this
+
 
 
 
