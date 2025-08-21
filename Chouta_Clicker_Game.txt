@@ -193,7 +193,15 @@ Resources
                 show stormlightBar100
           else 
                 hide stormlightBar100
-          end          
+          end
+          if (stormActive == 0)
+            $base = spheres * 100    
+            $quality = 1 + betterSpheres       
+            $efficiency = 0.5 + stormCage*0.25 
+            $gain = $base * $quality * $efficiency
+            yield $gain stormlight
+            toast "Your spheres blaze with Stormlight!"
+          end
           if (stormActive==120)
             lose stormActive stormActive
             yield 1 stormInActive
@@ -489,6 +497,16 @@ Buttons
 
 Upgrades
 
+*betterSpheres
+    name: Cut & Polished Spheres
+    desc: Each sphere now holds more Stormlight.
+    cost: 10,000 chouta
+
+*stormCage
+    name: Stormlight Cage
+    desc: Capture more of the Highstorm's essence instead of letting it bleed away.
+    cost: 25,000 chouta
+
 *bridgeMansUpgrade
   name: Bridge Crews
   desc: Unlocks the doomed Bridge Boys
@@ -509,6 +527,7 @@ Upgrades
   desc: Unlocks the feared Bridge Four crews.
   cost:5000000 chouta
   on earn:hide this
+
 
 
 
