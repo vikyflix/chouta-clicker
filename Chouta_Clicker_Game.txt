@@ -482,12 +482,14 @@ Upgrades
 *betterSpheres
     name: Cut & Polished Spheres
     desc: Each sphere now holds more Stormlight.
-    cost: 10,000 chouta
+    cost: 10000 chouta
+    on earn:hide this
 
 *stormCage
     name: Stormlight Cage
     desc: Capture more of the Highstorm's essence instead of letting it bleed away.
-    cost: 25,000 chouta
+    cost: 25000 chouta
+    on earn:hide this
 
 *bridgeMansUpgrade
   name: Bridge Crews
@@ -509,6 +511,7 @@ Upgrades
   desc: Unlocks the feared Bridge Four crews.
   cost:5000000 chouta
   on earn:hide this
+
 
 
 
