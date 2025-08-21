@@ -195,8 +195,13 @@ Resources
             show stormlight
             $base = spheres * 100
             $gain = $base * qualityMultiplier * efficiencyMultiplier / 100
-            yield spheres * 100 * qualityMultiplier * efficiencyMultiplier / 100 stormlightStored
-            toast "Your spheres blaze with Stormlight!"
+            if(stormlightStored == spheres*100)
+                toast "Your spheres blaze with Stormlight!"
+            else
+                yield spheres * 100 * qualityMultiplier * efficiencyMultiplier / 100 stormlightStored
+            end
+
+            
           else
             hide stormCounterTest
             hide stormlight
@@ -521,6 +526,7 @@ Upgrades
   desc: Unlocks the feared Bridge Four crews.
   cost:5000000 chouta
   on earn:hide this
+
 
 
 
