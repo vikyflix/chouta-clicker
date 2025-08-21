@@ -67,14 +67,14 @@ CSS
 }
 
 .stormlight-fill-0 {
-  display: block;
+  font-size: 0;
   width: 1%;
   height: 20px;
   background: #6de8ff;
 }
 
 .stormlight-fill-5 {
-  display: block;
+  font-size: 0;
   width: 5%;
   height: 20px;
   background: #6de8ff;
@@ -485,6 +485,7 @@ Upgrades
   desc: Unlocks the feared Bridge Four crews.
   cost:5000000 chouta
   on earn:hide this
+
 
 
 
