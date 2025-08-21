@@ -146,6 +146,12 @@ Resources
         icon: https://uploads.coppermind.net/thumb/The_Highstorm_by_Sakina_Minnis.jpg/200px-The_Highstorm_by_Sakina_Minnis.jpg
         on tick:
           yield 20 stormActive
+
+          if (stormlightStored >= spheres*1) 
+                show stormlightBar0 
+          else 
+                hide stormlightBar0
+          end
           if (stormlightStored >= spheres*25) 
                 show stormlightBar25 
           else 
@@ -457,6 +463,7 @@ Upgrades
   desc: Unlocks the feared Bridge Four crews.
   cost:5000000 chouta
   on earn:hide this
+
 
 
 
