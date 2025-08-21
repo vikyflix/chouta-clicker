@@ -193,10 +193,8 @@ Resources
           if (stormInActive==0)
             show stormCounterTest
             show stormlight
-            $base = spheres * 100    
-            $quality = 1 + betterSpheres       
-            $efficiency = 0.5 + stormCage*0.25 
-            $gain = $base * $quality * $efficiency
+            $base = spheres * 100
+            $gain = $base * qualityMultiplier * efficiencyMultiplier / 100
             yield $gain stormlightStored
             toast "Your spheres blaze with Stormlight!"
           else
@@ -215,6 +213,18 @@ Resources
         name: Stormlight Stored
         desc: Raw light captured inside spheres. This fuels Surgebinding.
         start with: 0
+
+    *qualityMultiplier
+        hidden
+        start with: 1
+        name: Sphere Quality
+        desc: Upgrade multiplier for stormlight gain.
+
+    *efficiencyMultiplier
+        hidden
+        start with: 50
+        name: Cage Efficiency
+        desc: % of stormlight captured during storms.
 
 Buildings
 
@@ -483,13 +493,15 @@ Upgrades
     name: Cut & Polished Spheres
     desc: Each sphere now holds more Stormlight.
     cost: 10000 chouta
-    on earn:hide this
+    on earn:
+        yield 1 qualityMultiplier
 
 *stormCage
     name: Stormlight Cage
     desc: Capture more of the Highstorm's essence instead of letting it bleed away.
     cost: 25000 chouta
-    on earn:hide this
+    on earn:
+        yield 25 efficiencyMultiplier
 
 *bridgeMansUpgrade
   name: Bridge Crews
@@ -511,6 +523,7 @@ Upgrades
   desc: Unlocks the feared Bridge Four crews.
   cost:5000000 chouta
   on earn:hide this
+
 
 
 
