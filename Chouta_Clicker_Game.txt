@@ -194,14 +194,6 @@ Resources
           else 
                 hide stormlightBar100
           end
-          if (stormActive == 0)
-            $base = spheres * 100    
-            $quality = 1 + betterSpheres       
-            $efficiency = 0.5 + stormCage*0.25 
-            $gain = $base * $quality * $efficiency
-            yield $gain stormlight
-            toast "Your spheres blaze with Stormlight!"
-          end
           if (stormActive==120)
             lose stormActive stormActive
             yield 1 stormInActive
@@ -210,20 +202,21 @@ Resources
             lose stormActive stormActive
             lose  5 stormInActive
           end
-          /*
+          
           if (stormInActive==0)
             show stormCounterTest
             show stormlight
-            if (stormlightStored < spheres*100)
-                yield 50 stormlightStored
-            else if (stormlightStored == spheres*100)
-                toast "Your spheres are fully infused!"
-            end
+            $base = spheres * 100    
+            $quality = 1 + betterSpheres       
+            $efficiency = 0.5 + stormCage*0.25 
+            $gain = $base * $quality * $efficiency
+            yield $gain stormlight
+            toast "Your spheres blaze with Stormlight!"
           else
             hide stormCounterTest
             hide stormlight
           end
-          */
+          
         end
 
     *spheres
@@ -529,6 +522,7 @@ Upgrades
   desc: Unlocks the feared Bridge Four crews.
   cost:5000000 chouta
   on earn:hide this
+
 
 
 
