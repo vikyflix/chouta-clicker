@@ -68,7 +68,14 @@ CSS
 
 .stormlight-fill-0 {
   display: block;
-  width: 10%;
+  width: 1%;
+  height: 20px;
+  background: #6de8ff;
+}
+
+.stormlight-fill-5 {
+  display: block;
+  width: 5%;
   height: 20px;
   background: #6de8ff;
 }
@@ -152,7 +159,16 @@ Resources
           else 
                 hide stormlightBar0
           end
-          if (stormlightStored >= spheres*25) 
+          
+          if (stormlightStored >= spheres*5) 
+                hide stormlightBar0
+                show stormlightBar5 
+          else 
+                hide stormlightBar5
+          end
+
+          if (stormlightStored >= spheres*25)
+                hide stormlightBar5
                 show stormlightBar25 
           else 
                 hide stormlightBar25
@@ -223,6 +239,12 @@ Buildings
     *stormlightBar0
         hidden
         class:stormlight-fill-0
+        no buy
+        name: Stormlight (low)
+
+    *stormlightBar5
+        hidden
+        class:stormlight-fill-5
         no buy
         name: Stormlight (low)
 
@@ -463,6 +485,7 @@ Upgrades
   desc: Unlocks the feared Bridge Four crews.
   cost:5000000 chouta
   on earn:hide this
+
 
 
 
