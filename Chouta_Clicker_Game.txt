@@ -197,7 +197,7 @@ Resources
             $quality = 1 + betterSpheres       
             $efficiency = 0.5 + stormCage*0.25 
             $gain = $base * $quality * $efficiency
-            yield $gain stormlight
+            yield $gain stormlightStored
             toast "Your spheres blaze with Stormlight!"
           else
             hide stormCounterTest
@@ -509,6 +509,7 @@ Upgrades
   desc: Unlocks the feared Bridge Four crews.
   cost:5000000 chouta
   on earn:hide this
+
 
 
 
