@@ -65,7 +65,16 @@ CSS
   from { width: 0%; }
   to   { width: 100%; }
 }
+
+.stormlight-fill-0 {
+  display: block;
+  width: 10%;
+  height: 20px;
+  background: #6de8ff;
+}
+
 .stormlight-fill-25 {
+  display: block;
   width: 25%;
   height: 20px;
   background: #6de8ff;
@@ -172,7 +181,7 @@ Resources
             show stormCounterTest
             show stormlight
             if (stormlightStored < spheres*100)
-                yield 20 stormlightStored
+                yield 50 stormlightStored
             else if (stormlightStored == spheres*100)
                 toast "Your spheres are fully infused!"
             end
@@ -204,7 +213,13 @@ Buildings
         class:glow progress
         no buy
         name: stormlight
-        
+
+    *stormlightBar0
+        hidden
+        class:stormlight-fill-0
+        no buy
+        name: Stormlight (low)
+
     *stormlightBar25
         hidden
         class:stormlight-fill-25
@@ -442,6 +457,7 @@ Upgrades
   desc: Unlocks the feared Bridge Four crews.
   cost:5000000 chouta
   on earn:hide this
+
 
 
 
