@@ -226,7 +226,7 @@ Resources
 Buildings
 
         *admin
-          name:PARA DEVs
+          name:PARA DEVs (CHOUTA)
           desc:RICH ZAGGIN
           on click:
             yield 1000000000000 chouta
@@ -234,7 +234,7 @@ Buildings
           cost:0 chouta
 
         *adminSpheres
-          name:PARA DEVs
+          name:PARA DEVs (SPHERES)
           desc:RICH ZAGGIN
           on click:
             yield 1 spheres
@@ -242,7 +242,7 @@ Buildings
           cost:0 chouta
 
         *adminStormlight
-          name:PARA DEVs
+          name:PARA DEVs (REMOVE STORMLIGHT)
           desc:REMOVE STORMLIGHT
           on click:
             lose 100 stormlightStored
@@ -518,6 +518,7 @@ Upgrades
   desc: Unlocks the feared Bridge Four crews.
   cost:5000000 chouta
   on earn:hide this
+
 
 
 
