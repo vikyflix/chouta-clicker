@@ -193,8 +193,8 @@ Resources
           
           if (stormInActive==0 and stormlightStored < spheres*100)
             $max = spheres * 100
-            $quality = 1 + betterSpheres        # increases % fill
-            $efficiency = 0.5 + stormCage*0.25  # % of storm captured
+            $quality = 1 + betterSpheres        
+            $efficiency = 0.5 + stormCage*0.25 
         
             $gain = $max * min(1, $quality * $efficiency)
             yield $gain stormlightStored
@@ -528,6 +528,7 @@ Upgrades
   desc: Unlocks the feared Bridge Four crews.
   cost:5000000 chouta
   on earn:hide this
+
 
 
 
