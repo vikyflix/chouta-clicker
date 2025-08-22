@@ -219,7 +219,7 @@ Resources
 
     *efficiencyMultiplier
         
-        start with: 1
+        start with: 100
         name: Cage Efficiency
         desc: % of stormlight captured during storms.
 
@@ -518,6 +518,7 @@ Upgrades
   desc: Unlocks the feared Bridge Four crews.
   cost:5000000 chouta
   on earn:hide this
+
 
 
 
