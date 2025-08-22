@@ -142,7 +142,7 @@ Resources
         desc: TESTING HIGHSTORM EVENT
         icon: https://uploads.coppermind.net/thumb/The_Highstorm_by_Sakina_Minnis.jpg/200px-The_Highstorm_by_Sakina_Minnis.jpg
         on tick:
-          yield 20 stormActive
+          yield 1 stormActive
 
           if (stormlightStored >= spheres*1) 
                 show stormlightBar0 
@@ -518,6 +518,7 @@ Upgrades
   desc: Unlocks the feared Bridge Four crews.
   cost:5000000 chouta
   on earn:hide this
+
 
 
 
