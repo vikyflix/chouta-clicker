@@ -192,8 +192,7 @@ Resources
           end
           
           if (stormInActive==0 and stormlightStored < spheres*100)
-              yield (spheres * 100 - stormlightStored) * min(1, (1 + betterSpheres) * (0.5 + stormCage*0.25)) stormlightStored 
-              //yield spheres * 100 * qualityMultiplier * efficiencyMultiplier / 100 stormlightStored
+                yield (spheres * 100) * min(1, (1 + betterSpheres) * (0.5 + stormCage*0.25)) stormlightStored        
           else
           end
           if (stormInActive==0)
@@ -523,6 +522,7 @@ Upgrades
   desc: Unlocks the feared Bridge Four crews.
   cost:5000000 chouta
   on earn:hide this
+
 
 
 
