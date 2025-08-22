@@ -213,13 +213,13 @@ Resources
 
     *qualityMultiplier
         
-        start with: 0
+        start with: 1
         name: Sphere Quality
         desc: Upgrade multiplier for stormlight gain.
 
     *efficiencyMultiplier
         
-        start with: 0
+        start with: 1
         name: Cage Efficiency
         desc: % of stormlight captured during storms.
 
@@ -518,6 +518,7 @@ Upgrades
   desc: Unlocks the feared Bridge Four crews.
   cost:5000000 chouta
   on earn:hide this
+
 
 
 
