@@ -18,12 +18,12 @@ CSS
 */
 //BACKGROUND IMAGE AND STORM ACTIVE BACKGROUND IMAGE
 
-#game.storm-off {
+.storm-off {
   background: url("https://uploads.coppermind.net/TWoK_US_Cover_art.jpg") no-repeat center center fixed;
   background-size: cover;
 }
 
-#game.storm-on {
+.storm-on {
   background: url("https://uploads.coppermind.net/thumb/Stormfather.png/1200px-Stormfather.png") no-repeat center center fixed;
   background-size: cover;
 }
@@ -561,6 +561,7 @@ Upgrades
   desc: Unlocks the feared Bridge Four crews.
   cost:5000000 chouta
   on earn:hide this
+
 
 
 
