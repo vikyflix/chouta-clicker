@@ -144,12 +144,9 @@ Settings
     building cost refund:25%
  
 Layout
-    box: Backbox
-        contains: tag:backgroundthing
-    box: Left
-        contains: buildings
-    box: Right
-        contains: upgrades
+
+   *Backbox
+        contains:tag:backgroundthing
 
 
 
@@ -589,6 +586,7 @@ Upgrades
   desc: Unlocks the feared Bridge Four crews.
   cost:5000000 chouta
   on earn:hide this
+
 
 
 
