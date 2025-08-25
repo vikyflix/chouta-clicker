@@ -28,6 +28,16 @@ CSS
   background-size: cover;
 }
 
+.stormBackground {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+  background-size: cover;
+}
+
 .glow { 
     height: 5px;
     position: relative;
@@ -289,12 +299,12 @@ Buildings
           hidden
           no buy
           start with: 1
-          class:storm-off
+          class:storm-off stormBackground
         
         *stormBackgroundOn
           hidden
           no buy
-          class:storm-on
+          class:storm-on stormBackground
 
     *stormlightBar0
         hidden
@@ -551,5 +561,6 @@ Upgrades
   desc: Unlocks the feared Bridge Four crews.
   cost:5000000 chouta
   on earn:hide this
+
 
 
