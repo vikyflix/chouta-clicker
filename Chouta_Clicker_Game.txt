@@ -14,6 +14,18 @@ CSS
     image-rendering: pixelated;
 }
 
+//BACKGROUND IMAGE AND STORM ACTIVE BACKGROUND IMAGE
+
+.storm-off {
+  background: url("https://uploads.coppermind.net/TWoK_US_Cover_art.jpg") no-repeat center center fixed;
+  background-size: cover;
+}
+
+.storm-on {
+  background: url("https://uploads.coppermind.net/thumb/Stormfather.png/1200px-Stormfather.png") no-repeat center center fixed;
+  background-size: cover;
+}
+
 .glow { 
     height: 5px;
     position: relative;
@@ -197,10 +209,14 @@ Resources
           end
           if (stormInActive==0)
             show stormCounterTest
-            show stormlight  
+            show stormlight
+            show stormBackgroundOn
+            hide stormBackgroundOff
           else
             hide stormCounterTest
-            hide stormlight       
+            hide stormlight
+            hide stormBackgroundOn
+            show stormBackgroundOff
           end
           
         end
@@ -266,6 +282,17 @@ Buildings
         class:glow progress
         no buy
         name: stormlight
+
+        *stormBackgroundOff
+          hidden
+          no buy
+          start with: 1
+          class: storm-off
+        
+        *stormBackgroundOn
+          hidden
+          no buy
+          class: storm-on
 
     *stormlightBar0
         hidden
@@ -522,6 +549,7 @@ Upgrades
   desc: Unlocks the feared Bridge Four crews.
   cost:5000000 chouta
   on earn:hide this
+
 
 
 
