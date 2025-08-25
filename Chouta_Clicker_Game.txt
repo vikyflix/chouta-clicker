@@ -300,6 +300,7 @@ Buildings
           class:stormBackground storm-off 
         
         *stormBackgroundOn
+          icon: https://uploads.coppermind.net/thumb/Stormfather.png/1200px-Stormfather.png
           hidden
           no buy
           class:stormBackground storm-on 
@@ -559,6 +560,7 @@ Upgrades
   desc: Unlocks the feared Bridge Four crews.
   cost:5000000 chouta
   on earn:hide this
+
 
 
 
