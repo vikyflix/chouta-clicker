@@ -26,7 +26,7 @@ CSS
   background: https://uploads.coppermind.net/thumb/Stormfather.png/1200px-Stormfather.png
 }
 
-.stormBackground {
+.thing-icon.stormBackground {
   position: fixed;
   top: 0;
   left: 0;
@@ -297,7 +297,8 @@ Buildings
           hidden
           no buy
           start with: 1
-          class:stormBackground storm-off 
+          class:stormBackground storm-off
+
         
         *stormBackgroundOn
           icon:https://uploads.coppermind.net/thumb/The_Highstorm_by_Sakina_Minnis.jpg/200px-The_Highstorm_by_Sakina_Minnis.jpg
@@ -559,6 +560,7 @@ Upgrades
   desc: Unlocks the feared Bridge Four crews.
   cost:5000000 chouta
   on earn:hide this
+
 
 
 
