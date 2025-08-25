@@ -145,7 +145,7 @@ Settings
  
 Layout
     use default
-    box: Backbox
+    Backbox
         contains: tag:backgroundthing
 
 
@@ -586,6 +586,7 @@ Upgrades
   desc: Unlocks the feared Bridge Four crews.
   cost:5000000 chouta
   on earn:hide this
+
 
 
 
