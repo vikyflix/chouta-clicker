@@ -126,6 +126,13 @@ Settings
 Layout
     use default
 
+Themes
+  *calmTheme
+    name: Calm
+    class:storm-off
+  *stormTheme
+    name: Storm
+    class:storm-on
 
 
 Resources
@@ -210,13 +217,11 @@ Resources
           if (stormInActive==0)
             show stormCounterTest
             show stormlight
-            show stormBackgroundOn
-            hide stormBackgroundOff
+            set theme stormTheme
           else
             hide stormCounterTest
             hide stormlight
-            hide stormBackgroundOn
-            show stormBackgroundOff
+            set theme calmTheme
           end
           
         end
@@ -282,18 +287,6 @@ Buildings
         class:glow progress
         no buy
         name: stormlight
-
-        *stormBackgroundOff
-          hidden
-          no buy
-          start with: 1
-          class:storm-off
-        
-        *stormBackgroundOn
-          hidden
-          no buy
-          class:storm-on
-
     *stormlightBar0
         hidden
         class:stormlight-fill-0
@@ -549,6 +542,7 @@ Upgrades
   desc: Unlocks the feared Bridge Four crews.
   cost:5000000 chouta
   on earn:hide this
+
 
 
 
