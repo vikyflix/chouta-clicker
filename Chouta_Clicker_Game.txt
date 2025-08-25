@@ -8,12 +8,14 @@ Let's make a game!
 
 
 CSS
+//COMENTING THIS FOR BACKGROUND IMAGE TESTING
+/*
 #game.on
 {
     background-size: 100% 100%;
     image-rendering: pixelated;
 }
-
+*/
 //BACKGROUND IMAGE AND STORM ACTIVE BACKGROUND IMAGE
 
 body.storm-off {
@@ -549,3 +551,4 @@ Upgrades
   desc: Unlocks the feared Bridge Four crews.
   cost:5000000 chouta
   on earn:hide this
+
