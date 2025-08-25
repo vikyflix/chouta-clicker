@@ -301,9 +301,8 @@ Buildings
         
         *stormBackgroundOn
           icon:https://uploads.coppermind.net/thumb/The_Highstorm_by_Sakina_Minnis.jpg/200px-The_Highstorm_by_Sakina_Minnis.jpg
-          hidden
           no buy
-          class:stormBackground storm-on 
+          class:stormBackground
 
     *stormlightBar0
         hidden
@@ -560,6 +559,7 @@ Upgrades
   desc: Unlocks the feared Bridge Four crews.
   cost:5000000 chouta
   on earn:hide this
+
 
 
 
