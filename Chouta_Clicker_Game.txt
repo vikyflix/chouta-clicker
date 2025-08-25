@@ -541,15 +541,15 @@ Buttons
 Upgrades
 *Background1
   name: Calm Skies
-  tags: backgroundthing
-  class: Backgroundthing
+  tags:backgroundthing
+  class:Backgroundthing
   icon: https://uploads.coppermind.net/TWoK_US_Cover_art.jpg
   cost: 0 chouta
 
 *BackgroundStorm
   hidden
-  tags: backgroundthing
-  class: Backgroundthing
+  tags:backgroundthing
+  class:Backgroundthing
   icon: https://uploads.coppermind.net/thumb/Stormfather.png/1200px-Stormfather.png
   cost: 0 chouta
 
@@ -586,6 +586,7 @@ Upgrades
   desc: Unlocks the feared Bridge Four crews.
   cost:5000000 chouta
   on earn:hide this
+
 
 
 
