@@ -287,12 +287,12 @@ Buildings
           hidden
           no buy
           start with: 1
-          class: storm-off
+          class:storm-off
         
         *stormBackgroundOn
           hidden
           no buy
-          class: storm-on
+          class:storm-on
 
     *stormlightBar0
         hidden
@@ -549,6 +549,7 @@ Upgrades
   desc: Unlocks the feared Bridge Four crews.
   cost:5000000 chouta
   on earn:hide this
+
 
 
 
