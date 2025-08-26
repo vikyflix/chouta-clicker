@@ -18,7 +18,7 @@ CSS
 */
 //BACKGROUND IMAGE AND STORM ACTIVE BACKGROUND IMAGE
 
-.thing-icon .Backgroundthing {
+.thing-icon.Backgroundthing {
   /* Target ONLY the icon of the background upgrade */
   width: 100%;
   height: 100%;
@@ -41,7 +41,7 @@ CSS
   right: 0%;
   padding: 0;
   margin: 0;
-  background-color: transparent;
+  background-color: brown;
   z-index: -1;
 }
 
@@ -576,6 +576,7 @@ Upgrades
   desc: Unlocks the feared Bridge Four crews.
   cost:5000000 chouta
   on earn:hide this
+
 
 
 
