@@ -29,7 +29,7 @@ CSS
   right: 0%;
   padding: 0;
   margin: 0;
-  z-index: -2;   /* behind everything else */
+  //z-index: -2;   /* behind everything else */
 }
 
 #box-Backbox {
@@ -42,7 +42,7 @@ CSS
   padding: 0;
   margin: 0;
   background-color: brown;
-  z-index: -1;
+  //z-index: -1;
 }
 
 
@@ -576,6 +576,7 @@ Upgrades
   desc: Unlocks the feared Bridge Four crews.
   cost:5000000 chouta
   on earn:hide this
+
 
 
 
