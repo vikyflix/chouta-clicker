@@ -33,6 +33,7 @@ CSS
   pointer-events: none;
 }
 
+/*
 #box-Backbox {
   /* Stretch the box itself across the whole game */
   position: absolute;
@@ -45,7 +46,7 @@ CSS
   background-color: transparent;
   //z-index: -1;
 }
-
+*/
 
 .glow { 
     height: 5px;
@@ -146,9 +147,10 @@ Settings
  
 Layout
    use default
+  /*
    *Backbox
         contains:tag:backgroundthing
-  /*
+
    *BuildingsBox
         contains:Buildings
     
@@ -578,6 +580,7 @@ Upgrades
   desc: Unlocks the feared Bridge Four crews.
   cost:5000000 chouta
   on earn:hide this
+
 
 
 
