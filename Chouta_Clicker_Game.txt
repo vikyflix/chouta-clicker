@@ -540,7 +540,7 @@ Upgrades
   name: Calm Skies
   tags:backgroundthing
   class:Backgroundthing
-  icon: https://github.com/vikyflix/chouta-clicker/blob/main/Stormfather.jpg
+  icon:https://github.com/vikyflix/chouta-clicker/blob/897d47fcac653ee51658423e8383611e6ce6f8e5/Stormfather.jpg?raw=true
   cost: 0 chouta
 
 
@@ -576,6 +576,7 @@ Upgrades
   desc: Unlocks the feared Bridge Four crews.
   cost:5000000 chouta
   on earn:hide this
+
 
 
 
