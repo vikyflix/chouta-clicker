@@ -18,46 +18,31 @@ CSS
 */
 //BACKGROUND IMAGE AND STORM ACTIVE BACKGROUND IMAGE
 
-.Backgroundthing .thing-icon {
+.thing-icon.Backgroundthing {
   /* Target ONLY the icon of the background upgrade */
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-
-  margin: 0;
-  padding: 0;
-
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-}
-
-#box-Backbox .thing{
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  margin: 0;
-  padding: 0;
-  z-index: -1; /* behind everything */
-}
-#box-Backbox .thing-icon {
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
   width: 100%;
   height: 100%;
-  margin: 0;
+  position: absolute;
+  top: 0%;
+  left: 0%;
+  bottom: 0%;
+  right: 0%;
   padding: 0;
+  margin: 0;
+  z-index: -2;   /* behind everything else */
+}
 
-  background-size: cover;
-  background-position: center; 
-  background-repeat: no-repeat; 
+#box-Backbox {
+  /* Stretch the box itself across the whole game */
+  position: absolute;
+  top: 0%;
+  left: 0%;
+  bottom: 0%;
+  right: 0%;
+  padding: 0;
+  margin: 0;
+  background-color: transparent;
+  z-index: -1;
 }
 
 
@@ -153,7 +138,7 @@ CSS
 }
 
 Settings
-    //background: https://github.com/vikyflix/chouta-clicker/blob/897d47fcac653ee51658423e8383611e6ce6f8e5/Stormfather.jpg?raw=true
+    background: https://github.com/vikyflix/chouta-clicker/blob/897d47fcac653ee51658423e8383611e6ce6f8e5/Stormfather.jpg?raw=true
     stylesheet:stuff/basic.css
     building cost increase:115%
     building cost refund:25%
@@ -258,11 +243,13 @@ Resources
           if (stormInActive==0)
             show stormCounterTest
             show stormlight
-            show Background1
+            show BackgroundStorm
+            hide Background1
           else
             hide stormCounterTest
             hide stormlight
-            hide Background1
+            show Background1
+            hide BackgroundStorm
           end
           
         end
@@ -555,8 +542,16 @@ Upgrades
   name: Calm Skies
   tags:backgroundthing
   class:Backgroundthing
-  icon: https://github.com/vikyflix/chouta-clicker/blob/897d47fcac653ee51658423e8383611e6ce6f8e5/Stormfather.jpg?raw=true
+  icon: https://uploads.coppermind.net/TWoK_US_Cover_art.jpg
   cost: 0 chouta
+
+*BackgroundStorm
+  hidden
+  tags:backgroundthing
+  class:Backgroundthing
+  icon: https://github.com/vikyflix/chouta-clicker/blob/main/Stormfather.jpg
+  cost: 0 chouta
+
 
 *betterSpheres
     name: Cut & Polished Spheres
@@ -590,6 +585,34 @@ Upgrades
   desc: Unlocks the feared Bridge Four crews.
   cost:5000000 chouta
   on earn:hide this
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
