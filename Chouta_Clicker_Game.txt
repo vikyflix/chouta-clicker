@@ -147,16 +147,16 @@ Layout
    //use default
    *Backbox
         contains:tag:backgroundthing
-   *Buildings
+   *BuildingsBox
         contains: buildings
     
-   *Upgrades
+   *UpgradesBox
         contains: upgrades
     
-   *Buttons
+   *ButtonsBox
         contains: buttons
 
-   *Resources
+   *ResourcesBox
         contains: resources
 
 
@@ -585,6 +585,7 @@ Upgrades
   desc: Unlocks the feared Bridge Four crews.
   cost:5000000 chouta
   on earn:hide this
+
 
 
 
