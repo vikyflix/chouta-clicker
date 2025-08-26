@@ -244,11 +244,11 @@ Resources
             show stormCounterTest
             show stormlight
             show BackgroundStorm
-            hide Background1
+            show Background1
           else
             hide stormCounterTest
             hide stormlight
-            show Background1
+            hide Background1
             hide BackgroundStorm
           end
           
@@ -542,7 +542,7 @@ Upgrades
   name: Calm Skies
   tags:backgroundthing
   class:Backgroundthing
-  icon: https://uploads.coppermind.net/TWoK_US_Cover_art.jpg
+  icon: https://github.com/vikyflix/chouta-clicker/blob/main/Stormfather.jpg
   cost: 0 chouta
 
 *BackgroundStorm
@@ -585,6 +585,7 @@ Upgrades
   desc: Unlocks the feared Bridge Four crews.
   cost:5000000 chouta
   on earn:hide this
+
 
 
 
