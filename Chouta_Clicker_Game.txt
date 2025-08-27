@@ -48,9 +48,9 @@ CSS
 }
 
 .BuldingBoxCSS{
-  margin: auto;
+  margin-left:80%;
   width: 50%;
-  border: 3px solid green;
+  border: 3px solid #73AD21;
   padding: 10px;
 }
 .glow { 
@@ -585,6 +585,7 @@ Upgrades
   desc: Unlocks the feared Bridge Four crews.
   cost:5000000 chouta
   on earn:hide this
+
 
 
 
