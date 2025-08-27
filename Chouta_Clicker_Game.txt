@@ -54,7 +54,21 @@ CSS
   padding: 10px;
 }
 
-.ResourcesoxCSS{
+.ResourcesBoxCSS{
+  margin-left:30%;
+  width: 20%;
+  border: 3px solid #73AD21;
+  padding: 10px;
+}
+
+.UpgradesBoxCSS{
+  margin-left:30%;
+  width: 20%;
+  border: 3px solid #73AD21;
+  padding: 10px;
+}
+
+.ButtonsBoxCSS{
   margin-left:30%;
   width: 20%;
   border: 3px solid #73AD21;
@@ -169,13 +183,15 @@ Layout
     
    *UpgradesBox
         contains:Upgrades
+        class:UpgradesBoxCSS
     
    *ButtonsBox
         contains:Buttons
+        class:ButtonsBoxCSS
 
    *ResourcesBox
         contains:Resources
-        class:ResourcesoxCSS
+        class:ResourcesBoxCSS
 
 
 Resources
@@ -593,6 +609,7 @@ Upgrades
   desc: Unlocks the feared Bridge Four crews.
   cost:5000000 chouta
   on earn:hide this
+
 
 
 
