@@ -146,7 +146,7 @@ Settings
     building cost refund:25%
  
 Layout
-   use default
+   //use default
    *Backbox
         contains:tag:backgroundthing
 
@@ -578,6 +578,7 @@ Upgrades
   desc: Unlocks the feared Bridge Four crews.
   cost:5000000 chouta
   on earn:hide this
+
 
 
 
