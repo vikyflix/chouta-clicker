@@ -32,6 +32,7 @@ CSS
   margin: 0;
   background-image: url("https://github.com/vikyflix/chouta-clicker/blob/897d47fcac653ee51658423e8383611e6ce6f8e5/Stormfather.jpg?raw=true");
   pointer-events: none;
+  z-index: -2;
 }
 
 
@@ -610,6 +611,7 @@ Upgrades
   desc: Unlocks the feared Bridge Four crews.
   cost:5000000 chouta
   on earn:hide this
+
 
 
 
