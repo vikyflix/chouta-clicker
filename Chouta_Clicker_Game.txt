@@ -16,7 +16,7 @@ CSS
     image-rendering: pixelated;
 }
 
-.game {
+#game {
   display: grid;
   grid-template-areas:
     "topbar topbar"
@@ -619,6 +619,7 @@ Upgrades
   desc: Unlocks the feared Bridge Four crews.
   cost:5000000 chouta
   on earn:hide this
+
 
 
 
