@@ -1,0 +1,682 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chouta Clicker</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Georgia', serif;
+            background: linear-gradient(135deg, #2c1810, #4a2c1a);
+            color: #f4e6d3;
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        .background {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url('https://github.com/vikyflix/chouta-clicker/blob/main/main_background.jpg?raw=true');
+            background-size: cover;
+            background-position: center;
+            opacity: 0.3;
+            z-index: -1;
+            transition: opacity 2s ease;
+        }
+        .background_storm {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url('https://github.com/vikyflix/chouta-clicker/blob/897d47fcac653ee51658423e8383611e6ce6f8e5/Stormfather.jpg?raw=true');
+            background-size: cover;
+            background-position: center;
+            opacity: 0.3;
+            z-index: -1;
+            transition: opacity 2s ease;
+        }
+
+        .background.storm-active {
+            opacity: 0.8;
+            animation: stormFlash 3s infinite;
+        }
+
+        @keyframes stormFlash {
+            0%, 100% { filter: brightness(1); }
+            50% { filter: brightness(1.3) saturate(1.2); }
+        }
+
+        .game-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 20px;
+            display: grid;
+            grid-template-columns: 1fr 300px 300px;
+            grid-template-rows: auto 1fr;
+            gap: 20px;
+            min-height: 100vh;
+        }
+
+        .header {
+            grid-column: 1 / -1;
+            text-align: center;
+            padding: 20px;
+            background: rgba(0,0,0,0.7);
+            border-radius: 15px;
+            border: 2px solid #8b4513;
+        }
+
+        .header h1 {
+            font-size: 2.5em;
+            color: #ffd700;
+            text-shadow: 2px 2px 4px #000;
+            margin-bottom: 10px;
+        }
+
+        .header p {
+            font-size: 1.1em;
+            font-style: italic;
+        }
+
+        .main-area {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .resources {
+            background: rgba(0,0,0,0.8);
+            border-radius: 15px;
+            padding: 20px;
+            border: 2px solid #8b4513;
+        }
+
+        .resource {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 0;
+            border-bottom: 1px solid #444;
+            font-size: 1.1em;
+        }
+
+        .resource:last-child {
+            border-bottom: none;
+        }
+
+        .click-area {
+            text-align: center;
+            background: rgba(0,0,0,0.8);
+            border-radius: 15px;
+            padding: 30px;
+            border: 2px solid #8b4513;
+        }
+
+        .chouta-button {
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            background: radial-gradient(circle, #ff6b35, #d84315);
+            border: 4px solid #8b4513;
+            font-size: 1.2em;
+            font-weight: bold;
+            color: white;
+            cursor: pointer;
+            transition: all 0.1s;
+            box-shadow: 0 8px 16px rgba(0,0,0,0.5);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 20px;
+        }
+
+        .chouta-button:hover {
+            transform: scale(1.05);
+            box-shadow: 0 12px 24px rgba(0,0,0,0.7);
+        }
+
+        .chouta-button:active {
+            transform: scale(0.95);
+        }
+
+        .click-power {
+            font-size: 1.1em;
+            margin-top: 10px;
+        }
+
+        .buildings, .upgrades {
+            background: rgba(0,0,0,0.8);
+            border-radius: 15px;
+            padding: 20px;
+            border: 2px solid #8b4513;
+            max-height: 70vh;
+            overflow-y: auto;
+        }
+
+        .section-title {
+            font-size: 1.4em;
+            color: #ffd700;
+            margin-bottom: 15px;
+            text-align: center;
+            border-bottom: 2px solid #8b4513;
+            padding-bottom: 10px;
+        }
+
+        .building, .upgrade {
+            background: rgba(139, 69, 19, 0.3);
+            border: 1px solid #8b4513;
+            border-radius: 8px;
+            padding: 12px;
+            margin-bottom: 10px;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .building:hover, .upgrade:hover {
+            background: rgba(139, 69, 19, 0.5);
+            transform: translateX(5px);
+        }
+
+        .building.affordable, .upgrade.affordable {
+            border-color: #32cd32;
+            box-shadow: 0 0 5px rgba(50, 205, 50, 0.3);
+        }
+
+        .building-header, .upgrade-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 5px;
+        }
+
+        .building-name, .upgrade-name {
+            font-weight: bold;
+            color: #ffd700;
+        }
+
+        .building-count {
+            background: rgba(0,0,0,0.7);
+            color: #ffd700;
+            padding: 2px 8px;
+            border-radius: 12px;
+            font-size: 0.9em;
+        }
+
+        .building-cost, .upgrade-cost {
+            font-weight: bold;
+            color: #ff6b35;
+        }
+
+        .building-desc, .upgrade-desc {
+            font-size: 0.9em;
+            color: #ccc;
+            line-height: 1.3;
+        }
+
+        .storm-indicator {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: rgba(0,0,0,0.8);
+            border: 2px solid #8b4513;
+            border-radius: 10px;
+            padding: 15px;
+            min-width: 200px;
+        }
+
+        .storm-status {
+            font-weight: bold;
+            margin-bottom: 10px;
+            text-align: center;
+        }
+
+        .storm-timer {
+            background: #333;
+            border-radius: 10px;
+            height: 20px;
+            overflow: hidden;
+            margin-bottom: 10px;
+        }
+
+        .storm-progress {
+            height: 100%;
+            background: linear-gradient(90deg, #00bcd4, #80deea);
+            transition: width 1s linear;
+        }
+
+        .stormlight-bar {
+            background: #333;
+            border-radius: 10px;
+            height: 15px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .stormlight-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #6de8ff, #c8f5ff);
+            transition: width 0.3s ease;
+        }
+
+        .notification {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: rgba(0,0,0,0.9);
+            color: #ffd700;
+            padding: 20px 40px;
+            border-radius: 10px;
+            border: 2px solid #ffd700;
+            font-size: 1.5em;
+            z-index: 1000;
+            animation: notificationPop 3s ease;
+        }
+
+        @keyframes notificationPop {
+            0% { opacity: 0; transform: translate(-50%, -50%) scale(0.5); }
+            10% { opacity: 1; transform: translate(-50%, -50%) scale(1.1); }
+            20% { transform: translate(-50%, -50%) scale(1); }
+            80% { opacity: 1; }
+            100% { opacity: 0; }
+        }
+
+        /* Responsive */
+        @media (max-width: 1200px) {
+            .game-container {
+                grid-template-columns: 1fr;
+                grid-template-rows: auto auto auto auto;
+            }
+            
+            .buildings, .upgrades {
+                max-height: 50vh;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="background" id="background"></div>
+    
+    <div class="game-container">
+        <div class="header">
+            <h1>Chouta Clicker</h1>
+            <p>Chouta is the best! Click to cook, serve, and feed your fellow airsick lowlanders.</p>
+        </div>
+
+        <div class="main-area">
+            <div class="resources">
+                <div class="section-title">Resources</div>
+                <div class="resource">
+                    <span>Chouta</span>
+                    <span id="chouta-count">0</span>
+                </div>
+                <div class="resource">
+                    <span>Chouta per Second</span>
+                    <span id="cps">0</span>
+                </div>
+                <div class="resource">
+                    <span>Infused Spheres</span>
+                    <span id="spheres-count">10</span>
+                </div>
+                <div class="resource">
+                    <span>Stormlight Stored</span>
+                    <span id="stormlight-count">0</span>
+                </div>
+            </div>
+
+            <div class="click-area">
+                <button class="chouta-button" id="chouta-button">
+                    Cook Chouta!
+                </button>
+                <div class="click-power">
+                    Click Power: <span id="click-power">1</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="buildings">
+            <div class="section-title">Buildings</div>
+            <div id="buildings-list"></div>
+        </div>
+
+        <div class="upgrades">
+            <div class="section-title">Upgrades</div>
+            <div id="upgrades-list"></div>
+        </div>
+    </div>
+
+    <div class="storm-indicator">
+        <div class="storm-status" id="storm-status">Highstorm Inactive</div>
+        <div class="storm-timer">
+            <div class="storm-progress" id="storm-progress"></div>
+        </div>
+        <div>Stormlight Storage:</div>
+        <div class="stormlight-bar">
+            <div class="stormlight-fill" id="stormlight-fill"></div>
+        </div>
+    </div>
+
+    <script>
+        // Game State
+        const gameState = {
+            chouta: 0,
+            spheres: 10,
+            stormlightStored: 0,
+            clickPower: 1,
+            stormActive: false,
+            stormTimer: 0,
+            stormDuration: 5, // 2 minutes
+            calmDuration: 5,  // 3 minutes
+            buildings: {},
+            upgrades: {},
+            totalCps: 0
+        };
+
+        // Building Definitions
+        const buildingTypes = {
+            cookpotFires: {
+                name: "Cookpot Fires",
+                desc: "Small flames at the warcamp edges, tended by whoever can hold a ladle.",
+                baseCost: 100,
+                baseProduction: 0.5,
+                stormProduction: 1.0
+            },
+            bridgeboysCooks: {
+                name: "Bridgeboys Cooks", 
+                desc: "Even bridgemen need to eat—one pot feeds many, if barely enough.",
+                baseCost: 250,
+                baseProduction: 1.2,
+                stormProduction: 2.4
+            },
+            choutaBaziers: {
+                name: "Chouta Braziers",
+                desc: "Big, battered braziers glow with Herdazian spice and oil.",
+                baseCost: 500,
+                baseProduction: 2.5,
+                stormProduction: 5.0
+            },
+            spiceGrinders: {
+                name: "Spice-grinders of Herdaz",
+                desc: "The secret's in the seasoning. Too much, and even a lighteyes weeps.",
+                baseCost: 1200,
+                baseProduction: 6.0,
+                stormProduction: 12.0
+            },
+            rockCook: {
+                name: "Numuhukumakiaki'aialunamor",
+                desc: "Take everything you have, and put him in pot. Don't let anyone airsick touch seasonings.",
+                baseCost: 3000,
+                baseProduction: 15.0,
+                stormProduction: 30.0
+            },
+            lopensCousins: {
+                name: "Lopen's Cousins",
+                desc: "A man can never have enough cousins.",
+                baseCost: 7500,
+                baseProduction: 40.0,
+                stormProduction: 80.0
+            },
+            rocksFamily: {
+                name: "Rock's Horneater Family",
+                desc: "Rock brings his whole Horneater family to help. Huge production line.",
+                baseCost: 20000,
+                baseProduction: 100.0,
+                stormProduction: 200.0
+            },
+            yieldAdminChouta: {
+                name: "Admin CHOUTA",
+                desc: "Rich",
+                baseCost: 0,
+                baseProduction: 1000000.0,
+                stormProduction: 200.0
+            }
+        };
+
+        // Upgrade Definitions
+        const upgradeTypes = {
+            betterSpheres: {
+                name: "Cut & Polished Spheres",
+                desc: "Each sphere now holds more Stormlight.",
+                cost: 10000,
+                effect: () => {
+                    // Increases stormlight capacity
+                    showNotification("Sphere quality improved!");
+                }
+            },
+            clickUpgrade1: {
+                name: "Better Ladle",
+                desc: "A proper cooking utensil makes all the difference.",
+                cost: 1000,
+                effect: () => {
+                    gameState.clickPower += 1;
+                    showNotification("Click power increased!");
+                }
+            },
+            clickUpgrade2: {
+                name: "Herdazian Spice Blend",
+                desc: "Secret family recipe passed down for generations.",
+                cost: 5000,
+                effect: () => {
+                    gameState.clickPower += 2;
+                    showNotification("Click power greatly increased!");
+                }
+            },
+            clickUpgrade3: {
+                name: "Bridge Crews",
+                desc: "Unlocks the doomed Bridge Boys.",
+                cost: 5000,
+                effect: () => {
+                    gameState.clickPower += 2;
+                    showNotification("Shattered Plains Bridges Unlocked");
+                }
+            }
+        };
+
+        // Initialize buildings
+        Object.keys(buildingTypes).forEach(key => {
+            gameState.buildings[key] = 0;
+        });
+
+        // DOM Elements
+        const elements = {
+            choutaCount: document.getElementById('chouta-count'),
+            cps: document.getElementById('cps'),
+            spheresCount: document.getElementById('spheres-count'),
+            stormlightCount: document.getElementById('stormlight-count'),
+            clickPower: document.getElementById('click-power'),
+            choutaButton: document.getElementById('chouta-button'),
+            buildingsList: document.getElementById('buildings-list'),
+            upgradesList: document.getElementById('upgrades-list'),
+            stormStatus: document.getElementById('storm-status'),
+            stormProgress: document.getElementById('storm-progress'),
+            stormlightFill: document.getElementById('stormlight-fill'),
+            background: document.getElementById('background')
+        };
+
+        // Click handler
+        elements.choutaButton.addEventListener('click', () => {
+            gameState.chouta += gameState.clickPower;
+            updateDisplay();
+        });
+
+        // Calculate total CPS
+        function calculateCps() {
+            let total = 0;
+            Object.keys(buildingTypes).forEach(key => {
+                const building = buildingTypes[key];
+                const count = gameState.buildings[key];
+                const production = gameState.stormActive ? building.stormProduction : building.baseProduction;
+                total += count * production;
+            });
+            gameState.totalCps = total;
+        }
+
+        // Production tick (every second)
+        function productionTick() {
+            calculateCps();
+            gameState.chouta += gameState.totalCps;
+            updateDisplay();
+        }
+
+        // Storm system
+        function updateStorm() {
+            const cycleDuration = gameState.stormDuration + gameState.calmDuration;
+            gameState.stormTimer = (gameState.stormTimer + 1) % cycleDuration;
+
+            if (!gameState.stormActive && gameState.stormTimer === gameState.calmDuration) {
+                // Storm starts
+                gameState.stormActive = true;
+                elements.stormStatus.textContent = "Highstorm Active";
+                elements.background.classList.add('storm-active');
+                elements.background.classList.add('background_storm');
+                showNotification("STORM RISES!");
+                
+                // Fill stormlight during storm
+                const maxStormlight = gameState.spheres * 100;
+                gameState.stormlightStored = Math.min(maxStormlight, gameState.stormlightStored + maxStormlight * 0.8);
+            } else if (gameState.stormActive && gameState.stormTimer === 0) {
+                // Storm ends
+                gameState.stormActive = false;
+                elements.stormStatus.textContent = "Highstorm Inactive";
+                elements.background.classList.remove('storm-active');
+                elements.background.classList.remove('background_storm');
+                showNotification("Storm passes...");
+            }
+
+            // Update storm progress bar
+            let progress;
+            if (gameState.stormActive) {
+                progress = ((gameState.stormTimer - gameState.calmDuration) / gameState.stormDuration) * 100;
+            } else {
+                progress = (gameState.stormTimer / gameState.calmDuration) * 100;
+            }
+            elements.stormProgress.style.width = progress + '%';
+
+            // Update stormlight bar
+            const stormlightPercent = (gameState.stormlightStored / (gameState.spheres * 100)) * 100;
+            elements.stormlightFill.style.width = Math.min(100, stormlightPercent) + '%';
+        }
+
+        // Buy building
+        function buyBuilding(type) {
+            const building = buildingTypes[type];
+            const currentCount = gameState.buildings[type];
+            const cost = Math.floor(building.baseCost * Math.pow(1.15, currentCount));
+
+            if (gameState.chouta >= cost) {
+                gameState.chouta -= cost;
+                gameState.buildings[type]++;
+                updateDisplay();
+                renderBuildings();
+            }
+        }
+
+        // Buy upgrade
+        function buyUpgrade(type) {
+            const upgrade = upgradeTypes[type];
+            if (gameState.chouta >= upgrade.cost && !gameState.upgrades[type]) {
+                gameState.chouta -= upgrade.cost;
+                gameState.upgrades[type] = true;
+                upgrade.effect();
+                updateDisplay();
+                renderUpgrades();
+            }
+        }
+
+        // Render buildings
+        function renderBuildings() {
+            elements.buildingsList.innerHTML = '';
+            Object.keys(buildingTypes).forEach(key => {
+                const building = buildingTypes[key];
+                const count = gameState.buildings[key];
+                const cost = Math.floor(building.baseCost * Math.pow(1.15, count));
+                const canAfford = gameState.chouta >= cost;
+
+                const buildingDiv = document.createElement('div');
+                buildingDiv.className = `building ${canAfford ? 'affordable' : ''}`;
+                buildingDiv.onclick = () => buyBuilding(key);
+
+                buildingDiv.innerHTML = `
+                    <div class="building-header">
+                        <span class="building-name">${building.name}</span>
+                        <span class="building-count">${count}</span>
+                    </div>
+                    <div class="building-cost">${cost.toLocaleString()} chouta</div>
+                    <div class="building-desc">${building.desc}</div>
+                    <div style="margin-top: 5px; font-size: 0.8em; color: #ffd700;">
+                        Production: ${building.baseProduction}/sec (${building.stormProduction}/sec during storms)
+                    </div>
+                `;
+                elements.buildingsList.appendChild(buildingDiv);
+            });
+        }
+
+        // Render upgrades
+        function renderUpgrades() {
+            elements.upgradesList.innerHTML = '';
+            Object.keys(upgradeTypes).forEach(key => {
+                if (gameState.upgrades[key]) return; // Already bought
+
+                const upgrade = upgradeTypes[key];
+                const canAfford = gameState.chouta >= upgrade.cost;
+
+                const upgradeDiv = document.createElement('div');
+                upgradeDiv.className = `upgrade ${canAfford ? 'affordable' : ''}`;
+                upgradeDiv.onclick = () => buyUpgrade(key);
+
+                upgradeDiv.innerHTML = `
+                    <div class="upgrade-header">
+                        <span class="upgrade-name">${upgrade.name}</span>
+                    </div>
+                    <div class="upgrade-cost">${upgrade.cost.toLocaleString()} chouta</div>
+                    <div class="upgrade-desc">${upgrade.desc}</div>
+                `;
+                elements.upgradesList.appendChild(upgradeDiv);
+            });
+        }
+
+        // Update display
+        function updateDisplay() {
+            elements.choutaCount.textContent = Math.floor(gameState.chouta).toLocaleString();
+            elements.cps.textContent = gameState.totalCps.toFixed(1);
+            elements.spheresCount.textContent = gameState.spheres.toLocaleString();
+            elements.stormlightCount.textContent = Math.floor(gameState.stormlightStored).toLocaleString();
+            elements.clickPower.textContent = gameState.clickPower;
+        }
+
+        // Show notification
+        function showNotification(text) {
+            const notification = document.createElement('div');
+            notification.className = 'notification';
+            notification.textContent = text;
+            document.body.appendChild(notification);
+            setTimeout(() => document.body.removeChild(notification), 3000);
+        }
+
+        // Game loop
+        function gameLoop() {
+            productionTick();
+            updateStorm();
+        }
+
+        // Initialize game
+        renderBuildings();
+        renderUpgrades();
+        updateDisplay();
+
+        // Start game loops
+        setInterval(gameLoop, 1000); // Main game loop every second
+        setInterval(updateDisplay, 100); // Display updates more frequently
+    </script>
+</body>
+</html>
