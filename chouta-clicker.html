@@ -384,6 +384,33 @@
 
         // Building Definitions
         const buildingTypes = {
+            yieldAdminChouta: {
+                name: "Admin CHOUTA",
+                desc: "Rich Chouta",
+                amount: 100000000000,
+                isAdmin: true,
+                baseCost: 0,
+                baseProduction: 0,
+                stormProduction: 0
+            },
+            yieldAdminSphere: {
+                name: "Admin SPHERES",
+                desc: "Rich Sphere",
+                amount: 1,
+                isAdmin: true,
+                baseCost: 0,
+                baseProduction: 0,
+                stormProduction: 0
+            },
+            loseAdminStormlight: {
+                name: "Admin Lose Stormlight",
+                desc: "Remove Stormlight",
+                amount: 100,
+                isAdmin: true,
+                baseCost: 0,
+                baseProduction: 0,
+                stormProduction: 0
+            },
             cookpotFires: {
                 name: "Cookpot Fires",
                 desc: "Small flames at the warcamp edges, tended by whoever can hold a ladle.",
@@ -432,13 +459,6 @@
                 baseCost: 20000,
                 baseProduction: 100.0,
                 stormProduction: 200.0
-            },
-            yieldAdminChouta: {
-                name: "Admin CHOUTA",
-                desc: "Rich",
-                baseCost: 0,
-                baseProduction: 1000000.0,
-                stormProduction: 200.0
             }
         };
 
@@ -448,6 +468,8 @@
                 name: "Cut & Polished Spheres",
                 desc: "Each sphere now holds more Stormlight.",
                 cost: 10000,
+                requirements:[],
+                bought: false,
                 effect: () => {
                     // Increases stormlight capacity
                     showNotification("Sphere quality improved!");
@@ -457,6 +479,8 @@
                 name: "Better Ladle",
                 desc: "A proper cooking utensil makes all the difference.",
                 cost: 1000,
+                requirements:[],
+                bought: false,
                 effect: () => {
                     gameState.clickPower += 1;
                     showNotification("Click power increased!");
@@ -466,6 +490,8 @@
                 name: "Herdazian Spice Blend",
                 desc: "Secret family recipe passed down for generations.",
                 cost: 5000,
+                requirements:[],
+                bought: false,
                 effect: () => {
                     gameState.clickPower += 2;
                     showNotification("Click power greatly increased!");
@@ -475,6 +501,41 @@
                 name: "Bridge Crews",
                 desc: "Unlocks the doomed Bridge Boys.",
                 cost: 5000,
+                requirements:[],
+                bought: false,
+                effect: () => {
+                    gameState.clickPower += 2;
+                    showNotification("Shattered Plains Bridges Unlocked");
+                }
+            },
+            clickUpgrade4: {
+                name: "Test Unlock",
+                desc: "Req Test.",
+                cost: 5000,
+                requirements:["Bridge Crews"],
+                bought: false,
+                effect: () => {
+                    gameState.clickPower += 2;
+                    showNotification("Shattered Plains Bridges Unlocked");
+                }
+            },
+            clickUpgrade5: {
+                name: "Test Unlock2",
+                desc: "Req Test.",
+                cost: 5000,
+                requirements:["Bridge Crews"],
+                bought: false,
+                effect: () => {
+                    gameState.clickPower += 2;
+                    showNotification("Shattered Plains Bridges Unlocked");
+                }
+            },
+            clickUpgrade6: {
+                name: "Test Unlock3",
+                desc: "Req Test.",
+                cost: 5000,
+                requirements:["Bridge Crews"],
+                bought: false,
                 effect: () => {
                     gameState.clickPower += 2;
                     showNotification("Shattered Plains Bridges Unlocked");
@@ -573,6 +634,20 @@
             const currentCount = gameState.buildings[type];
             const cost = Math.floor(building.baseCost * Math.pow(1.15, currentCount));
 
+            if (building.isAdmin){
+                if(building.name=="Admin SPHERES"){
+                    gameState.spheres += building.amount;
+                    updateDisplay();
+                }else if(building.name=="Admin CHOUTA"){
+                    gameState.chouta += building.amount;
+                    updateDisplay();
+                }else if(building.name=="Admin Lose Stormlight"){
+                    gameState.stormlightStored -= building.amount;
+                    updateDisplay();
+                }
+
+            }
+
             if (gameState.chouta >= cost) {
                 gameState.chouta -= cost;
                 gameState.buildings[type]++;
@@ -587,7 +662,17 @@
             if (gameState.chouta >= upgrade.cost && !gameState.upgrades[type]) {
                 gameState.chouta -= upgrade.cost;
                 gameState.upgrades[type] = true;
+                upgrade.bought=true;
                 upgrade.effect();
+                Object.keys(upgradeTypes).forEach(key => {
+
+                    console.log(upgradeTypes[key].requirements.indexOf(upgrade.name))
+                    if(upgradeTypes[key].requirements.indexOf(upgrade.name)!= -1){
+                        upgradeTypes[key].requirements.splice(upgradeTypes[key].requirements.indexOf(upgrade.name),1)
+                    }
+
+                });
+                console.log(upgrade)
                 updateDisplay();
                 renderUpgrades();
             }
@@ -628,6 +713,7 @@
                 if (gameState.upgrades[key]) return; // Already bought
 
                 const upgrade = upgradeTypes[key];
+                if(upgrade.requirements.length>0) return;
                 const canAfford = gameState.chouta >= upgrade.cost;
 
                 const upgradeDiv = document.createElement('div');
