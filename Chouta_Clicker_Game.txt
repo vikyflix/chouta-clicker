@@ -391,7 +391,8 @@
                 isAdmin: true,
                 baseCost: 0,
                 baseProduction: 0,
-                stormProduction: 0
+                stormProduction: 0,
+                requirements:[[]]
             },
             yieldAdminSphere: {
                 name: "Admin SPHERES",
@@ -400,7 +401,8 @@
                 isAdmin: true,
                 baseCost: 0,
                 baseProduction: 0,
-                stormProduction: 0
+                stormProduction: 0,
+                requirements:[[]]
             },
             loseAdminStormlight: {
                 name: "Admin Lose Stormlight",
@@ -409,56 +411,64 @@
                 isAdmin: true,
                 baseCost: 0,
                 baseProduction: 0,
-                stormProduction: 0
+                stormProduction: 0,
+                requirements:[[]]
             },
             cookpotFires: {
                 name: "Cookpot Fires",
                 desc: "Small flames at the warcamp edges, tended by whoever can hold a ladle.",
                 baseCost: 100,
                 baseProduction: 1.0,
-                stormProduction: 0.5
+                stormProduction: 0.5,
+                requirements:[[]]
             },
             bridgeboysCooks: {
                 name: "Bridgeboys Cooks", 
                 desc: "Even bridgemen need to eat—one pot feeds many, if barely enough.",
                 baseCost: 250,
                 baseProduction: 2.4,
-                stormProduction: 1.2
+                stormProduction: 1.2,
+                requirements:[[]]
             },
             choutaBaziers: {
                 name: "Chouta Braziers",
                 desc: "Big, battered braziers glow with Herdazian spice and oil.",
                 baseCost: 500,
                 baseProduction: 5.0,
-                stormProduction: 2.5
+                stormProduction: 2.5,
+                requirements:[[]]
             },
             spiceGrinders: {
                 name: "Spice-grinders of Herdaz",
                 desc: "The secret's in the seasoning. Too much, and even a lighteyes weeps.",
                 baseCost: 1200,
                 baseProduction: 12.0,
-                stormProduction: 6.0
+                stormProduction: 6.0,
+                requirements:[[]]
             },
             rockCook: {
                 name: "Numuhukumakiaki'aialunamor",
                 desc: "Take everything you have, and put him in pot. Don't let anyone airsick touch seasonings.",
                 baseCost: 3000,
                 baseProduction: 30.0,
-                stormProduction: 15.0
+                stormProduction: 15.0,
+                requirements:[[]]
             },
             lopensCousins: {
                 name: "Lopen's Cousins",
                 desc: "A man can never have enough cousins.",
                 baseCost: 7500,
                 baseProduction: 80.0,
-                stormProduction: 40.0
+                stormProduction: 40.0,
+                requirements:[[]]
             },
             rocksFamily: {
                 name: "Rock's Horneater Family",
                 desc: "Rock brings his whole Horneater family to help. Huge production line.",
                 baseCost: 20000,
                 baseProduction: 200.0,
-                stormProduction: 100.0
+                stormProduction: 100.0,
+                requirements:[[]]
             },
             bridgeCrews: {
                 name: "The Bridge Crews",
@@ -466,7 +476,9 @@
                 baseCost: 20000,
                 baseCost: 20000,
                 baseProduction: 200.0,
-                stormProduction: 100.0
+                stormProduction: 100.0,
+                requirements:[[]]
+
             },
             bridgeCrewsExtra: {
                 name: "The Burdenbearers",
@@ -474,7 +486,8 @@
                 baseCost: 40000,
                 baseCost: 20000,
                 baseProduction: 200.0,
-                stormProduction: 100.0
+                stormProduction: 100.0,
+                requirements:[["The Bridge Crews",10]]
             },
             bridgeFour: {
                 name: "Bridge Four",
@@ -673,11 +686,22 @@
 
             }
 
+
+            //this block controls the requirements for an update to be unlocked for purchase
+            /*
+            Object.keys(buildingTypes).forEach(key => {
+                console.log(buildingTypes[key].requirements.indexOf(building.name));
+                if(buildingTypes[key].requirements.indexOf(building.name)!= -1){
+                    buildingTypes[key].requirements.splice(buildingTypes[key].requirements.indexOf(building.name),1)
+                }
+            });            
+            */
             if (gameState.chouta >= cost) {
                 gameState.chouta -= cost;
                 gameState.buildings[type]++;
                 updateDisplay();
                 renderBuildings();
+
             }
         }
 
@@ -689,14 +713,15 @@
                 gameState.upgrades[type] = true;
                 upgrade.bought=true;
                 upgrade.effect();
-                Object.keys(upgradeTypes).forEach(key => {
 
+                //this block controls the requirements for an update to be unlocked for purchase
+                Object.keys(upgradeTypes).forEach(key => {
                     console.log(upgradeTypes[key].requirements.indexOf(upgrade.name))
                     if(upgradeTypes[key].requirements.indexOf(upgrade.name)!= -1){
                         upgradeTypes[key].requirements.splice(upgradeTypes[key].requirements.indexOf(upgrade.name),1)
                     }
-
                 });
+
                 console.log(upgrade)
                 updateDisplay();
                 renderUpgrades();
@@ -708,6 +733,7 @@
             elements.buildingsList.innerHTML = '';
             Object.keys(buildingTypes).forEach(key => {
                 const building = buildingTypes[key];
+                if(building.requirements[0].length>0) return;
                 const count = gameState.buildings[key];
                 const cost = Math.floor(building.baseCost * Math.pow(1.15, count));
                 const canAfford = gameState.chouta >= cost;
