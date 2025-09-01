@@ -391,7 +391,8 @@
                 isAdmin: true,
                 baseCost: 0,
                 baseProduction: 0,
-                stormProduction: 0
+                stormProduction: 0,
+                requirements:[[]]
             },
             yieldAdminSphere: {
                 name: "Admin SPHERES",
@@ -400,7 +401,8 @@
                 isAdmin: true,
                 baseCost: 0,
                 baseProduction: 0,
-                stormProduction: 0
+                stormProduction: 0,
+                requirements:[[]]
             },
             loseAdminStormlight: {
                 name: "Admin Lose Stormlight",
@@ -409,57 +411,94 @@
                 isAdmin: true,
                 baseCost: 0,
                 baseProduction: 0,
-                stormProduction: 0
+                stormProduction: 0,
+                requirements:[[]]
             },
             cookpotFires: {
                 name: "Cookpot Fires",
                 desc: "Small flames at the warcamp edges, tended by whoever can hold a ladle.",
                 baseCost: 100,
-                baseProduction: 0.5,
-                stormProduction: 1.0
+                baseProduction: 1.0,
+                stormProduction: 0.5,
+                requirements:[[]]
             },
             bridgeboysCooks: {
                 name: "Bridgeboys Cooks", 
                 desc: "Even bridgemen need to eat—one pot feeds many, if barely enough.",
                 baseCost: 250,
-                baseProduction: 1.2,
-                stormProduction: 2.4
+                baseProduction: 2.4,
+                stormProduction: 1.2,
+                requirements:[[]]
             },
             choutaBaziers: {
                 name: "Chouta Braziers",
                 desc: "Big, battered braziers glow with Herdazian spice and oil.",
                 baseCost: 500,
-                baseProduction: 2.5,
-                stormProduction: 5.0
+                baseProduction: 5.0,
+                stormProduction: 2.5,
+                requirements:[[]]
             },
             spiceGrinders: {
                 name: "Spice-grinders of Herdaz",
                 desc: "The secret's in the seasoning. Too much, and even a lighteyes weeps.",
                 baseCost: 1200,
-                baseProduction: 6.0,
-                stormProduction: 12.0
+                baseProduction: 12.0,
+                stormProduction: 6.0,
+                requirements:[[]]
             },
             rockCook: {
                 name: "Numuhukumakiaki'aialunamor",
                 desc: "Take everything you have, and put him in pot. Don't let anyone airsick touch seasonings.",
                 baseCost: 3000,
-                baseProduction: 15.0,
-                stormProduction: 30.0
+                baseProduction: 30.0,
+                stormProduction: 15.0,
+                requirements:[[]]
             },
             lopensCousins: {
                 name: "Lopen's Cousins",
                 desc: "A man can never have enough cousins.",
                 baseCost: 7500,
-                baseProduction: 40.0,
-                stormProduction: 80.0
+                baseProduction: 80.0,
+                stormProduction: 40.0,
+                requirements:[[]]
             },
             rocksFamily: {
                 name: "Rock's Horneater Family",
                 desc: "Rock brings his whole Horneater family to help. Huge production line.",
                 baseCost: 20000,
+                baseProduction: 200.0,
+                stormProduction: 100.0,
+                requirements:[[]]
+            },
+            bridgeCrews: {
+                name: "The Bridge Crews",
+                desc: "Condemned to bear the weight of another man's war, they run toward death so others may walk away. Every gap they fill is paid for in blood, sweat, and the shreds of freedom they’ll never see again.",
+                baseCost: 20000,
+                baseCost: 20000,
+                baseProduction: 200.0,
+                stormProduction: 100.0,
+                requirements:[[]]
+
+            },
+            bridgeCrewsExtra: {
+                name: "The Burdenbearers",
+                desc: "Ten crews now march beneath the weight of wood and war. The deaths still come, the screams still echo… yet, for the first time, some run not only to survive but to bring the others home.",
+                baseCost: 40000,
+                baseCost: 20000,
+                baseProduction: 200.0,
+                stormProduction: 100.0,
+                requirements:[["The Bridge Crews",10]]
+            },
+            bridgeFour: {
+                name: "Bridge Four",
+                desc: "It appeared that he'd been wrong. There had been something more they could do to him. One final torment the world had reserved just for Kaladin. And it was called Bridge Four.",
+                baseCost: 40000,
+                baseCost: 20000,
                 baseProduction: 100.0,
-                stormProduction: 200.0
+                stormProduction: 200.0,
+                requirements:[[]]
             }
+            
         };
 
         // Upgrade Definitions
@@ -475,7 +514,7 @@
                     showNotification("Sphere quality improved!");
                 }
             },
-            clickUpgrade1: {
+            betterLadleUpgrade: {
                 name: "Better Ladle",
                 desc: "A proper cooking utensil makes all the difference.",
                 cost: 1000,
@@ -486,7 +525,7 @@
                     showNotification("Click power increased!");
                 }
             },
-            clickUpgrade2: {
+            herdazianSpiceUpgrade: {
                 name: "Herdazian Spice Blend",
                 desc: "Secret family recipe passed down for generations.",
                 cost: 5000,
@@ -497,11 +536,11 @@
                     showNotification("Click power greatly increased!");
                 }
             },
-            clickUpgrade3: {
+            bridgeCrewsUpgrade: {
                 name: "Bridge Crews",
                 desc: "Unlocks the doomed Bridge Boys.",
                 cost: 5000,
-                requirements:[],
+                requirements:["Herdazian Spice Blend"],
                 bought: false,
                 effect: () => {
                     gameState.clickPower += 2;
@@ -648,12 +687,24 @@
 
             }
 
+
+
+            
             if (gameState.chouta >= cost) {
                 gameState.chouta -= cost;
                 gameState.buildings[type]++;
                 updateDisplay();
                 renderBuildings();
             }
+            //this block controls the requirements for a building to be unlocked for purchase
+            
+            Object.keys(buildingTypes).forEach(key => {
+                if(buildingTypes[key].requirements[0].indexOf(building.name)!= -1 && buildingTypes[key].requirements[0][1] == gameState.buildings[type]){
+                    buildingTypes[key].requirements[0].splice(buildingTypes[key].requirements[0].indexOf(building.name),2);
+                    console.log(buildingTypes[key])
+                }
+
+            });    
         }
 
         // Buy upgrade
@@ -664,14 +715,15 @@
                 gameState.upgrades[type] = true;
                 upgrade.bought=true;
                 upgrade.effect();
-                Object.keys(upgradeTypes).forEach(key => {
 
-                    console.log(upgradeTypes[key].requirements.indexOf(upgrade.name))
+                //this block controls the requirements for an update to be unlocked for purchase
+                Object.keys(upgradeTypes).forEach(key => {
+                    console.log(upgradeTypes[key].requirements[0].indexOf(upgrade.name))
                     if(upgradeTypes[key].requirements.indexOf(upgrade.name)!= -1){
                         upgradeTypes[key].requirements.splice(upgradeTypes[key].requirements.indexOf(upgrade.name),1)
                     }
-
                 });
+
                 console.log(upgrade)
                 updateDisplay();
                 renderUpgrades();
@@ -680,9 +732,11 @@
 
         // Render buildings
         function renderBuildings() {
+
             elements.buildingsList.innerHTML = '';
             Object.keys(buildingTypes).forEach(key => {
                 const building = buildingTypes[key];
+                if(building.requirements[0].length>0) return;
                 const count = gameState.buildings[key];
                 const cost = Math.floor(building.baseCost * Math.pow(1.15, count));
                 const canAfford = gameState.chouta >= cost;
