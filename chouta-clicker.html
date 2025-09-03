@@ -505,7 +505,7 @@
                 baseCost: 80000,
                 baseProduction: -800.0,
                 stormProduction: 1600.0,
-                requirements:[[]],
+                requirements:[["bridgeCrewsExtra",20]],
                 type: "building"
             }
             
@@ -565,7 +565,7 @@
                 name: "Test Unlock",
                 desc: "Req Test.",
                 cost: 5000,
-                requirements:[["Bridge Crews",true]],
+                requirements:[["bridgeCrewsUpgrade",true]],
                 type: "upgrade",
                 bought: false,
                 effect: () => {
@@ -577,7 +577,7 @@
                 name: "Test Unlock2",
                 desc: "Req Test.",
                 cost: 5000,
-                requirements:[["Bridge Crews",true]],
+                requirements:[["bridgeCrewsUpgrade",true]],
                 type: "upgrade",
                 bought: false,
                 effect: () => {
@@ -589,7 +589,7 @@
                 name: "Test Unlock3",
                 desc: "Req Test.",
                 cost: 5000,
-                requirements:[["Bridge Crews",true]],
+                requirements:[["bridgeCrewsUpgrade",true]],
                 type: "upgrade",
                 bought: false,
                 effect: () => {
@@ -733,8 +733,8 @@
             elements.buildingsList.innerHTML = '';
             Object.keys(buildingTypes).forEach(key => {
                 const building = buildingTypes[key];
-                console.log(requirementChecker(building.requirements));
-                if(requirementChecker(building.requirements)) return;
+                //console.log(building.name+" : "+requirementChecker(building.requirements));
+                if(!requirementChecker(building.requirements)) return;
                 const count = gameState.buildings[key];
                 const cost = Math.floor(building.baseCost * Math.pow(1.15, count));
                 const canAfford = gameState.chouta >= cost;
@@ -764,7 +764,7 @@
                 if (gameState.upgrades[key]) return; // Already bought
 
                 const upgrade = upgradeTypes[key];
-                console.log(requirementChecker(upgrade.requirements));
+                //console.log(upgrade.name+" : "+requirementChecker(upgrade.requirements));
                 if(requirementChecker(upgrade.requirements)) return;
                 const canAfford = gameState.chouta >= upgrade.cost;
 
@@ -820,26 +820,25 @@
             for (let req of requirements) {
                 const [name, amount] = req;
 
-                //console.log(req);
+                
                 //console.log(gameState.buildings["bridgeCrewsExtra"]);
-                //console.log(gameState.upgrades[name])
-                // Check buildings
-                if (gameState.buildings[name] !== undefined) {
-                    
+                console.log(name+" have: "+gameState.upgrades[name]+" IS BOUGHT: "+amount);
+                console.log(amount);
+
+                //Check buildings
+                if (gameState.buildings[name] != undefined) {
+                    //console.log(name+" have: "+gameState.buildings[name]+" NEEDS: "+amount);
                     if (gameState.buildings[name] < amount) return false;
                 }
+
                 // Check upgrades  
-                else if (gameState.upgrades[name].bought === true) {
-                    continue; // Upgrade is bought, requirement met
-                }
-                else {
-                    return false; // Requirement not met
+                if (gameState.upgrades[name] != undefined) {
+
+                    if (gameState.upgrades[name] == amount) return false;
                 }
             }
             return true; // All requirements met
-            
         }
-
     </script>
 </body>
 </html>
