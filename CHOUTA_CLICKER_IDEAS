@@ -66,3 +66,22 @@ Bulk Buying (Major quality of life)
 Achievement System (Engagement driver)
 Prestige Mechanics (Long-term retention)
 Polish & Audio (Final touches)
+
+Chouta Consumption System
+
+ Orders consume Chouta/sec (they need food like any army)
+ Bridgemen consume Chouta/sec (higher consumption, they do dangerous work)
+ Consumption scales with numbers (10 Windrunners = 10x food cost)
+ Starvation penalties: Unfed units produce less or go inactive
+ Efficiency upgrades: Better cooking reduces consumption per unit
+
+Sphere Payment System
+
+ Orders require Sphere payments (weekly/daily wages)
+ Payment tiers: Higher order abilities need higher sphere denominations
+ Wage inflation: More experienced orders demand better spheres
+ Payment strikes: Unpaid orders refuse to work or leave
+ Loyalty bonuses: Well-paid orders work harder
+
+Sphere Economics Redesign
+Sphere as Currency Flow (Not Capped Storage)
