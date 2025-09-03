@@ -372,7 +372,7 @@
             chouta: 0,
             spheres: 10,
             stormlightStored: 0,
-            clickPower: 100, //clickPower changed for dev pourposes
+            clickPower: 1, //clickPower changed for dev pourposes
             stormActive: false,
             stormTimer: 0,
             stormDuration: 60, // 
@@ -553,12 +553,54 @@
                 name: "Bridge Crews",
                 desc: "Unlocks the doomed Bridge Boys.",
                 cost: 5000,
-                requirements:[["Herdazian Spice Blend",true]],
+                requirements:[["herdazianSpiceUpgrade",true]],
                 type: "upgrade",
                 bought: false,
                 effect: () => {
                     gameState.clickPower += 2;
                     showNotification("Shattered Plains Bridges Unlocked");
+                }
+            },
+            increaseClickPower: {
+                name: "Double Your Cooking Force",
+                desc: "Cook More Chouta!!! (x2).",
+                cost: 5000,
+                requirements:[["betterLadleUpgrade",true],["herdazianSpiceUpgrade",true],["cookpotFires",10]],
+                type: "upgrade",
+                bought: false,
+                effect: () => {
+                    gameState.clickPower *= 2;
+                    showNotification("Shattered Plains Bridges Unlocked");
+                }
+            },
+            upgradedCooks: {
+                name: "Cooks get Better in their job",
+                desc: "Cooks double yield (x2).",
+                cost: 10000,
+                requirements:[["cookpotFires",20]],
+                type: "upgrade",
+                bought: false,
+                effect: () => {
+                    const buildings=buildingTypes;
+                    buildings["cookpotFires"].baseProduction *= 2;
+                    buildings["cookpotFires"].stormProduction = buildings["cookpotFires"].baseProduction/2;
+                    showNotification("Production Doubled");
+                    renderBuildings();
+                }
+            },
+            upgradedCooks2: {
+                name: "Cooks get even BETTER!!",
+                desc: "Cooks double yield (x2).",
+                cost: 10000,
+                requirements:[["cookpotFires",40]],
+                type: "upgrade",
+                bought: false,
+                effect: () => {
+                    const buildings=buildingTypes;
+                    buildings["cookpotFires"].baseProduction *= 2;
+                    buildings["cookpotFires"].stormProduction = buildings["cookpotFires"].baseProduction/2;
+                    showNotification("Production Doubled");
+                    renderBuildings();
                 }
             },
             clickUpgrade4: {
@@ -625,6 +667,7 @@
             gameState.chouta += gameState.clickPower;
             updateDisplay();
             renderBuildings();
+            renderUpgrades();
         });
 
         // Calculate total CPS
@@ -711,6 +754,7 @@
                 gameState.buildings[type]++;
                 updateDisplay();
                 renderBuildings();
+                renderUpgrades();
             }
         }
 
@@ -733,7 +777,6 @@
             elements.buildingsList.innerHTML = '';
             Object.keys(buildingTypes).forEach(key => {
                 const building = buildingTypes[key];
-                //console.log(building.name+" : "+requirementChecker(building.requirements));
                 if(!requirementChecker(building.requirements)) return;
                 const count = gameState.buildings[key];
                 const cost = Math.floor(building.baseCost * Math.pow(1.15, count));
@@ -764,8 +807,8 @@
                 if (gameState.upgrades[key]) return; // Already bought
 
                 const upgrade = upgradeTypes[key];
-                //console.log(upgrade.name+" : "+requirementChecker(upgrade.requirements));
-                if(requirementChecker(upgrade.requirements)) return;
+                if(!requirementChecker(upgrade.requirements)) return;
+
                 const canAfford = gameState.chouta >= upgrade.cost;
 
                 const upgradeDiv = document.createElement('div');
@@ -818,23 +861,15 @@
 
         function requirementChecker(requirements){
             for (let req of requirements) {
+                if (req.length === 0) continue;
                 const [name, amount] = req;
-
-                
-                //console.log(gameState.buildings["bridgeCrewsExtra"]);
-                console.log(name+" have: "+gameState.upgrades[name]+" IS BOUGHT: "+amount);
-                console.log(amount);
-
                 //Check buildings
                 if (gameState.buildings[name] != undefined) {
-                    //console.log(name+" have: "+gameState.buildings[name]+" NEEDS: "+amount);
                     if (gameState.buildings[name] < amount) return false;
-                }
-
-                // Check upgrades  
-                if (gameState.upgrades[name] != undefined) {
-
-                    if (gameState.upgrades[name] == amount) return false;
+                }else if (gameState.upgrades[name] != undefined) {
+                    if (!gameState.upgrades[name] ) return false;
+                }else{
+                    return false;
                 }
             }
             return true; // All requirements met
