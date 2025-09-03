@@ -20,3 +20,49 @@ Numero de puentes (maximo 20 hasta desbloquear el Puente Cuatro)
 Los puentes se desbloquean con esferas
 Posibilidad de vender chouta (una vez es de buena calidad)
 CALIDAD DE CHOUTA???
+
+
+MORE UPGRADES:
+
+ Save/Load System - LocalStorage persistence, auto-save every 30 seconds
+ Offline Progress - Calculate earnings while away (with reasonable caps)
+ Number Formatting - Scientific notation or suffix system (K, M, B, T, etc.)
+ Bulk Purchase Options - Buy 1/10/100/Max buttons for buildings
+ Keyboard Shortcuts - Spacebar to click, number keys for buildings
+ Cost Scaling Preview - Show next building cost before buying
+
+Progression Systems
+
+ Prestige/Rebirth Mechanic - Reset for permanent bonuses
+ Achievement System - Unlock conditions with rewards
+ Milestone Rewards - Special bonuses at specific thresholds
+ Statistics Tracking - Total clicks, earnings, time played, buildings built
+ Progress Indicators - Bars showing progress to next purchase
+ Unlock Conditions - Buildings/upgrades appear when requirements met
+
+UI/UX Polish
+
+ Settings Menu - Sound toggle, save/load, reset options
+ Tooltips - Detailed info on hover/long-press
+ Visual Feedback - Animations for clicks, purchases, unlocks
+ Sound Effects - Click sounds, purchase confirmations, achievement pings
+ Mobile Optimization - Touch-friendly buttons, responsive layout
+ Confirmation Dialogs - For expensive purchases or resets
+
+Advanced Features (Nice to Have)
+
+ Export/Import Saves - Text string save sharing
+ Multiple Currencies - Secondary resources for variety
+ Random Events - Occasional bonuses or challenges
+ Mini-games - Break up the clicking monotony
+ Social Features - Leaderboards or save sharing
+ Seasonal Content - Time-limited events or themes
+
+Implementation Priority Order
+
+Save System (Critical - do this first)
+Number Formatting (Essential for readability)
+Bulk Buying (Major quality of life)
+Achievement System (Engagement driver)
+Prestige Mechanics (Long-term retention)
+Polish & Audio (Final touches)
