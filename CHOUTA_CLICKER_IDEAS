@@ -27,9 +27,9 @@ MORE UPGRADES:
  Save/Load System - LocalStorage persistence, auto-save every 30 seconds
  Offline Progress - Calculate earnings while away (with reasonable caps)
  Number Formatting - Scientific notation or suffix system (K, M, B, T, etc.)
- Bulk Purchase Options - Buy 1/10/100/Max buttons for buildings
- Keyboard Shortcuts - Spacebar to click, number keys for buildings
- Cost Scaling Preview - Show next building cost before buying
+ Bulk Purchase Options - Buy 1/10/100/Max buttons for buildings - DONE+-
+ Keyboard Shortcuts - Spacebar to click, number keys for buildings - DONE+-
+ Cost Scaling Preview - Show next building cost before buying - DONE(NEED TO ADD COST FOR MULTIS)
 
 Progression Systems
 
