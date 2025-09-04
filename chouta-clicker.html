@@ -379,6 +379,7 @@
             calmDuration: 180,  //
             buildings: {},
             upgrades: {},
+            multiBuy: 1,
             totalCps: 0
         };
 
@@ -670,6 +671,38 @@
             renderUpgrades();
         });
 
+        // Track pressed keys
+        const keysPressed = new Set();
+
+        // Key down handler
+        onkeydown = (event) => {
+            keysPressed.add(event.code);
+            
+            // Check combinations in order of complexity (most specific first)
+            if (keysPressed.has("ControlLeft") && keysPressed.has("ShiftLeft") && keysPressed.has("AltLeft")) {
+                gameState.multiBuy = "max";
+                console.log("Multi Max");
+            } else if (keysPressed.has("ControlLeft") && keysPressed.has("ShiftLeft")) {
+                gameState.multiBuy = 100;
+                console.log("Multi 100");
+            } else if (keysPressed.has("ControlLeft")) {
+                gameState.multiBuy = 10;
+                console.log("Multi 10");
+            }
+        }
+
+        // Key up handler to remove keys from tracking
+        onkeyup = (event) => {
+            keysPressed.delete(event.code);
+            
+            // Reset to default when no modifier keys are pressed
+            if (!keysPressed.has("ControlLeft")) {
+                gameState.multiBuy = 1; // or whatever your default is
+                console.log("Multi reset");
+            }
+        }
+
+
         // Calculate total CPS
         function calculateCps() {
             let total = 0;
@@ -732,7 +765,7 @@
         function buyBuilding(type) {
             const building = buildingTypes[type];
             const currentCount = gameState.buildings[type];
-            const cost = Math.floor(building.baseCost * Math.pow(1.15, currentCount));
+            var cost = Math.floor(building.baseCost * Math.pow(1.15, currentCount));
 
             if (building.isAdmin){
                 if(building.name=="Admin SPHERES"){
@@ -748,14 +781,40 @@
 
             }
 
-
-            if (gameState.chouta >= cost) {
-                gameState.chouta -= cost;
-                gameState.buildings[type]++;
+            if(gameState.multiBuy == "max"){
+                let purchased = 0;
+                //let maxIterations = 10000; // Safety limit to prevent infinite loops
+                
+                // Since cost increases with each purchase, use while loop
+                while(gameState.chouta >= cost /*&& purchased < maxIterations*/) {
+                    gameState.chouta -= cost;
+                    gameState.buildings[type]++;
+                    purchased++;
+                    
+                    // Recalculate cost for next iteration (you'll need to replace this with your actual cost formula)
+                    cost = Math.floor(building.baseCost * Math.pow(1.15, gameState.buildings[type]));
+                    console.log(cost);
+                }
+                
+                console.log(`Bought ${purchased} buildings (max affordable)`);
+                
+                // Only update displays once after all purchases
+                if (purchased > 0) {
+                    updateDisplay();
+                    renderBuildings();
+                    renderUpgrades();
+                }
+                
+            } else if (gameState.chouta >= cost * gameState.multiBuy) {
+                gameState.chouta -= cost * gameState.multiBuy;
+                gameState.buildings[type] += gameState.multiBuy;
+                console.log(`Bought ${gameState.multiBuy} buildings`);
+                
                 updateDisplay();
                 renderBuildings();
                 renderUpgrades();
             }
+
         }
 
         // Buy upgrade
