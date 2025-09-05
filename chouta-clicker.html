@@ -188,6 +188,11 @@
             padding-bottom: 10px;
         }
 
+        .building-multi-buy:hover {
+            background: rgba(139, 69, 19, 0.5);
+            transform: translateX(5px);
+        }
+
         .building, .upgrade{
             background: rgba(139, 69, 19, 0.3);
             border: 1px solid #8b4513;
@@ -202,6 +207,7 @@
             background: rgba(139, 69, 19, 0.5);
             transform: translateX(5px);
         }
+
 
         .building.affordable, .upgrade.affordable {
             border-color: #32cd32;
@@ -362,10 +368,11 @@
 
         <div class="buildings">
             <div class="section-title">Buildings</div>
-            <div class="multi-buy-button-container">
-                <div class="building-multi-buy"> x10 </div>
-                <div class="building-multi-buy"> x100 </div>
-                <div class="building-multi-buy"> Max </div>
+            <div class="multi-buy-button-container" id="multi-buy-button-container">
+                <div class="building-multi-buy" id="multi10"> x10 </div>
+                <div class="building-multi-buy" id="multi100"> x100 </div>
+                <div class="building-multi-buy" id="multiMax"> Max </div>
+                <div class="building-multi-buy" id="x">    X </div>
             </div>
 
             <div id="buildings-list"></div>
@@ -682,12 +689,37 @@
             stormStatus: document.getElementById('storm-status'),
             stormProgress: document.getElementById('storm-progress'),
             stormlightFill: document.getElementById('stormlight-fill'),
-            background: document.getElementById('background')
+            background: document.getElementById('background'),
+            buildingx10: document.getElementById('multi10'),
+            buildingx100: document.getElementById('multi100'),
+            buildingMax: document.getElementById('multiMax'),
+            multiBuyContainer: document.getElementById("multi-buy-button-container")
         };
 
         // Click handler
         elements.choutaButton.addEventListener('click', () => {
             gameState.chouta += gameState.clickPower;
+
+            updateDisplay();
+            renderBuildings();
+            renderUpgrades();
+        });
+
+        elements.buildingx10.addEventListener('click', () => {
+            gameState.multiBuy=10;
+            elements.multiBuyContainer.style.backgroundColor= "rgba(139, 69, 19, 0.5)";
+            updateDisplay();
+            renderBuildings();
+            renderUpgrades();
+        });
+        elements.buildingx100.addEventListener('click', () => {
+            gameState.multiBuy=100;
+            updateDisplay();
+            renderBuildings();
+            renderUpgrades();
+        });
+        elements.buildingMax.addEventListener('click', () => {
+            gameState.multiBuy="max";
             updateDisplay();
             renderBuildings();
             renderUpgrades();
