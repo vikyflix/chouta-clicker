@@ -693,7 +693,8 @@
             buildingx10: document.getElementById('multi10'),
             buildingx100: document.getElementById('multi100'),
             buildingMax: document.getElementById('multiMax'),
-            multiBuyContainer: document.getElementById("multi-buy-button-container")
+            multiBuyContainer: document.getElementById("multi-buy-button-container"),
+            removeMultiBuy: document.getElementById("x")
         };
 
         // Click handler
@@ -707,19 +708,48 @@
 
         elements.buildingx10.addEventListener('click', () => {
             gameState.multiBuy=10;
-            elements.multiBuyContainer.style.backgroundColor= "rgba(139, 69, 19, 0.5)";
+            elements.buildingx10.style.backgroundColor= "rgba(139, 69, 19, 0.5)";
+            elements.buildingx100.style.backgroundColor= "rgba(139, 69, 19, 0.3)";
+            elements.buildingMax.style.backgroundColor= "rgba(139, 69, 19, 0.3)";
+            elements.buildingx10.style.border= "1px solid #32cd32";
+            elements.buildingx100.style.border= "1px solid #8b4513";
+            elements.buildingMax.style.border= "1px solid #8b4513";
             updateDisplay();
             renderBuildings();
             renderUpgrades();
         });
         elements.buildingx100.addEventListener('click', () => {
             gameState.multiBuy=100;
+            elements.buildingx100.style.backgroundColor= "rgba(139, 69, 19, 0.5)";
+            elements.buildingMax.style.backgroundColor= "rgba(139, 69, 19, 0.3)";
+            elements.buildingx10.style.backgroundColor= "rgba(139, 69, 19, 0.3)";
+            elements.buildingx10.style.border= "1px solid #8b4513";
+            elements.buildingx100.style.border= "1px solid #32cd32";
+            elements.buildingMax.style.border= "1px solid #8b4513";
             updateDisplay();
             renderBuildings();
             renderUpgrades();
         });
         elements.buildingMax.addEventListener('click', () => {
             gameState.multiBuy="max";
+            elements.buildingMax.style.backgroundColor= "rgba(139, 69, 19, 0.5)";
+            elements.buildingx100.style.backgroundColor= "rgba(139, 69, 19, 0.3)";
+            elements.buildingx10.style.backgroundColor= "rgba(139, 69, 19, 0.3)";
+            elements.buildingx10.style.border= "1px solid #8b4513";
+            elements.buildingx100.style.border= "1px solid #8b4513";
+            elements.buildingMax.style.border= "1px solid #32cd32";
+            updateDisplay();
+            renderBuildings();
+            renderUpgrades();
+        });
+        elements.removeMultiBuy.addEventListener('click', () => {
+            gameState.multiBuy="1";
+            elements.buildingMax.style.backgroundColor= "rgba(139, 69, 19, 0.3)";
+            elements.buildingx100.style.backgroundColor= "rgba(139, 69, 19, 0.3)";
+            elements.buildingx10.style.backgroundColor= "rgba(139, 69, 19, 0.3)";
+            elements.buildingx10.style.border= "1px solid #8b4513";
+            elements.buildingx100.style.border= "1px solid #8b4513";
+            elements.buildingMax.style.border= "1px solid #8b4513";
             updateDisplay();
             renderBuildings();
             renderUpgrades();
