@@ -399,7 +399,7 @@
         // Game State
         const gameState = {
             chouta: 0,
-            spheres: 10,
+            spheres: 0,
             stormlightStored: 0,
             clickPower: 1, //clickPower changed for dev pourposes
             stormActive: false,
@@ -450,7 +450,7 @@
             cookpotFires: {
                 name: "Cookpot Fires",
                 desc: "Small flames at the warcamp edges, tended by whoever can hold a ladle.",
-                baseCost: 100,
+                baseCost: 50,
                 baseProduction: 1.0,
                 stormProduction: 0.5,
                 requirements:[[]],
@@ -543,18 +543,6 @@
 
         // Upgrade Definitions
         const upgradeTypes = {
-            betterSpheres: {
-                name: "Cut & Polished Spheres",
-                desc: "Each sphere now holds more Stormlight.",
-                cost: 10000,
-                requirements:[[]],
-                type: "upgrade",
-                bought: false,
-                effect: () => {
-                    // Increases stormlight capacity
-                    showNotification("Sphere quality improved!");
-                }
-            },
             betterLadleUpgrade: {
                 name: "Better Ladle",
                 desc: "A proper cooking utensil makes all the difference.",
@@ -567,11 +555,133 @@
                     showNotification("Click power increased!");
                 }
             },
+            shardbladeLadle: {
+                name: "Shardladle",
+                desc: "An ancient cooking implement that cuts through the toughest rockbud shells with ease.",
+                cost: 2500,
+                requirements:[["betterLadleUpgrade", true]],
+                type: "upgrade",
+                bought: false,
+                effect: () => {
+                    gameState.clickPower += 3;
+                    showNotification("The Shardladle hums with power!");
+                }
+            },
+
+            flamesprenFires: {
+                name: "Flamespren-Blessed Cookfires",
+                desc: "Little dancing flames whisper cooking secrets to those who listen.",
+                cost: 800,
+                requirements:[["cookpotFires", 5]],
+                type: "upgrade", 
+                bought: false,
+                effect: () => {
+                    buildingTypes["cookpotFires"].baseProduction *= 1.5;
+                    buildingTypes["cookpotFires"].stormProduction = buildingTypes["cookpotFires"].baseProduction / 2;
+                    showNotification("Flamespren dance around your fires!");
+                    renderBuildings();
+                }
+            },
+
+            windsprenSeasoning: {
+                name: "Windspren-Carried Spices",
+                desc: "Playful spren carry exotic seasonings from across the Shattered Plains.",
+                cost: 3000,
+                requirements:[["spiceGrinders", 3]],
+                type: "upgrade",
+                bought: false,
+                effect: () => {
+                    buildingTypes["spiceGrinders"].baseProduction *= 1.8;
+                    buildingTypes["spiceGrinders"].stormProduction = buildingTypes["spiceGrinders"].baseProduction / 2;
+                    showNotification("Windspren giggle as they season your chouta!");
+                    renderBuildings();
+                }
+            },
+
+            vorinPurityCodes: {
+                name: "Vorin Purity Codes",
+                desc: "Following proper Vorin cooking methods improves efficiency, even if it's technically women's work.",
+                cost: 1500,
+                requirements:[["choutaBaziers", 8]],
+                type: "upgrade",
+                bought: false,
+                effect: () => {
+                    buildingTypes["choutaBaziers"].baseProduction *= 1.6;
+                    buildingTypes["choutaBaziers"].stormProduction = buildingTypes["choutaBaziers"].baseProduction / 2;
+                    showNotification("Honor guides your cooking techniques!");
+                    renderBuildings();
+                }
+            },
+
+            horneaterSecrets: {
+                name: "Horneater Cooking Secrets",
+                desc: "Rock teaches proper Horneater ways. Is making airsick lowlanders less airsick, yes?",
+                cost: 8000,
+                requirements:[["rockCook", 1]],
+                type: "upgrade",
+                bought: false,
+                effect: () => {
+                    buildingTypes["rockCook"].baseProduction *= 2;
+                    buildingTypes["rockCook"].stormProduction = buildingTypes["rockCook"].baseProduction / 2;
+                    showNotification("Rock shares ancient Horneater wisdom!");
+                    renderBuildings();
+                }
+            },
+
+            herdazianNetworking: {
+                name: "Herdazian Trade Networks", 
+                desc: "The Lopen knows a guy who knows a guy who has the best ingredients, gon.",
+                cost: 12000,
+                requirements:[["lopensCousins", 5]],
+                type: "upgrade",
+                bought: false,
+                effect: () => {
+                    buildingTypes["lopensCousins"].baseProduction *= 1.7;
+                    buildingTypes["lopensCousins"].stormProduction = buildingTypes["lopensCousins"].baseProduction / 2;
+                    showNotification("The Lopen's network delivers the goods!");
+                    renderBuildings();
+                }
+            },
+
+            peaksprenBlessing: {
+                name: "Peakspren Mountain Blessing",
+                desc: "Ancient spirits of the Horneater Peaks bless your family recipes.",
+                cost: 40000,
+                requirements:[["rocksFamily", 10]],
+                type: "upgrade",
+                bought: false,
+                effect: () => {
+                    buildingTypes["rocksFamily"].baseProduction *= 2.2;
+                    buildingTypes["rocksFamily"].stormProduction = buildingTypes["rocksFamily"].baseProduction / 2;
+                    showNotification("The peaks remember their children!");
+                    renderBuildings();
+                }
+            },
+
+            stormblessed: {
+                name: "Stormblessed Cooking",
+                desc: "Life before death. Strength before weakness. Journey before destination. Also, chouta before everything else.",
+                cost: 100000,
+                requirements:[["bridgeFour", 1]],
+                type: "upgrade",
+                bought: false,
+                effect: () => {
+                    gameState.clickPower *= 3;
+                    Object.keys(buildingTypes).forEach(key => {
+                        if (buildingTypes[key].baseProduction > 0) {
+                            buildingTypes[key].baseProduction *= 1.5;
+                            buildingTypes[key].stormProduction = buildingTypes[key].baseProduction / 2;
+                        }
+                    });
+                    showNotification("Honor radiates from your chouta!");
+                    renderBuildings();
+                }
+            },
             herdazianSpiceUpgrade: {
                 name: "Herdazian Spice Blend",
                 desc: "Secret family recipe passed down for generations.",
                 cost: 5000,
-                requirements:[[]],
+                requirements:[["lopensCousins",10]],
                 type: "upgrade",
                 bought: false,
                 effect: () => {
@@ -667,6 +777,18 @@
                 effect: () => {
                     gameState.clickPower += 2;
                     showNotification("Shattered Plains Bridges Unlocked");
+                }
+            },
+            betterSpheres: {
+                name: "Cut & Polished Spheres",
+                desc: "Each sphere now holds more Stormlight.",
+                cost: 10000,
+                requirements:[["clickUpgrade6",true]],
+                type: "upgrade",
+                bought: false,
+                effect: () => {
+                    // Increases stormlight capacity
+                    showNotification("Sphere quality improved!");
                 }
             }
         };
@@ -765,12 +887,21 @@
             // Check combinations in order of complexity (most specific first)
             if (keysPressed.has("ControlLeft") && keysPressed.has("ShiftLeft") && keysPressed.has("AltLeft")) {
                 gameState.multiBuy = "max";
+                elements.buildingMax.style.border= "1px solid #32cd32";
+                elements.buildingx10.style.border= "1px solid #8b4513";
+                elements.buildingx100.style.border= "1px solid #8b4513";
                 console.log("Multi Max");
             } else if (keysPressed.has("ControlLeft") && keysPressed.has("ShiftLeft")) {
                 gameState.multiBuy = 100;
+                elements.buildingx100.style.border= "1px solid #32cd32";
+                elements.buildingx10.style.border= "1px solid #8b4513";
+                elements.buildingMax.style.border= "1px solid #8b4513";
                 console.log("Multi 100");
             } else if (keysPressed.has("ControlLeft")) {
                 gameState.multiBuy = 10;
+                elements.buildingx10.style.border= "1px solid #32cd32";
+                elements.buildingx100.style.border= "1px solid #8b4513";
+                elements.buildingMax.style.border= "1px solid #8b4513";
                 console.log("Multi 10");
             }
         }
@@ -782,7 +913,9 @@
             // Reset to default when no modifier keys are pressed
             if (!keysPressed.has("ControlLeft")) {
                 gameState.multiBuy = 1; // or whatever your default is
-                console.log("Multi reset");
+                elements.buildingx10.style.border= "1px solid #8b4513";
+                elements.buildingx100.style.border= "1px solid #8b4513";
+                elements.buildingMax.style.border= "1px solid #8b4513";
             }
         }
 
@@ -804,6 +937,8 @@
             calculateCps();
             gameState.chouta += gameState.totalCps;
             updateDisplay();
+            renderBuildings();
+            renderUpgrades();
         }
 
         // Storm system
