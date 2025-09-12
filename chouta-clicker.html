@@ -406,6 +406,12 @@
             stormTimer: 0,
             stormDuration: 60, // 
             calmDuration: 180,  //
+            bridgeRunDuration: [10,20],
+            bridgeCalmDuration: [10,20],
+            bridgeRunTimer:0,
+            bridgeCalmTimer:0,
+            bridgeRunCountdown:0,
+            bridgeRunActive: false,
             buildings: {},
             upgrades: {},
             multiBuy: 1,
@@ -414,6 +420,7 @@
 
         // Building Definitions
         const buildingTypes = {
+            /*
             yieldAdminChouta: {
                 name: "Admin CHOUTA",
                 desc: "Rich Chouta",
@@ -447,6 +454,7 @@
                 requirements:[[]],
                 type: "building"
             },
+            */
             cookpotFires: {
                 name: "Cookpot Fires",
                 desc: "Small flames at the warcamp edges, tended by whoever can hold a ladle.",
@@ -980,6 +988,37 @@
             elements.stormlightFill.style.width = Math.min(100, stormlightPercent) + '%';
         }
 
+        function updateBridgeRun() {
+            // Decrement the current timer
+            if(gameState.buildings["bridgeCrews"]>0){
+                if (gameState.bridgeRunCountdown > 0 ) {
+                    gameState.bridgeRunCountdown--;
+                    console.log(gameState.bridgeRunCountdown)
+                    return;
+                }
+
+                // Timer reached zero - trigger state change
+                if (!gameState.bridgeRunActive) {
+                    // Start a bridge run
+                    gameState.bridgeRunActive = true;
+                    gameState.bridgeRunCountdown = gameState.bridgeRunDuration[getRandomInt(2)];
+
+                    console.log("CALLING FOR A BRIDGERUN");
+                    console.log(gameState.bridgeRunCountdown)
+                } else {
+                    // End the bridge run
+                    bridgeRun("bridgeCrews");
+                    bridgeRun("bridgeCrewsExtra");
+                    bridgeRun("bridgeFour");
+                    gameState.bridgeRunActive = false;
+                    gameState.bridgeRunCountdown = gameState.bridgeCalmDuration[getRandomInt(2)];
+                    console.log("Bridge run complete");
+                    console.log(gameState.bridgeRunCountdown)
+
+                }
+            }
+        }
+
         // Buy building
         function buyBuilding(type) {
             const building = buildingTypes[type];
@@ -1126,6 +1165,7 @@
         function gameLoop() {
             productionTick();
             updateStorm();
+            updateBridgeRun();
         }
 
         // Initialize game
@@ -1151,6 +1191,38 @@
                 }
             }
             return true; // All requirements met
+        }
+        function bridgeRun(crew){
+            let survived = false
+            if(crew==="bridgeCrews"){
+                if (Math.random() >= 0.5){
+                        console.log("Ded")
+                        gameState.buildings[crew]--
+                }else{
+                        console.log("Survived")
+                        gameState.spheres += 1*gameState.buildings[crew]
+                }
+            }else if(crew==="bridgeCrewsExtra"){
+                if (Math.random() >= 0.3){
+                        console.log("Ded")
+                        gameState.buildings[crew]--
+
+                }else{
+                        console.log("Survived")
+                        gameState.spheres += 2*gameState.buildings[crew]
+                }
+            }else if(crew==="bridgeFour"){
+                if (Math.random() >= 0.1){
+                        console.log("Ded")
+                        gameState.buildings[crew]--
+                }else{
+                        console.log("Survived")
+                        gameState.spheres += 4*gameState.buildings[crew]
+                }
+            }
+        }
+        function getRandomInt(max) {
+          return Math.floor(Math.random() * max);
         }
     </script>
 </body>
