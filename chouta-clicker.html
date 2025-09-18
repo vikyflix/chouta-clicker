@@ -420,11 +420,11 @@
 
         // Building Definitions
         const buildingTypes = {
-            /*
+
             yieldAdminChouta: {
                 name: "Admin CHOUTA",
                 desc: "Rich Chouta",
-                amount: 100000000000,
+                amount: 10000000,
                 isAdmin: true,
                 baseCost: 0,
                 baseProduction: 0,
@@ -432,6 +432,7 @@
                 requirements:[[]],
                 type: "building"
             },
+            /*
             yieldAdminSphere: {
                 name: "Admin SPHERES",
                 desc: "Rich Sphere",
@@ -460,6 +461,15 @@
                 desc: "Small flames at the warcamp edges, tended by whoever can hold a ladle.",
                 baseCost: 50,
                 baseProduction: 1.0,
+                stormProduction: 0.5,
+                requirements:[[]],
+                type: "building"
+            },
+            slaveParshmen: {
+                name: "Parshmen",
+                desc: "Best Slaves ever known, they click for you.",
+                baseCost: 50,
+                baseProduction: gameState.clickPower,
                 stormProduction: 0.5,
                 requirements:[[]],
                 type: "building"
@@ -542,7 +552,7 @@
                 desc: "It appeared that he'd been wrong. There had been something more they could do to him. One final torment the world had reserved just for Kaladin. And it was called Bridge Four.",
                 baseCost: 80000,
                 baseProduction: -800.0,
-                stormProduction: 1600.0,
+                stormProduction: -1600.0,
                 requirements:[["bridgeCrewsExtra",20]],
                 type: "building"
             }
@@ -785,6 +795,17 @@
                 effect: () => {
                     gameState.clickPower += 2;
                     showNotification("Shattered Plains Bridges Unlocked");
+                }
+            },
+            squiresUpgrade: {
+                name: "Squires of Stormblessed",
+                desc: "Make your bridgemen live longer",
+                cost: 5000,
+                requirements:[["bridgeFour",10]],
+                type: "upgrade",
+                bought: false,
+                effect: () => {
+                    showNotification("Life Before Death Radiant!");
                 }
             },
             betterSpheres: {
@@ -1197,7 +1218,10 @@
             if(crew==="bridgeCrews"){
                 if (Math.random() >= 0.5){
                         console.log("Ded")
-                        gameState.buildings[crew]--
+                        if(gameState.buildings[crew]>0){
+                            gameState.buildings[crew]--
+                        }
+                        
                 }else{
                         console.log("Survived")
                         gameState.spheres += 1*gameState.buildings[crew]
@@ -1205,16 +1229,20 @@
             }else if(crew==="bridgeCrewsExtra"){
                 if (Math.random() >= 0.3){
                         console.log("Ded")
-                        gameState.buildings[crew]--
+                        if(gameState.buildings[crew]>0){
+                            gameState.buildings[crew]--
+                        }
 
                 }else{
                         console.log("Survived")
                         gameState.spheres += 2*gameState.buildings[crew]
-                }
+                    }
             }else if(crew==="bridgeFour"){
                 if (Math.random() >= 0.1){
                         console.log("Ded")
-                        gameState.buildings[crew]--
+                        if(gameState.buildings[crew]>0){
+                            gameState.buildings[crew]--
+                        }
                 }else{
                         console.log("Survived")
                         gameState.spheres += 4*gameState.buildings[crew]
