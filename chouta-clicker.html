@@ -1214,40 +1214,95 @@
             return true; // All requirements met
         }
         function bridgeRun(crew){
-            let survived = false
-            if(crew==="bridgeCrews"){
-                if (Math.random() >= 0.5){
-                        console.log("Ded")
-                        if(gameState.buildings[crew]>0){
-                            gameState.buildings[crew]--
-                        }
-                        
-                }else{
-                        console.log("Survived")
-                        gameState.spheres += 1*gameState.buildings[crew]
-                }
-            }else if(crew==="bridgeCrewsExtra"){
-                if (Math.random() >= 0.3){
-                        console.log("Ded")
-                        if(gameState.buildings[crew]>0){
-                            gameState.buildings[crew]--
-                        }
 
-                }else{
-                        console.log("Survived")
+            let survived = false
+            console.log(gameState.upgrades["squiresUpgrade"])
+            if(crew==="bridgeCrews"){
+                
+                // Check if we have stormlight to consume
+                const hasStormlight = gameState.stormlightStored >= gameState.buildings[crew] && gameState.upgrades["squiresUpgrade"];
+                
+                if(hasStormlight) {
+                    // Consume 1 stormlight per building
+                    gameState.stormlightStored -= gameState.buildings[crew];
+                    // Much better survival chance with stormlight (only 10% death rate)
+                    if (Math.random() >=  0.88){
+                        console.log("Ded (with stormlight)")
+                        if(gameState.buildings[crew]>0){
+                            gameState.buildings[crew]--
+                        }
+                    } else {
+                        console.log("Survived (with stormlight)")
+                        gameState.spheres += 1*gameState.buildings[crew]
+                    }
+                } else {
+                    // No stormlight - much higher death rate (80% death rate)
+                    if (Math.random() >= 0.1){
+                        console.log("Ded (no stormlight)")
+                        if(gameState.buildings[crew]>0){
+                            gameState.buildings[crew]--
+                        }
+                    } else {
+                        console.log("Survived (no stormlight)")
+                        gameState.spheres += 1*gameState.buildings[crew]
+                    }
+                }
+            } else if(crew==="bridgeCrewsExtra"){
+                const hasStormlight = gameState.stormlightStored >= gameState.buildings[crew] && gameState.upgrades["squiresUpgrade"];
+                
+                if(hasStormlight) {
+                    gameState.stormlightStored -= gameState.buildings[crew];
+                    // 5% death rate with stormlight
+                    if (Math.random() >= 0.68 ){
+                        console.log("Ded (with stormlight)")
+                        if(gameState.buildings[crew]>0){
+                            gameState.buildings[crew]--
+                        }
+                    } else {
+                        console.log("Survived (with stormlight)")
                         gameState.spheres += 2*gameState.buildings[crew]
                     }
-            }else if(crew==="bridgeFour"){
-                if (Math.random() >= 0.1){
-                        console.log("Ded")
+                } else {
+                    // 85% death rate without stormlight
+                    if (Math.random() >= 0.05){
+                        console.log("Ded (no stormlight)")
                         if(gameState.buildings[crew]>0){
                             gameState.buildings[crew]--
                         }
-                }else{
-                        console.log("Survived")
+                    } else {
+                        console.log("Survived (no stormlight)")
+                        gameState.spheres += 2*gameState.buildings[crew]
+                    }
+                }
+            } else if(crew==="bridgeFour"){
+                const hasStormlight = gameState.stormlightStored >= gameState.buildings[crew] && gameState.upgrades["squiresUpgrade"];
+                
+                if(hasStormlight) {
+                    gameState.stormlightStored -= gameState.buildings[crew];
+                    // 2% death rate with stormlight
+                    if (Math.random() >= 0.38){
+                        console.log("Ded (with stormlight)")
+                        if(gameState.buildings[crew]>0){
+                            gameState.buildings[crew]--
+                        }
+                    } else {
+                        console.log("Survived (with stormlight)")
                         gameState.spheres += 4*gameState.buildings[crew]
+                    }
+                } else {
+                    // 95% death rate without stormlight  
+                    if (Math.random() >= 0.05){
+                        console.log("Ded (no stormlight)")
+                        if(gameState.buildings[crew]>0){
+                            gameState.buildings[crew]--
+                        }
+                    } else {
+                        console.log("Survived (no stormlight)")
+                        gameState.spheres += 4*gameState.buildings[crew]
+                    }
                 }
             }
+            updateDisplay();
         }
         function getRandomInt(max) {
           return Math.floor(Math.random() * max);
