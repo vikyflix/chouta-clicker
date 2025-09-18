@@ -573,6 +573,33 @@
                     showNotification("Click power increased!");
                 }
             },
+            clickPowertoCPS: {
+                name: "The Way of the Radiant",
+                desc: "Your clicks are infused with purpose, converting a fraction of your Chouta-per-Second into additional click power.",
+                cost: 10000,
+                requirements:[["betterLadleUpgrade", true],["upgradedCooks",true]],
+                type: "upgrade",
+                bought: false,
+                effect: () => {
+                    gameState.clickPower += (gameState.totalCps / 100);
+                    showNotification("Strength Before Weakness!");
+                }
+            },
+            cheaperBuildings: {
+                name: "War Camp Efficiency",
+                desc: "A team of scribes and quartermasters streamlines supply chains, allowing for the construction of buildings at a reduced cost.",
+                cost: 50000,
+                requirements:[["choutaBaziers", 10]],
+                type: "upgrade",
+                bought: false,
+                effect: () => {
+                    Object.keys(buildingTypes).forEach(key => {
+                        buildingTypes[key].baseCost *= 0.9;
+                    });
+                    showNotification("Supply chains streamlined! Building costs reduced.");
+                    renderBuildings();
+                            }
+            },
             shardbladeLadle: {
                 name: "Shardladle",
                 desc: "An ancient cooking implement that cuts through the toughest rockbud shells with ease.",
@@ -585,6 +612,7 @@
                     showNotification("The Shardladle hums with power!");
                 }
             },
+
 
             flamesprenFires: {
                 name: "Flamespren-Blessed Cookfires",
@@ -955,8 +983,16 @@
             Object.keys(buildingTypes).forEach(key => {
                 const building = buildingTypes[key];
                 const count = gameState.buildings[key];
-                const production = gameState.stormActive ? building.stormProduction : building.baseProduction;
-                total += count * production;
+                
+                if (key === 'slaveParshmen') {
+                    // Dynamic production based on current click power
+                    const production = gameState.stormActive ? 0.5 : gameState.clickPower;
+                    total += count * production;
+                } else {
+                    // Normal building logic
+                    const production = gameState.stormActive ? building.stormProduction : building.baseProduction;
+                    total += count * production;
+                }
             });
             gameState.totalCps = total;
         }
@@ -1042,9 +1078,11 @@
 
         // Buy building
         function buyBuilding(type) {
+            console.log(gameState)
+            console.log(gameState.buildings["slaveParshmen"])
             const building = buildingTypes[type];
             const currentCount = gameState.buildings[type];
-            var cost = Math.floor(building.baseCost * Math.pow(1.15, currentCount));
+            var cost = Math.floor(building.baseCost * Math.pow(1.05, currentCount));
 
             if (building.isAdmin){
                 if(building.name=="Admin SPHERES"){
