@@ -255,14 +255,36 @@
             padding: 15px;
             min-width: 200px;
         }
+        .bridgerun-indicator {
+            position: fixed;
+            top: 160px;
+            right: 20px;
+            background: rgba(0,0,0,0.8);
+            border: 2px solid #8b4513;
+            border-radius: 10px;
+            padding: 15px;
+            min-width: 200px;
+        }
 
         .storm-status {
             font-weight: bold;
             margin-bottom: 10px;
             text-align: center;
         }
+        .bridgerun-status {
+            font-weight: bold;
+            margin-bottom: 10px;
+            text-align: center;
+        }
 
         .storm-timer {
+            background: #333;
+            border-radius: 10px;
+            height: 20px;
+            overflow: hidden;
+            margin-bottom: 10px;
+        }
+        .bridgerun-timer {
             background: #333;
             border-radius: 10px;
             height: 20px;
@@ -276,7 +298,21 @@
             transition: width 1s linear;
         }
 
+        .bridgerun-progress {
+            height: 100%;
+            background: linear-gradient(90deg, #00bcd4, #80deea);
+            transition: width 1s linear;
+        }
+
         .stormlight-bar {
+            background: #333;
+            border-radius: 10px;
+            height: 15px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .bridgerun-bar {
             background: #333;
             border-radius: 10px;
             height: 15px;
@@ -395,6 +431,13 @@
         </div>
     </div>
 
+    <div class="bridgerun-indicator">
+        <div class="bridgerun-status" id="bridgerun-status">Bridgerun Inactive</div>
+        <div class="bridgerun-timer">
+            <div class="bridgerun-progress" id="bridgerun-progress"></div>
+        </div>
+    </div>
+
     <script>
         // Game State
         const gameState = {
@@ -420,11 +463,11 @@
 
         // Building Definitions
         const buildingTypes = {
-
+            
             yieldAdminChouta: {
                 name: "Admin CHOUTA",
                 desc: "Rich Chouta",
-                amount: 10000000,
+                amount: 1000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000,
                 isAdmin: true,
                 baseCost: 0,
                 baseProduction: 0,
@@ -459,7 +502,7 @@
             cookpotFires: {
                 name: "Cookpot Fires",
                 desc: "Small flames at the warcamp edges, tended by whoever can hold a ladle.",
-                baseCost: 50,
+                baseCost: 15,
                 baseProduction: 1.0,
                 stormProduction: 0.5,
                 requirements:[[]],
@@ -868,6 +911,9 @@
             stormStatus: document.getElementById('storm-status'),
             stormProgress: document.getElementById('storm-progress'),
             stormlightFill: document.getElementById('stormlight-fill'),
+            bridgerunStatus: document.getElementById('bridgerun-status'),
+            bridgerunProgress: document.getElementById('bridgerun-progress'),
+            bridgerunFill: document.getElementById('bridgerun-fill'),
             background: document.getElementById('background'),
             buildingx10: document.getElementById('multi10'),
             buildingx100: document.getElementById('multi100'),
@@ -1059,7 +1105,7 @@
                     // Start a bridge run
                     gameState.bridgeRunActive = true;
                     gameState.bridgeRunCountdown = gameState.bridgeRunDuration[getRandomInt(2)];
-
+                    elements.bridgerunStatus.textContent = "Bridgerun Ongoing";
                     console.log("CALLING FOR A BRIDGERUN");
                     console.log(gameState.bridgeRunCountdown)
                 } else {
@@ -1069,21 +1115,30 @@
                     bridgeRun("bridgeFour");
                     gameState.bridgeRunActive = false;
                     gameState.bridgeRunCountdown = gameState.bridgeCalmDuration[getRandomInt(2)];
+                    elements.bridgerunStatus.textContent = "Bridgerun Chill!";
                     console.log("Bridge run complete");
                     console.log(gameState.bridgeRunCountdown)
 
                 }
             }
+            let progress;
+            if (gameState.bridgeRunActive) {
+                progress = ((gameState.bridgeRunCountdown - gameState.bridgeCalmDuration[getRandomInt(2)] / gameState.bridgeRunDuration[getRandomInt(2)] * 100))
+            } else {
+                progress = (gameState.bridgeRunCountdown / gameState.bridgeCalmDuration[getRandomInt(2)] * 100)
+            }
+            elements.bridgerunProgress.style.width = progress + '%';
+
+            // Update stormlight bar
+            //const stormlightPercent = (gameState.stormlightStored / (gameState.spheres * 100)) * 100;
+            //elements.stormlightFill.style.width = Math.min(100, stormlightPercent) + '%';
         }
 
         // Buy building
         function buyBuilding(type) {
-            console.log(gameState)
-            console.log(gameState.buildings["slaveParshmen"])
             const building = buildingTypes[type];
             const currentCount = gameState.buildings[type];
             var cost = Math.floor(building.baseCost * Math.pow(1.05, currentCount));
-
             if (building.isAdmin){
                 if(building.name=="Admin SPHERES"){
                     gameState.spheres += building.amount;
@@ -1113,7 +1168,6 @@
                     console.log(cost);
                 }
                 
-                console.log(`Bought ${purchased} buildings (max affordable)`);
                 
                 // Only update displays once after all purchases
                 if (purchased > 0) {
@@ -1123,15 +1177,14 @@
                 }
                 
             } else if (gameState.chouta >= cost * gameState.multiBuy) {
+
                 gameState.chouta -= cost * gameState.multiBuy;
                 gameState.buildings[type] += gameState.multiBuy;
-                console.log(`Bought ${gameState.multiBuy} buildings`);
                 
                 updateDisplay();
                 renderBuildings();
                 renderUpgrades();
             }
-
         }
 
         // Buy upgrade
@@ -1225,6 +1278,7 @@
             productionTick();
             updateStorm();
             updateBridgeRun();
+            console.log(gameState.chouta)
         }
 
         // Initialize game
@@ -1340,6 +1394,8 @@
                     }
                 }
             }
+            // Update storm progress bar
+
             updateDisplay();
         }
         function getRandomInt(max) {
