@@ -409,6 +409,7 @@
                 <div class="building-multi-buy" id="multi100"> x100 </div>
                 <div class="building-multi-buy" id="multiMax"> Max </div>
                 <div class="building-multi-buy" id="x">    X </div>
+                <div class="building-multi-buy" id="reset">RESET</div>
             </div>
 
             <div id="buildings-list"></div>
@@ -463,7 +464,7 @@
 
         // Building Definitions
         const buildingTypes = {
-            
+            /*            
             yieldAdminChouta: {
                 name: "Admin CHOUTA",
                 desc: "Rich Chouta",
@@ -475,7 +476,7 @@
                 requirements:[[]],
                 type: "building"
             },
-            /*
+
             yieldAdminSphere: {
                 name: "Admin SPHERES",
                 desc: "Rich Sphere",
@@ -890,7 +891,38 @@
                     // Increases stormlight capacity
                     showNotification("Sphere quality improved!");
                 }
-            }
+            },
+            //NEXT LEVEL UPGRADES
+            cookpotx10: {
+                name: "Even More Cookpot Fires (x10)",
+                desc: "",
+                cost: 10000,
+                requirements:[["cookpotFires",60]],
+                type: "upgrade",
+                bought: false,
+                effect: () => {
+                    const buildings=buildingTypes;
+                    buildings["cookpotFires"].baseProduction *= 10;
+                    buildings["cookpotFires"].stormProduction = buildings["cookpotFires"].baseProduction/2;
+                    showNotification("Production Doubled");
+                    renderBuildings();
+                }
+            },
+            parshmenx10: {
+                name: "More Slave Efficency (x10)",
+                desc: "",
+                cost: 10000,
+                requirements:[["slaveParshmen",60]],
+                type: "upgrade",
+                bought: false,
+                effect: () => {
+                    const buildings=buildingTypes;
+                    buildings["slaveParshmen"].baseProduction *= 10;
+                    buildings["slaveParshmen"].stormProduction = buildings["slaveParshmen"].baseProduction/2;
+                    showNotification("Production Doubled");
+                    renderBuildings();
+                }
+            },
         };
 
         // Initialize buildings
@@ -919,7 +951,8 @@
             buildingx100: document.getElementById('multi100'),
             buildingMax: document.getElementById('multiMax'),
             multiBuyContainer: document.getElementById("multi-buy-button-container"),
-            removeMultiBuy: document.getElementById("x")
+            removeMultiBuy: document.getElementById("x"),
+            reset: document.getElementById("reset")
         };
 
         // Click handler
@@ -978,6 +1011,9 @@
             updateDisplay();
             renderBuildings();
             renderUpgrades();
+        });
+        elements.reset.addEventListener('click', () => {
+            resetGame();
         });
 
         // Track pressed keys
@@ -1416,6 +1452,10 @@
                 // Copy properties to your current gameState
                 Object.assign(gameState, loadedState);
             }
+        }
+        function resetGame() {
+            localStorage.removeItem('savedGame');
+            location.reload(); // Reload the page to start fresh
         }
         /*
         try {
