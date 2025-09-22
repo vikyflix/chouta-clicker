@@ -467,7 +467,7 @@
             yieldAdminChouta: {
                 name: "Admin CHOUTA",
                 desc: "Rich Chouta",
-                amount: 1000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000,
+                amount: 100000000000,
                 isAdmin: true,
                 baseCost: 0,
                 baseProduction: 0,
@@ -665,7 +665,7 @@
                 type: "upgrade", 
                 bought: false,
                 effect: () => {
-                    buildingTypes["cookpotFires"].baseProduction *= 1.5;
+                    buildingTypes["cookpotFires"].baseProduction *= 2;
                     buildingTypes["cookpotFires"].stormProduction = buildingTypes["cookpotFires"].baseProduction / 2;
                     showNotification("Flamespren dance around your fires!");
                     renderBuildings();
@@ -680,7 +680,7 @@
                 type: "upgrade",
                 bought: false,
                 effect: () => {
-                    buildingTypes["spiceGrinders"].baseProduction *= 1.8;
+                    buildingTypes["spiceGrinders"].baseProduction *= 2;
                     buildingTypes["spiceGrinders"].stormProduction = buildingTypes["spiceGrinders"].baseProduction / 2;
                     showNotification("Windspren giggle as they season your chouta!");
                     renderBuildings();
@@ -695,7 +695,7 @@
                 type: "upgrade",
                 bought: false,
                 effect: () => {
-                    buildingTypes["choutaBaziers"].baseProduction *= 1.6;
+                    buildingTypes["choutaBaziers"].baseProduction *= 2;
                     buildingTypes["choutaBaziers"].stormProduction = buildingTypes["choutaBaziers"].baseProduction / 2;
                     showNotification("Honor guides your cooking techniques!");
                     renderBuildings();
@@ -725,7 +725,7 @@
                 type: "upgrade",
                 bought: false,
                 effect: () => {
-                    buildingTypes["lopensCousins"].baseProduction *= 1.7;
+                    buildingTypes["lopensCousins"].baseProduction *= 2;
                     buildingTypes["lopensCousins"].stormProduction = buildingTypes["lopensCousins"].baseProduction / 2;
                     showNotification("The Lopen's network delivers the goods!");
                     renderBuildings();
@@ -758,7 +758,7 @@
                     gameState.clickPower *= 3;
                     Object.keys(buildingTypes).forEach(key => {
                         if (buildingTypes[key].baseProduction > 0) {
-                            buildingTypes[key].baseProduction *= 1.5;
+                            buildingTypes[key].baseProduction *= 2;
                             buildingTypes[key].stormProduction = buildingTypes[key].baseProduction / 2;
                         }
                     });
@@ -1138,7 +1138,7 @@
         function buyBuilding(type) {
             const building = buildingTypes[type];
             const currentCount = gameState.buildings[type];
-            var cost = Math.floor(building.baseCost * Math.pow(1.05, currentCount));
+            var cost = Math.floor(building.baseCost * Math.pow(1.15, currentCount));
             if (building.isAdmin){
                 if(building.name=="Admin SPHERES"){
                     gameState.spheres += building.amount;
@@ -1165,7 +1165,7 @@
                     
                     // Recalculate cost for next iteration (you'll need to replace this with your actual cost formula)
                     cost = Math.floor(building.baseCost * Math.pow(1.15, gameState.buildings[type]));
-                    console.log(cost);
+                    console.log(cost + " LOOP")
                 }
                 
                 
@@ -1185,6 +1185,8 @@
                 renderBuildings();
                 renderUpgrades();
             }
+            cost=1000;
+            console.log(cost + " normal");
         }
 
         // Buy upgrade
@@ -1278,10 +1280,11 @@
             productionTick();
             updateStorm();
             updateBridgeRun();
-            console.log(gameState.chouta)
+            saveGame();
         }
 
         // Initialize game
+        loadGame();
         renderBuildings();
         renderUpgrades();
         updateDisplay();
@@ -1401,6 +1404,28 @@
         function getRandomInt(max) {
           return Math.floor(Math.random() * max);
         }
+        function saveGame(){
+            console.log("Saving Game!")
+            localStorage.setItem('savedGame', JSON.stringify(gameState))
+        }
+
+        function loadGame() {
+            const savedData = localStorage.getItem('savedGame');
+            if (savedData) {
+                const loadedState = JSON.parse(savedData);
+                // Copy properties to your current gameState
+                Object.assign(gameState, loadedState);
+            }
+        }
+        /*
+        try {
+            const loadedState = JSON.parse(savedData);
+            Object.assign(gameState, loadedState);
+        } catch (error) {
+            console.log("Save file corrupted, starting fresh");
+        }
+        */
     </script>
 </body>
 </html>
+
