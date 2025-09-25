@@ -446,6 +446,8 @@
             spheres: 0,
             stormlightStored: 0,
             clickPower: 1, //clickPower changed for dev pourposes
+            clickModifier:1,
+            costModifier:1,
             stormActive: false,
             stormTimer: 0,
             stormDuration: 60, // 
@@ -464,7 +466,7 @@
 
         // Building Definitions
         const buildingTypes = {
-            /*            
+            
             yieldAdminChouta: {
                 name: "Admin CHOUTA",
                 desc: "Rich Chouta",
@@ -476,7 +478,7 @@
                 requirements:[[]],
                 type: "building"
             },
-
+            /*
             yieldAdminSphere: {
                 name: "Admin SPHERES",
                 desc: "Rich Sphere",
@@ -613,7 +615,7 @@
                 type: "upgrade",
                 bought: false,
                 effect: () => {
-                    gameState.clickPower += 1;
+                    gameState.clickModifier+=2
                     showNotification("Click power increased!");
                 }
             },
@@ -637,11 +639,8 @@
                 type: "upgrade",
                 bought: false,
                 effect: () => {
-                    Object.keys(buildingTypes).forEach(key => {
-                        buildingTypes[key].baseCost *= 0.9;
-                    });
+                    gameState.costModifier=0.1
                     showNotification("Supply chains streamlined! Building costs reduced.");
-                    renderBuildings();
                             }
             },
             shardbladeLadle: {
@@ -652,7 +651,7 @@
                 type: "upgrade",
                 bought: false,
                 effect: () => {
-                    gameState.clickPower += 3;
+                    gameState.clickModifier+=2;
                     showNotification("The Shardladle hums with power!");
                 }
             },
@@ -756,7 +755,7 @@
                 type: "upgrade",
                 bought: false,
                 effect: () => {
-                    gameState.clickPower *= 3;
+                    gameState.clickModifier*= 3;
                     Object.keys(buildingTypes).forEach(key => {
                         if (buildingTypes[key].baseProduction > 0) {
                             buildingTypes[key].baseProduction *= 2;
@@ -957,7 +956,7 @@
 
         // Click handler
         elements.choutaButton.addEventListener('click', () => {
-            gameState.chouta += gameState.clickPower;
+            gameState.chouta += calculateClickPower();
 
             updateDisplay();
             renderBuildings();
@@ -1174,7 +1173,8 @@
         function buyBuilding(type) {
             const building = buildingTypes[type];
             const currentCount = gameState.buildings[type];
-            var cost = Math.floor(building.baseCost * Math.pow(1.15, currentCount));
+            var cost = calculateCost(type);
+            
             if (building.isAdmin){
                 if(building.name=="Admin SPHERES"){
                     gameState.spheres += building.amount;
@@ -1244,7 +1244,7 @@
                 const building = buildingTypes[key];
                 if(!requirementChecker(building.requirements)) return;
                 const count = gameState.buildings[key];
-                const cost = Math.floor(building.baseCost * Math.pow(1.15, count));
+                const cost = calculateCost(key)
                 const canAfford = gameState.chouta >= cost;
                 const buildingDiv = document.createElement('div');
                 buildingDiv.className = `building ${canAfford ? 'affordable' : ''}`;
@@ -1297,7 +1297,7 @@
             elements.cps.textContent = gameState.totalCps.toFixed(1);
             elements.spheresCount.textContent = gameState.spheres.toLocaleString();
             elements.stormlightCount.textContent = Math.floor(gameState.stormlightStored).toLocaleString();
-            elements.clickPower.textContent = gameState.clickPower;
+            elements.clickPower.textContent = calculateClickPower();
         }
 
         // Show notification
@@ -1454,6 +1454,25 @@
         function resetGame() {
             localStorage.removeItem('savedGame');
             location.reload(); // Reload the page to start fresh
+        }
+
+        //CALCULATE COST FUNCTION
+        function calculateCost(key){
+            var costModifier=gameState.costModifier;
+            const building = buildingTypes[key];
+            const currentCount = gameState.buildings[key];
+            var baseCost =Math.floor(building.baseCost * Math.pow(1.15, currentCount));
+            console.log(baseCost*costModifier +" Price with modifier")
+            console.log(baseCost + " Price normal")
+            return baseCost*costModifier;
+        }
+        //CALCULATE CLICK POWER FUNCTION
+        function calculateClickPower(){
+            var clickModifier= gameState.clickModifier
+            var baseClickPower = gameState.clickPower
+            //console.log(baseClickPower*clickModifier +" Click with modifier")
+            //console.log(baseClickPower + " Click normal");
+            return baseClickPower*clickModifier
         }
         /*
         try {
