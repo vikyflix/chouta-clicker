@@ -454,6 +454,8 @@
             calmDuration: 180,  //
             bridgeRunDuration: [10,20],
             bridgeCalmDuration: [10,20],
+            bridgeRunCurrentDuration: 0,
+            bridgeCalmCurrentDuration: 0,
             bridgeRunTimer:0,
             bridgeCalmTimer:0,
             bridgeRunCountdown:0,
@@ -1129,6 +1131,16 @@
         function updateBridgeRun() {
             // Decrement the current timer
             if(gameState.buildings["bridgeCrews"]>0){
+                let progress;
+                if (gameState.bridgeRunActive) {
+                    progress = ((gameState.bridgeRunCurrentDuration - gameState.bridgeRunCountdown) / gameState.bridgeRunCurrentDuration) * 100;
+                    console.log("Bridge run progress:", progress, "Duration:", gameState.bridgeRunCurrentDuration, "Countdown:", gameState.bridgeRunCountdown);
+                    
+                } else {
+                    progress = ((gameState.bridgeCalmCurrentDuration - gameState.bridgeRunCountdown) / gameState.bridgeCalmCurrentDuration) * 100;
+                    console.log("Bridge calm progress:", progress, "Duration:", gameState.bridgeCalmCurrentDuration, "Countdown:", gameState.bridgeRunCountdown);
+                }
+                elements.bridgerunProgress.style.width = progress + '%';
                 if (gameState.bridgeRunCountdown > 0 ) {
                     gameState.bridgeRunCountdown--;
                     console.log(gameState.bridgeRunCountdown)
@@ -1139,7 +1151,8 @@
                 if (!gameState.bridgeRunActive) {
                     // Start a bridge run
                     gameState.bridgeRunActive = true;
-                    gameState.bridgeRunCountdown = gameState.bridgeRunDuration[getRandomInt(2)];
+                    gameState.bridgeRunCurrentDuration = gameState.bridgeRunDuration[getRandomInt(2)];
+                    gameState.bridgeRunCountdown = gameState.bridgeRunCurrentDuration;
                     elements.bridgerunStatus.textContent = "Bridgerun Ongoing";
                     console.log("CALLING FOR A BRIDGERUN");
                     console.log(gameState.bridgeRunCountdown)
@@ -1149,20 +1162,13 @@
                     bridgeRun("bridgeCrewsExtra");
                     bridgeRun("bridgeFour");
                     gameState.bridgeRunActive = false;
-                    gameState.bridgeRunCountdown = gameState.bridgeCalmDuration[getRandomInt(2)];
+                    gameState.bridgeCalmCurrentDuration = gameState.bridgeCalmDuration[getRandomInt(2)];
+                    gameState.bridgeRunCountdown = gameState.bridgeCalmCurrentDuration;
                     elements.bridgerunStatus.textContent = "Bridgerun Chill!";
                     console.log("Bridge run complete");
                     console.log(gameState.bridgeRunCountdown)
-
                 }
             }
-            let progress;
-            if (gameState.bridgeRunActive) {
-                progress = ((gameState.bridgeRunCountdown - gameState.bridgeCalmDuration[getRandomInt(2)] / gameState.bridgeRunDuration[getRandomInt(2)] * 100))
-            } else {
-                progress = (gameState.bridgeRunCountdown / gameState.bridgeCalmDuration[getRandomInt(2)] * 100)
-            }
-            elements.bridgerunProgress.style.width = progress + '%';
 
             // Update stormlight bar
             //const stormlightPercent = (gameState.stormlightStored / (gameState.spheres * 100)) * 100;
@@ -1315,6 +1321,7 @@
             updateStorm();
             updateBridgeRun();
             saveGame();
+
         }
 
         // Initialize game
@@ -1462,8 +1469,8 @@
             const building = buildingTypes[key];
             const currentCount = gameState.buildings[key];
             var baseCost =Math.floor(building.baseCost * Math.pow(1.15, currentCount));
-            console.log(baseCost*costModifier +" Price with modifier")
-            console.log(baseCost + " Price normal")
+            //console.log(baseCost*costModifier +" Price with modifier")
+            //console.log(baseCost + " Price normal")
             return baseCost*costModifier;
         }
         //CALCULATE CLICK POWER FUNCTION
