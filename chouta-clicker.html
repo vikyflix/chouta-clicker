@@ -442,12 +442,27 @@
     <script>
         // Game State
         const gameState = {
-            chouta: 0,
+            chouta: 1000000000000,
             spheres: 0,
             stormlightStored: 0,
             clickPower: 1, //clickPower changed for dev pourposes
             clickModifier:1,
             costModifier:1,
+            prodModifiers:{
+                cookpotFires:1,
+                yieldAdminChouta:1,
+                slaveParshmen:1,
+                bridgeboysCooks:1,
+                choutaBaziers:1,
+                spiceGrinders:1,
+                rockCook:1,
+                lopensCousins:1,
+                rocksFamily:1,
+                bridgeCrews:1,
+                bridgeCrewsExtra:1,
+                bridgeFour:1
+            },
+            prodModifier:1,
             stormActive: false,
             stormTimer: 0,
             stormDuration: 60, // 
@@ -476,6 +491,7 @@
                 isAdmin: true,
                 baseCost: 0,
                 baseProduction: 0,
+                productionMult: 1.0,
                 stormProduction: 0,
                 requirements:[[]],
                 type: "building"
@@ -509,6 +525,7 @@
                 desc: "Small flames at the warcamp edges, tended by whoever can hold a ladle.",
                 baseCost: 15,
                 baseProduction: 1.0,
+                productionMult: 1.0,
                 stormProduction: 0.5,
                 requirements:[[]],
                 type: "building"
@@ -518,6 +535,7 @@
                 desc: "Best Slaves ever known, they click for you.",
                 baseCost: 50,
                 baseProduction: gameState.clickPower,
+                productionMult:1.0,
                 stormProduction: 0.5,
                 requirements:[[]],
                 type: "building"
@@ -527,6 +545,7 @@
                 desc: "Even bridgemen need to eat—one pot feeds many, if barely enough.",
                 baseCost: 250,
                 baseProduction: 2.4,
+                productionMult:1.0,
                 stormProduction: 1.2,
                 requirements:[[]],
                 type: "building"
@@ -536,6 +555,7 @@
                 desc: "Big, battered braziers glow with Herdazian spice and oil.",
                 baseCost: 500,
                 baseProduction: 5.0,
+                productionMult:1.0,
                 stormProduction: 2.5,
                 requirements:[[]],
                 type: "building"
@@ -545,6 +565,7 @@
                 desc: "The secret's in the seasoning. Too much, and even a lighteyes weeps.",
                 baseCost: 1200,
                 baseProduction: 12.0,
+                productionMult:1.0,
                 stormProduction: 6.0,
                 requirements:[[]],
                 type: "building"
@@ -554,6 +575,7 @@
                 desc: "Take everything you have, and put him in pot. Don't let anyone airsick touch seasonings.",
                 baseCost: 3000,
                 baseProduction: 30.0,
+                productionMult:1.0,
                 stormProduction: 15.0,
                 requirements:[[]],
                 type: "building"
@@ -563,6 +585,7 @@
                 desc: "A man can never have enough cousins.",
                 baseCost: 7500,
                 baseProduction: 80.0,
+                productionMult:1.0,
                 stormProduction: 40.0,
                 requirements:[[]],
                 type: "building"
@@ -572,6 +595,7 @@
                 desc: "Rock brings his whole Horneater family to help. Huge production line.",
                 baseCost: 20000,
                 baseProduction: 200.0,
+                productionMult:1.0,
                 stormProduction: 100.0,
                 requirements:[[]],
                 type: "building"
@@ -581,6 +605,7 @@
                 desc: "Condemned to bear the weight of another man's war, they run toward death so others may walk away. Every gap they fill is paid for in blood, sweat, and the shreds of freedom they’ll never see again.",
                 baseCost: 20000,
                 baseProduction: -200.0,
+                productionMult:-1.0,
                 stormProduction: -400.0,
                 requirements:[["rocksFamily",10]],
                 type: "building"
@@ -591,6 +616,7 @@
                 desc: "Ten crews now march beneath the weight of wood and war. The deaths still come, the screams still echo… yet, for the first time, some run not only to survive but to bring the others home.",
                 baseCost: 40000,
                 baseProduction: -400.0,
+                productionMult:-1.0,
                 stormProduction: -800.0,
                 requirements:[["bridgeCrews",10]],
                 type: "building"
@@ -600,6 +626,7 @@
                 desc: "It appeared that he'd been wrong. There had been something more they could do to him. One final torment the world had reserved just for Kaladin. And it was called Bridge Four.",
                 baseCost: 80000,
                 baseProduction: -800.0,
+                productionMult:-1.0,
                 stormProduction: -1600.0,
                 requirements:[["bridgeCrewsExtra",20]],
                 type: "building"
@@ -657,8 +684,6 @@
                     showNotification("The Shardladle hums with power!");
                 }
             },
-
-
             flamesprenFires: {
                 name: "Flamespren-Blessed Cookfires",
                 desc: "Little dancing flames whisper cooking secrets to those who listen.",
@@ -667,13 +692,43 @@
                 type: "upgrade", 
                 bought: false,
                 effect: () => {
-                    buildingTypes["cookpotFires"].baseProduction *= 2;
-                    buildingTypes["cookpotFires"].stormProduction = buildingTypes["cookpotFires"].baseProduction / 2;
+                    //buildingTypes["cookpotFires"].productionMult *= 2;
+                    gameState.prodModifiers["cookpotFires"]*= 2;
+                    //buildingTypes["cookpotFires"].stormProduction = calculateBaseProd("cookpotFires") / 2;
                     showNotification("Flamespren dance around your fires!");
                     renderBuildings();
                 }
             },
-
+            upgradedCooks: {
+                name: "Cooks get Better in their job",
+                desc: "Cooks double yield (x2).",
+                cost: 10000,
+                requirements:[["cookpotFires",20]],
+                type: "upgrade",
+                bought: false,
+                effect: () => {
+                    const buildings=buildingTypes;
+                    gameState.prodModifiers["cookpotFires"]*= 2;
+                    //buildingTypes["cookpotFires"].stormProduction = calculateBaseProd("cookpotFires") / 2;
+                    showNotification("Production Doubled");
+                    renderBuildings();
+                }
+            },
+            upgradedCooks2: {
+                name: "Cooks get even BETTER!!",
+                desc: "Cooks double yield (x2).",
+                cost: 10000,
+                requirements:[["cookpotFires",40]],
+                type: "upgrade",
+                bought: false,
+                effect: () => {
+                    const buildings=buildingTypes;
+                    gameState.prodModifiers["cookpotFires"]*= 2;
+                    //buildingTypes["cookpotFires"].stormProduction = calculateBaseProd("cookpotFires") / 2;
+                    showNotification("Production Doubled");
+                    renderBuildings();
+                }
+            },
             windsprenSeasoning: {
                 name: "Windspren-Carried Spices",
                 desc: "Playful spren carry exotic seasonings from across the Shattered Plains.",
@@ -682,8 +737,8 @@
                 type: "upgrade",
                 bought: false,
                 effect: () => {
-                    buildingTypes["spiceGrinders"].baseProduction *= 2;
-                    buildingTypes["spiceGrinders"].stormProduction = buildingTypes["spiceGrinders"].baseProduction / 2;
+                    buildingTypes["spiceGrinders"].productionMult *= 2;
+                    //buildingTypes["spiceGrinders"].stormProduction = calculateBaseProd("spiceGrinders")/ 2;
                     showNotification("Windspren giggle as they season your chouta!");
                     renderBuildings();
                 }
@@ -697,8 +752,8 @@
                 type: "upgrade",
                 bought: false,
                 effect: () => {
-                    buildingTypes["choutaBaziers"].baseProduction *= 2;
-                    buildingTypes["choutaBaziers"].stormProduction = buildingTypes["choutaBaziers"].baseProduction / 2;
+                    buildingTypes["choutaBaziers"].productionMult *= 2;
+                    //buildingTypes["choutaBaziers"].stormProduction = calculateBaseProd("choutaBaziers")/ 2;
                     showNotification("Honor guides your cooking techniques!");
                     renderBuildings();
                 }
@@ -712,8 +767,8 @@
                 type: "upgrade",
                 bought: false,
                 effect: () => {
-                    buildingTypes["rockCook"].baseProduction *= 2;
-                    buildingTypes["rockCook"].stormProduction = buildingTypes["rockCook"].baseProduction / 2;
+                    buildingTypes["rockCook"].productionMult *= 2;
+                    //buildingTypes["rockCook"].stormProduction = calculateBaseProd("rockCook")/ 2;
                     showNotification("Rock shares ancient Horneater wisdom!");
                     renderBuildings();
                 }
@@ -727,8 +782,8 @@
                 type: "upgrade",
                 bought: false,
                 effect: () => {
-                    buildingTypes["lopensCousins"].baseProduction *= 2;
-                    buildingTypes["lopensCousins"].stormProduction = buildingTypes["lopensCousins"].baseProduction / 2;
+                    buildingTypes["lopensCousins"].productionMult *= 2;
+                    //buildingTypes["lopensCousins"].stormProduction = calculateBaseProd("lopensCousins") / 2;
                     showNotification("The Lopen's network delivers the goods!");
                     renderBuildings();
                 }
@@ -742,8 +797,8 @@
                 type: "upgrade",
                 bought: false,
                 effect: () => {
-                    buildingTypes["rocksFamily"].baseProduction *= 2.2;
-                    buildingTypes["rocksFamily"].stormProduction = buildingTypes["rocksFamily"].baseProduction / 2;
+                    buildingTypes["rocksFamily"].productionMult *= 2.2;
+                    //buildingTypes["rocksFamily"].stormProduction = calculateBaseProd("rocksFamily") / 2;
                     showNotification("The peaks remember their children!");
                     renderBuildings();
                 }
@@ -760,8 +815,8 @@
                     gameState.clickModifier*= 3;
                     Object.keys(buildingTypes).forEach(key => {
                         if (buildingTypes[key].baseProduction > 0) {
-                            buildingTypes[key].baseProduction *= 2;
-                            buildingTypes[key].stormProduction = buildingTypes[key].baseProduction / 2;
+                            buildingTypes[key].productionMult *= 2;
+                            //buildingTypes[key].stormProduction = calculateBaseProd(key)/ 2;
                         }
                     });
                     showNotification("Honor radiates from your chouta!");
@@ -776,7 +831,7 @@
                 type: "upgrade",
                 bought: false,
                 effect: () => {
-                    gameState.clickPower += 2;
+                    gameState.clickModifier += 2;
                     showNotification("Click power greatly increased!");
                 }
             },
@@ -788,7 +843,7 @@
                 type: "upgrade",
                 bought: false,
                 effect: () => {
-                    gameState.clickPower += 2;
+                    gameState.clickModifier += 2;
                     showNotification("Shattered Plains Bridges Unlocked");
                 }
             },
@@ -800,38 +855,8 @@
                 type: "upgrade",
                 bought: false,
                 effect: () => {
-                    gameState.clickPower *= 2;
+                    gameState.clickModifier *= 2;
                     showNotification("Shattered Plains Bridges Unlocked");
-                }
-            },
-            upgradedCooks: {
-                name: "Cooks get Better in their job",
-                desc: "Cooks double yield (x2).",
-                cost: 10000,
-                requirements:[["cookpotFires",20]],
-                type: "upgrade",
-                bought: false,
-                effect: () => {
-                    const buildings=buildingTypes;
-                    buildings["cookpotFires"].baseProduction *= 2;
-                    buildings["cookpotFires"].stormProduction = buildings["cookpotFires"].baseProduction/2;
-                    showNotification("Production Doubled");
-                    renderBuildings();
-                }
-            },
-            upgradedCooks2: {
-                name: "Cooks get even BETTER!!",
-                desc: "Cooks double yield (x2).",
-                cost: 10000,
-                requirements:[["cookpotFires",40]],
-                type: "upgrade",
-                bought: false,
-                effect: () => {
-                    const buildings=buildingTypes;
-                    buildings["cookpotFires"].baseProduction *= 2;
-                    buildings["cookpotFires"].stormProduction = buildings["cookpotFires"].baseProduction/2;
-                    showNotification("Production Doubled");
-                    renderBuildings();
                 }
             },
             clickUpgrade4: {
@@ -842,7 +867,7 @@
                 type: "upgrade",
                 bought: false,
                 effect: () => {
-                    gameState.clickPower += 2;
+                    gameState.clickModifier += 2;
                     showNotification("Shattered Plains Bridges Unlocked");
                 }
             },
@@ -854,7 +879,7 @@
                 type: "upgrade",
                 bought: false,
                 effect: () => {
-                    gameState.clickPower += 2;
+                    gameState.clickModifier += 2;
                     showNotification("Shattered Plains Bridges Unlocked");
                 }
             },
@@ -866,7 +891,7 @@
                 type: "upgrade",
                 bought: false,
                 effect: () => {
-                    gameState.clickPower += 2;
+                    gameState.clickModifier += 2;
                     showNotification("Shattered Plains Bridges Unlocked");
                 }
             },
@@ -903,8 +928,9 @@
                 bought: false,
                 effect: () => {
                     const buildings=buildingTypes;
-                    buildings["cookpotFires"].baseProduction *= 10;
-                    buildings["cookpotFires"].stormProduction = buildings["cookpotFires"].baseProduction/2;
+                    buildings["cookpotFires"].productionMult *= 10;
+                    gameState.prodModifiers["cookpotFires"]*= 10;
+                    //buildings["cookpotFires"].stormProduction = calculateBaseProd("cookpotFires")/2;
                     showNotification("Production Doubled");
                     renderBuildings();
                 }
@@ -918,8 +944,8 @@
                 bought: false,
                 effect: () => {
                     const buildings=buildingTypes;
-                    buildings["slaveParshmen"].baseProduction *= 10;
-                    buildings["slaveParshmen"].stormProduction = buildings["slaveParshmen"].baseProduction/2;
+                    buildings["slaveParshmen"].productionMult *= 10;
+                    //buildings["slaveParshmen"].stormProduction = calculateBaseProd("slaveParshmen")/2;
                     showNotification("Production Doubled");
                     renderBuildings();
                 }
@@ -1073,8 +1099,7 @@
                     total += count * production;
                 } else {
                     // Normal building logic
-                    const production = gameState.stormActive ? building.stormProduction : building.baseProduction;
-                    total += count * production;
+                    total += calculateBaseProd(key);
                 }
             });
             gameState.totalCps = total;
@@ -1264,7 +1289,7 @@
                     <div class="building-cost">${cost.toLocaleString()} chouta</div>
                     <div class="building-desc">${building.desc}</div>
                     <div style="margin-top: 5px; font-size: 0.8em; color: #ffd700;">
-                        Production: ${building.baseProduction}/sec (${building.stormProduction}/sec during storms)
+                        Production: ${calculateBaseProd(key)}/sec (${calculateBaseProd(key) / 2}/sec during storms)
                     </div>
                 `;
                 elements.buildingsList.appendChild(buildingDiv);
@@ -1321,7 +1346,7 @@
             updateStorm();
             updateBridgeRun();
             saveGame();
-
+            console.log(gameState.prodModifiers)
         }
 
         // Initialize game
@@ -1480,6 +1505,17 @@
             //console.log(baseClickPower*clickModifier +" Click with modifier")
             //console.log(baseClickPower + " Click normal");
             return baseClickPower*clickModifier
+        }
+        //CALCULATE BASE PRODUCTION FUNCTION
+        function calculateBaseProd(key){
+            const count = gameState.buildings[key];
+            const building = buildingTypes[key];
+            const multiplier = gameState.prodModifiers[key] !== undefined ? gameState.prodModifiers[key] : 1
+            if(gameState.stormActive){
+                return (building.stormProduction*(building.productionMult*multiplier))*count
+            }else{
+                return (building.baseProduction*(building.productionMult*multiplier))*count
+            }
         }
         /*
         try {
