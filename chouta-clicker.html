@@ -9,6 +9,19 @@
             margin: 0;
             padding: 0;
             box-sizing: border-box;
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+        }
+
+        /* Exception: the export textarea needs normal selection so players can
+           select-all and copy their save data out of it. */
+        #export-textarea {
+            -webkit-user-select: text;
+            -moz-user-select: text;
+            -ms-user-select: text;
+            user-select: text;
         }
 
         :root {
@@ -1160,7 +1173,7 @@
     <div class="modal-overlay" id="settings-modal-overlay">
         <div class="modal">
             <span class="modal-close" id="settings-modal-close">✕</span>
-            <h2>Settings</h2>
+            <h2 id="settings-modal-title">Settings</h2>
             <div class="settings-row">
                 <span>Sound Effects</span>
                 <label><input type="checkbox" id="sound-toggle" checked> Enabled</label>
@@ -1181,7 +1194,7 @@
                 <span>Reset all progress</span>
                 <button id="settings-reset-button">Reset</button>
             </div>
-            <div class="settings-row" style="border-bottom:none;">
+            <div class="settings-row" id="devtools-row" style="border-bottom:none;display:none;">
                 <span>Developer Tools</span>
                 <button id="devtools-unlock-button">Unlock</button>
             </div>
@@ -2165,6 +2178,8 @@
             exportTextarea: document.getElementById('export-textarea'),
             settingsResetButton: document.getElementById('settings-reset-button'),
 
+            settingsModalTitle: document.getElementById('settings-modal-title'),
+            devtoolsRow: document.getElementById('devtools-row'),
             devtoolsUnlockButton: document.getElementById('devtools-unlock-button'),
             devtoolsPanel: document.getElementById('devtools-panel'),
             devAddChouta: document.getElementById('dev-add-chouta'),
@@ -2370,6 +2385,43 @@
         });
         elements.settingsResetButton.addEventListener('click', () => {
             resetGame();
+        });
+
+        // --- Admin gate: hides the "Developer Tools" row itself from every player, not
+        // just the panel behind it. Click the Settings title 7 times within 3 seconds to
+        // be prompted for the admin passphrase; once correct it's remembered in
+        // localStorage under its own key - kept out of gameState entirely, so it never
+        // leaks through Export/Import and survives a Reset - and the row appears on this
+        // browser from then on. Still just a client-side soft lock, like DEV_CODE below:
+        // anyone reading the page source can find ADMIN_CODE. The point isn't to stop a
+        // determined snoop, it's to stop the row from being an open invitation to every
+        // ordinary player who opens Settings.
+        const ADMIN_STORAGE_KEY = 'choutaClickerAdmin';
+        const ADMIN_CODE = "kholin4";
+        function isAdmin() { return localStorage.getItem(ADMIN_STORAGE_KEY) === 'true'; }
+        function refreshDevtoolsRowVisibility() {
+            elements.devtoolsRow.style.display = isAdmin() ? '' : 'none';
+        }
+        refreshDevtoolsRowVisibility();
+
+        let adminTitleClicks = 0;
+        let adminTitleClickTimer = null;
+        elements.settingsModalTitle.addEventListener('click', () => {
+            if (isAdmin()) return;
+            adminTitleClicks++;
+            clearTimeout(adminTitleClickTimer);
+            adminTitleClickTimer = setTimeout(() => { adminTitleClicks = 0; }, 3000);
+            if (adminTitleClicks < 7) return;
+            adminTitleClicks = 0;
+            const code = prompt("Admin passphrase:");
+            if (code === null) return;
+            if (code === ADMIN_CODE) {
+                localStorage.setItem(ADMIN_STORAGE_KEY, 'true');
+                refreshDevtoolsRowVisibility();
+                showNotification("Admin access granted.");
+            } else {
+                showNotification("Incorrect passphrase.");
+            }
         });
 
         // --- Developer Tools: a soft client-side gate for testing, not real security ---
